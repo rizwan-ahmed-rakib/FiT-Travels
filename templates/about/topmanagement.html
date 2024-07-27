@@ -1,0 +1,27 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block sectionName_block %} Our Committee{% endblock %}
+{% block body_block %}
+    
+                <!-- TEAM LIST START -->
+                <div class="grid gap-2 lg:gap-4 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                    <div>
+                        <div class="bg-slate-100 py-4 lg:py-7 px-1 lg:px-3 flex flex-col items-center group">
+                            <div class="block [transition:.3s] rounded-full group-hover:rounded-none shadow-xl  overflow-hidden z-[1] aspect-square w-3/4 mx-auto  relative">
+                                <img class="h-full w-full object-cover"
+                                     src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %}"
+                                     alt="Dr. Hasanuzzaman">
+                            </div>
+                            <div class="text-center mt-3">
+                                <h3 class="text-base lg:text-xl font-bold tracking-tight text-gray-900 line-clamp-1">
+                                    Dr. Hasanuzzaman</h3>
+                                <span class="text-gray-500 dark:text-gray-400 line-clamp-1">Chairman</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- TEAM LIST END -->
+    
+
+{% endblock %}

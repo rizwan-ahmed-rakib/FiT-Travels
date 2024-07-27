@@ -1,0 +1,320 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- keywords -->
+    <meta name="keywords"
+          content="UK Jubo Dal, BNP youth wing in the UK, UK Jubo Dal activities,UK Jubo Dal members,BNP youth movement in the UK, BNP youth wing events in the UK, UK Jubo Dal news, BNP youth wing campaigns, UK Jubo Dal leaders, BNP youth wing participation in the UK, UK Jubo Dal membership, BNP youth wing rallies in the UK, UK Jubo Dal social media, BNP youth wing activism in the UK, UK Jubo Dal volunteers, BNP youth wing initiatives in the UK, UK Jubo Dal political engagement, BNP youth wing conferences in the UK, UK Jubo Dal community outreach, BNP youth wing support in the UK">
+    <!-- Meta Description -->
+    <meta name="description"
+          content="Get involved with the UK Jubo Dal, the vibrant youth wing of the BNP in the United Kingdom. Discover opportunities for activism, leadership development, and contributing to a stronger Bangladesh.">
+
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="3lkDBI96IEk0pOLVMKLUS37KnlrtGDJVfraTJWt0">
+
+    <!-- title -->
+    <title>{% block title_block %}Home | Saadman Travels{% endblock %}</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'icon/Freelance iT (2).png' %}">
+
+
+    <!-- Tailwind CDN link -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <!-- Font awesome CDN link -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
+    <!-- flowbite cdn link  -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- AOC CSS cdn  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+</head>
+
+
+<body>
+<div class="lg:px-20 bg-[url('{% static 'icon/body-bg.jpg' %}')] bg-repeat"
+     style="background-size: 300px;background-attachment: fixed">
+    <div class="container mx-auto bg-white">
+
+        <!-- HEADER AREA START -->
+        <div class="flex items-center justify-between px-2 py-2 relative z-[1] ">
+            <a href="####" class="lg:flex-[4] h-20 inline-flex items-center">
+                <img src="{% static 'settings/1.jpg' %}" class="h-full" alt="Logo"/>
+            </a>
+
+            <div class="lg:flex-[4] justify-center flex items-center gap-2 h-full">
+                <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"
+                     id="play-music-button">
+                    <i class="fa-solid fa-pause" id="icon"></i>
+                    Audio
+                </div>
+
+                <audio id="music" class="hidden" loop autoplay controls
+                       src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">
+                    <a href="#"> Download audio </a>
+                </audio>
+            </div>
+
+            <div class="lg:flex-[4] hidden lg:flex flex-col items-end h-full">
+                <div class="flex items-end flex-col gap-1 justify-center">
+                    <a class="text-lg text-black flex items-center gap-2" href="#">
+                        01521416544
+                        <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                    </a>
+                    <a class="text-lg text-black flex items-center gap-2" href="##">
+                        freelanceit.bd@gmail.com
+                        <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bg-[#FC0002]">
+            <div class="flex flex-wrap items-center justify-between px-3 py-1 lg:p-0">
+                <button data-collapse-toggle="navbar-dropdown" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                        aria-controls="navbar-dropdown" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0">
+                        <li>
+                            <a href="{% url 'travell_go' %}"
+                               class="bg-[#A80001] block py-3 px-4 text-white hover:bg-[#A80001]">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}"
+                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">About Us </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'management' %}"
+                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Top Management </a>
+                        </li>
+
+                        <li class="group relative">
+                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Speeches <img
+                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                <ul class="text-sm text-white">
+                                    <li>
+                                        <a href="{% url 'president_speach' %}"
+                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">President
+                                            Speech</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="group relative">
+                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Hajj
+                                Information <img src="{% static 'icon/down-arrow.png' %}"/>
+                            </div>
+                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                <ul class="text-sm text-white">
+                                    <li>
+                                        <a href="{% url 'hazz_message' %}"
+                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
+                                            Message</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hazz_must_be_done' %}"
+                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
+                                            Must be Done</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'agency_should' %}"
+                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Agency
+                                            Should</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hazz_tips' %}"
+                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Hajj Tips</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="group relative">
+                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Gallery <img
+                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                <ul class="text-sm text-white">
+                                    <li>
+                                        <a href="{% url 'image_gallery' %}"
+                                           class=" block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Image
+                                            Gallery</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'video_gallery' %}"
+                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Video
+                                            Gallery</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'notice' %}"
+                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Notice </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'form_download' %}"
+                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">
+                                Form
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'contact_us' %}"
+                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Contact</a>
+                        </li>
+
+                        <li class="group relative">
+                            <div class="flex items-center gap-1 py-3 px-4 text-white hover:bg-[#A80001]">Login <img
+                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                            <div class="absolute duration-300 group-hover:top-[48px] right-0 top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                <ul class="text-sm text-white">
+                                    <li>
+                                        <a href="{% url 'dashboard' %}"
+                                           class="block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">DashBoard</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'contact_us' %}"
+                                           class="block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Webmail</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'admin:index' %}" 
+                                           class="block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Go to Admin Panel</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- HEADER AREA END -->
+
+
+        <!-- HERO AREA START -->
+        <div class="w-full group mb-3 lg:mb-10">
+            <div class="swiper sliderSwiper w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{% static 'settings/download (1).jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'settings/2.jpg' %}" class="aspect-[5/2] w-full object-cover"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'settings/download1.jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'settings/images.jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'settings/2.jpg' %}" class="aspect-[5/2] w-full object-cover"/>
+                    </div>
+                </div>
+                <div class="invisible group-hover:visible swiper-button-next">
+                    <img src="{% static 'icon/img.png' %}"/>
+                </div>
+                <div class="invisible group-hover:visible swiper-button-prev">
+                    <img src="{% static 'icon/slider-prev.png' %}"/>
+                </div>
+                <div class="swiper-pagination bg-gradient-to-t from-white/50 to-transparent pt-8 pb-3 !bottom-0"></div>
+            </div>
+        </div>
+
+        <!-- HERO AREA END -->
+
+    <!----main page inside this block----->          
+
+        <div class="grid grid-cols-1 md:grid-cols-[auto_30%] mx-6 items-start  gap-6">
+
+
+            <div>
+                <h3 class="bg-[#FC0002] bg-gradient-to-tr from-[#fc002a] to-purple-800 relative after:absolute after:content after:left-0 after:top-0 after:bottom-0 after:w-[48px] after:bg-[url({% static 'icon/title-after-bg.png' %})] after:bg-cover before:absolute before:content before:right-0 before:[transform:scaleX(-1)] before:top-0 before:bottom-0 before:w-[48px] before:bg-[url({% static 'icon/title-after-bg.png' %})] before:bg-cover mb-2 p-2 text-2xl font-bold text-center text-white">
+                    {% block sectionName_block %}   Our Committee {% endblock %}
+                </h3>
+                <div class="h-[calc(100%-65px)]  overflow-y-auto overflow-x-hidden border p-2 md:p-3 lg:p-6">
+
+                    {% block body_block %}
+
+
+
+                    {% endblock %}
+                </div>
+            </div>
+
+            {% include 'travel/secondSection.html' %}
+        </div>
+
+
+        {% include 'travel/footer.html' %}
+
+        <!--last two added div -->
+    </div>
+</div>
+
+<!-- jQuery js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Swiper Js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- FsLightBox -->
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js"
+        integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+
+<!-- flowbite js cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+
+<!-- AOS JS cdn  -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- include js -->
+<script src="https://sadmantravels.com/frontend/js/main.js"></script>
+<script src="https://sadmantravels.com/frontend/js/app.js"></script>
+
+</body>

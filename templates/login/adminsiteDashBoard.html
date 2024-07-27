@@ -1,0 +1,587 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">
+
+    <!-- title -->
+    <title>FreelanceiT Travels</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'icon/Freelance iT-logo.png' %}">
+
+    <!-- ionicons css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!-- toastr css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- selectpicker css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- datepicker css -->
+    <link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css">
+    <!-- perfect scrollbar css -->
+    <link rel="stylesheet" href="{% static 'css/perfectScrolbar.css' %}">
+    <!-- include style -->
+    <link rel="stylesheet" href="{% static 'css/adminDashboard.css' %}">
+        </head>
+<body>
+
+
+<section class="wrapper" data-menu="dashboard"
+         data-submenu="">
+
+    <!-- panel aside start -->
+    <aside class="panel_aside">
+        <div class="brand">
+            <span class="brand_icon"><i class="icon ion-md-home"></i></span>
+            <h3>FreelanceiT Travels</h3>
+            <a href="#" id="panelClose_btn">
+                <i class="icon ion-ios-close io-36"></i>
+            </a>
+            <a href="#" id="panelOpen_btn">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <!-- aside nav start -->
+        <ul class="aside_nav">
+            <!-- dashboard -->
+            <li id="dashboard">
+                <a href="{% url 'dashboard' %}">  <!----dashBoard Linnk add here---->
+                    
+                    <i class="fas fa-th-large"></i>
+                    <span class="menu_title">Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Media -->
+            <li id="media" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-photo-video"></i>
+                    <span class="menu_title">Media Gallery</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+                <ul>
+                    <li class="imageGallery"><a href="https://sadmantravels.com/admin/media/image">Image Gallery</a></li>
+                    <li class="videoGallery"><a href="https://sadmantravels.com/admin/media/video">Video Gallery</a></li>
+                </ul>
+            </li>
+
+
+            <!-- Income -->
+            <li id="income" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span class="menu_title">Income</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+                <ul>
+                    <li class="addIncome"><a href="https://sadmantravels.com/admin/income/create">New Income</a></li>
+                    <li class="allIncome"><a href="https://sadmantravels.com/admin/income">All Income</a></li>
+                    <li class="fieldIncome"><a href="https://sadmantravels.com/admin/income/field">Field Of Income</a></li>
+                </ul>
+            </li>
+
+            <!-- Cost -->
+            <li id="cost" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span class="menu_title">Cost</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+                <ul>
+                    <li class="addCost"><a href="https://sadmantravels.com/admin/cost/create">New Cost</a></li>
+                    <li class="allCost"><a href="https://sadmantravels.com/admin/cost">All Cost</a></li>
+                    <li class="fieldCost"><a href="https://sadmantravels.com/admin/cost/field">Field Of Cost</a></li>
+                </ul>
+            </li>
+            <li id="balance-sheet">
+                <a href="https://sadmantravels.com/admin/balane-sheet">
+                    <i class="fas fa-comments-dollar"></i>
+                    <span class="menu_title">Balance SheetReport</span>
+                </a>
+            </li>
+
+            <!-- slider -->
+            <li id="importantLink">
+                <a href="https://sadmantravels.com/admin/important-link">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="menu_title">Important Link</span>
+                </a>
+            </li>
+
+            <!-- slider -->
+            <li id="slider">
+                <a href="https://sadmantravels.com/admin/slider">
+                    <i class="fas fa-sliders-h"></i>
+                    <span class="menu_title">Slider</span>
+                </a>
+            </li>
+
+             <!-- slider -->
+            <li id="about_slider">
+                <a href="https://sadmantravels.com/admin/about_slider">
+                    <i class="fas fa-sliders-h"></i>
+                    <span class="menu_title">About Slider</span>
+                </a>
+            </li>
+
+            <!-- Media -->
+            <li id="notice" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="menu_title">Notice</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+                <ul>
+                    <li class="addNotice">
+                        <a href="https://sadmantravels.com/admin/notice/create">Add New</a>
+                    </li>
+                    <li class="allNotice">
+                        <a href="https://sadmantravels.com/admin/notice">View All</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Page -->
+            <li id="page" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="menu_title">Page</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+
+                <ul>
+                                        <li class="addPage"><a href="https://sadmantravels.com/admin/page/create">Add Page</a></li>
+                                        <li class="allPage"><a href="https://sadmantravels.com/admin/page">All Page</a></li>
+                </ul>
+            </li>
+
+            <!-- Post -->
+            <li id="post" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-blog"></i>
+                    <span class="menu_title">News</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+
+                <ul>
+                    <li class="addPost"><a href="https://sadmantravels.com/admin/post/create">Add News</a></li>
+                    <li class="allPost"><a href="https://sadmantravels.com/admin/post">All News</a></li>
+                </ul>
+            </li>
+
+            <!-- Speech -->
+            <li id="speech" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-comments"></i>
+                    <span class="menu_title">Speech</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+                <ul>
+                    <li class="addSpeech"><a href="https://sadmantravels.com/admin/speech/create">Add Speech</a></li>
+                    <li class="allSpeech"><a href="https://sadmantravels.com/admin/speech">All Speech</a></li>
+                </ul>
+            </li>
+
+
+            <!-- Team -->
+            <li id="team" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-users"></i>
+                    <span class="menu_title">Management</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
+                </a>
+
+                <ul>
+                    <li class="addTeam"><a href="https://sadmantravels.com/admin/team/create">Add Management</a></li>
+                    <li class="allTeam"><a href="https://sadmantravels.com/admin/team">All Management</a></li>
+                </ul>
+            </li>
+
+            <!-- Member -->
+            
+
+            <!-- Service -->
+            <li id="service">
+                <a href="https://sadmantravels.com/admin/service">
+                    <i class="fas fa-tools"></i>
+                    <span class="menu_title">Service</span>
+                </a>
+            </li>
+
+            <!-- Career -->
+            
+
+            <!-- FAQ -->
+            
+
+            <!-- Testimonial -->
+            
+
+            <!-- User -->
+                        <li id="user" class="dropdown">
+                <a href="#">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span class="menu_title">User</span>
+                    <span class="menu_arrow">
+                    <i class="icon ion-ios-arrow-forward right"></i>
+                    <i class="icon ion-ios-arrow-down down"></i>
+                </span>
+                </a>
+                <ul>
+                    <li class="add_user"><a href="https://sadmantravels.com/admin/user/create">Add User</a></li>
+                    <li class="all_user"><a href="https://sadmantravels.com/admin/user">All User</a></li>
+                </ul>
+            </li>
+
+            <!-- Frontend message -->
+            <li id="frontendMessage">
+                <a href="https://sadmantravels.com/admin/frontend-message">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <span class="menu_title">Frontend Message</span>
+                </a>
+            </li>
+
+            <!-- Settings -->
+            <li id="settings">
+                <a href="https://sadmantravels.com/admin/settings">
+                    <i class="fas fa-cogs"></i>
+                    <span class="menu_title">Settings</span>
+                </a>
+            </li>
+                    </ul>
+    </aside>
+    <!-- panel aside end -->
+
+    <!-- body section start -->
+    <div class="main_body">
+        <!-- main nav start -->
+        <nav class="main_nav">
+            <ul class="function_menu">
+                <li class="user_dropdown">
+                    <a href="#" id="aside-toggle">
+                        <i class="icon ion-ios-menu io-23"></i>
+                    </a>
+                </li>
+
+                <li class="visit_site">
+                    <a href="https://sadmantravels.com/" target="_blank" style="width: auto; padding: 0 10px; margin-left: 10px;">
+                        <i class="fas fa-eye"></i>
+                        <span style="font-size: 12px; font-weight: bold; text-transform: uppercase;">Visit WebSite</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="user_menu">
+                <!-- message -->
+                <li class="user_dropdown">
+                    <a href="#" class="menu-button">
+                        <i class="icon ion-ios-mail io-21"></i>
+                    </a>
+                    <ul class="sub_menu">
+                        <li class="head">
+                            <a href="#">
+                                <h6>You have 2 Message</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Awesome aminmate.css</span>
+                                <small>10 minit ago</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Awesome aminmate.css</span>
+                                <small>10 minit ago</small>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- profile -->
+                <li class="user_dropdown">
+                    <a href="#" class="menu-button">
+                                                    <img src="https://sadmantravels.com/backend/images/user/02.png" alt="">
+                                            </a>
+                    <ul class="sub_menu">
+                        <li class="head">
+                            <a href="">
+                                <h6>FreelanceIT 2022</h6>
+                                <small>Super</small>
+                            </a>
+                        </li>
+                        <li><a href="https://sadmantravels.com/admin/user/show/2">Profile</a></li>
+                        <li>
+                            <a href="https://sadmantravels.com/admin/logout"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="https://sadmantravels.com/admin/logout" method="POST" class="d-none">
+                                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- main nav end -->
+            <!-- body container start -->
+    <div class="body_container">
+        <style>
+            .welcome_page {
+                background-image: url({% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %});
+                background-position: bottom right;
+                background-repeat: no-repeat;
+                /* background-color: #303F9F; */
+                background-size: cover;
+                width: 100%;
+                display: flex;
+                padding: 65px 15px;
+                justify-content: center;
+            }
+            .welcome_page h2 {
+                text-transform: Capitalize;
+                font-weight: 700;
+                color: #303F9F;
+                font-size: 2rem;
+            }
+
+            .dash-box{
+                text-align: center;
+                padding: 30px 0;
+                color: #fff;
+                border-radius: 4px;
+                margin: 0 0 15px;
+                position: relative;
+                overflow: hidden;
+            }
+            .dash-box::before{
+                content: '';
+                display: inline-block;
+                height: 80px;
+                width: 80px;
+                position: absolute;
+                top: 50%;
+                left: 0%;
+                background: #ffffff11;
+                transform: rotate(-45deg) translate(-50%, -50%);
+            }
+            .dash-box::after{
+                content: '';
+                display: inline-block;
+                height: 80px;
+                width: 80px;
+                position: absolute;
+                top: 50%;
+                right: 0%;
+                background: #ffffff11;
+                transform: rotate(45deg) translate(-50%, -50%);
+            }
+            .dash-box-1{
+                background: #e53935;
+                box-shadow: 1px 3px 10px #e5393599;
+            }
+            .dash-box-2{
+                background: #D81B60;
+                box-shadow: 1px 3px 10px #D81B6099;
+            }
+            .dash-box-3{
+                background: #8E24AA;
+                box-shadow: 1px 3px 10px #8E24AA99;
+            }
+            .dash-box-4{
+                background: #5E35B1;
+                box-shadow: 1px 4px 7px #5E35B1c4;
+            }
+            .dash-box-5{
+                background: #3949AB;
+                box-shadow: 1px 4px 7px #3949ABc4;
+            }
+            .dash-box-6{
+                background: #1E88E5;
+                box-shadow: 1px 4px 7px #1E88E5c4;
+            }
+            .dash-box-7{
+                background: #039BE5;
+                box-shadow: 1px 4px 7px #039BE5c4;
+            }
+            .dash-box-8{
+                background: #0097A7;
+                box-shadow: 1px 4px 7px #0097A7c4;
+            }
+            .dash-box-9{
+                background: #00897B;
+                box-shadow: 1px 4px 7px #00897Bc4;
+            }
+            .dash-box-10{
+                background: #388E3C;
+                box-shadow: 1px 4px 7px #388E3Cc4;
+            }
+            .dash-box-11{
+                background: #689F38;
+                box-shadow: 1px 4px 7px #689F38c4;
+            }
+            .dash-box-12{
+                background: #AFB42B;
+                box-shadow: 1px 4px 7px #AFB42Bc4;
+            }
+            .dash-box h1{
+                margin: 0;
+                font-size: 22px;
+            }
+            .dash-box span{
+                font-size: 16px;
+                text-transform: uppercase;
+            }
+
+            @media  screen and (max-width: 991px) {
+                .welcome_page h2 {font-size: 2rem;}
+            }
+            @media  screen and (max-width: 768px) {
+                .welcome_page h2 {font-size: 1.5rem;}
+            }
+        </style>
+
+        <!-- body content start -->
+        <div class="body_content">
+            
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                       <a href="">
+                           <div class="dash-box dash-box-1">
+                              <span>Today's Income</span>
+                              <h1>0</h1>
+                           </div>
+                       </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="">
+                            <div class="dash-box dash-box-2">
+                               <span>Today's Cost</span>
+                               <h1>0</h1>
+                            </div>
+                        </a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="">
+                            <div class="dash-box dash-box-3">
+                               <span>Today's Balance</span>
+                               <h1>0</h1>
+                            </div>
+                        </a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="">
+                            <div class="dash-box dash-box-4">
+                               <span>Monthly Income</span>
+                               <h1>0</h1>
+                            </div>
+                        </a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="">
+                            <div class="dash-box dash-box-5">
+                               <span>Monthly Cost</span>
+                               <h1>0</h1>
+                            </div>
+                        </a>
+                     </div>
+                     <div class="col-md-3">
+                        <a href="">
+                            <div class="dash-box dash-box-6">
+                               <span>Monthly Balance</span>
+                               <h1>0</h1>
+                            </div>
+                        </a>
+                     </div>
+                </div>
+             </div>
+        </div>
+        <!-- body content end -->
+    </div>
+    <!-- body container end -->
+    </div>
+    <!-- body section end -->
+
+    <!-- footer start -->
+    <div class="developer">
+        <p>Developed By : <a href="https://freelanceitlab.com/" target="_blank">Freelance It Lab</a></p>
+    </div>
+    <div class="wrapper_background"></div>
+</section>
+
+<!-- jQuery js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+<!-- selectpicker js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<!-- toastr js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- ckeditor4 js -->
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<!-- datepicker js -->
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"></script>
+<!-- perfect scrollbar js -->
+<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>
+<!-- include js -->
+<script src="https://sadmantravels.com/backend/js/app.js"></script>
+
+<script>
+    
+    // option
+    toastr.options = {
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "newestOnTop": false,
+        "closeButton": true,
+        "progressBar": true,
+        "onclick": null,
+        "debug": false,
+        "timeOut": "1000",
+        "showDuration": "300",
+        "showEasing": "swing",
+        "hideDuration": "1000",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "extendedTimeOut": "1000",
+    }
+</script>
+
+</body>
+</html>
+

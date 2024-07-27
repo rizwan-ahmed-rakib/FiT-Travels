@@ -1,0 +1,59 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %} Contact | Freelance iT{% endblock %}
+{% block sectionName_block %}  Contact Us  {% endblock %}
+{% block body_block %}
+
+    <div class="flex flex-col 2xl:flex-row gap-5">
+        <div class="flex-[6]">
+            <iframe class="w-full h-full"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d78254.31332103485!2d0.0375862747179876!3d52.19891862333509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d85d89f32a012d%3A0x63a320e1a35e3d21!2sCambridge%2C%20UK!5e0!3m2!1sen!2sbd!4v1686138023513!5m2!1sen!2sbd"></iframe>
+        </div>
+
+        <div class="flex-[6] p-3 lg:p-8 border shadow-lg bg-white">
+            <form class="text-gray-600 w-full" action="https://sadmantravels.com/contact/store" method="POST">
+                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">
+                <h3 class="text-center text-3xl mb-8 font-mono font-bold text-gray-700"> Get In Touch</h3>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <input type="text" name="name" id="name" required
+                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"
+                               placeholder="Enter Your Name"/>
+                        <input type="hidden" name="type" value="contact">
+                    </div>
+                    <div>
+                        <input type="email" name="email" id="email" required
+                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"
+                               placeholder="Enter Your Email"/>
+                    </div>
+                    <div>
+                        <textarea name="message" id="message" rows="4" required placeholder="Type Your Message Here"
+                                  class="w-full mt-2 p-3 border focus:border--[#FC0002] outline-none"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full mt-2 p-3 border-none bg-[#FC0002] hover:bg-[#FC0002] text-white text-center">
+                        Send Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
+        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+            <i class="fa-solid fa-phone text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+            <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">01521416544</p>
+        </div>
+        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+            <i class="fa-solid fa-envelope text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+            <p class="h-14 text-white  duration-300 group-hover:text-[#FC0002] text-base">freelanceit@gmail.com</p>
+        </div>
+        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+            <i class="fa-solid fa-location-dot text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+            <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">24/1 Minto Tower(5th Floor)
+                Shamacaron Ray Road, Natun
+                Bazar, Mymensingh, Bangladesh</p>
+        </div>
+    </div>
+
+{% endblock %}
