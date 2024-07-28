@@ -21,8 +21,9 @@
     <title>{% block title_block %}Home | Saadman Travels{% endblock %}</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{% static 'icon/Freelance iT (2).png' %}">
-
+{% for icon in settings %}
+    <link rel="shortcut icon" href="{{ icon.slider_image.url }}">
+{% endfor %}
 
     <!-- Tailwind CDN link -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
@@ -62,7 +63,9 @@
         <!-- HEADER AREA START -->
         <div class="flex items-center justify-between px-2 py-2 relative z-[1] ">
             <a href="####" class="lg:flex-[4] h-20 inline-flex items-center">
-                <img src="{% static 'settings/1.jpg' %}" class="h-full" alt="Logo"/>
+                {% for logo in settings %}
+                <img src="{{ logo.logoimage.url }}" class="h-full" alt="Logo"/>
+                {% endfor %}
             </a>
 
             <div class="lg:flex-[4] justify-center flex items-center gap-2 h-full">
@@ -71,23 +74,29 @@
                     <i class="fa-solid fa-pause" id="icon"></i>
                     Audio
                 </div>
-
+               {% for audio in settings %}
                 <audio id="music" class="hidden" loop autoplay controls
-                       src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">
+{#                       src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">#}
+                       src="{{ audio.audio.url }}">
                     <a href="#"> Download audio </a>
                 </audio>
+                {% endfor %}
             </div>
 
             <div class="lg:flex-[4] hidden lg:flex flex-col items-end h-full">
                 <div class="flex items-end flex-col gap-1 justify-center">
                     <a class="text-lg text-black flex items-center gap-2" href="#">
-                        01521416544
+                        {% for phone in settings %}
+                            {{ phone.mobile_number }}
+                        {% endfor %}
                         <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
                             <i class="fa-solid fa-mobile-screen"></i>
                         </div>
                     </a>
                     <a class="text-lg text-black flex items-center gap-2" href="##">
-                        freelanceit.bd@gmail.com
+                        {% for email in settings %}
+                            {{ email.email }}
+                        {% endfor %}
                         <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
                             <i class="fa-regular fa-envelope"></i>
                         </div>
@@ -217,8 +226,9 @@
                                            class="block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Webmail</a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'admin:index' %}" 
-                                           class="block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Go to Admin Panel</a>
+                                        <a href="{% url 'admin:index' %}"
+                                           class="block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Go to Admin
+                                            Panel</a>
 
                                     </li>
                                 </ul>
@@ -235,21 +245,21 @@
         <div class="w-full group mb-3 lg:mb-10">
             <div class="swiper sliderSwiper w-full">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{% static 'settings/download (1).jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'settings/2.jpg' %}" class="aspect-[5/2] w-full object-cover"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'settings/download1.jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'settings/images.jpeg' %}" class="aspect-[5/2] w-full object-cover"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{% static 'settings/2.jpg' %}" class="aspect-[5/2] w-full object-cover"/>
-                    </div>
+                    {% for slider in sliders %}
+                        <div class="swiper-slide" style="background-color: #1e9bd0; color:green;text-align:center">
+                            {{ slider.title }}
+                            <img src="{{ slider.slide_picture.url }}" class="aspect-[5/2] w-full object-cover"/>
+                            {{ slider.title }}
+                        </div>
+                        <hr>
+
+                    {% endfor %}
+                    {#                    <div class="swiper-slide">#}
+                    {#                        <img src="{% static 'settings/2.jpg' %}" class="aspect-[5/2] w-full object-cover"/>#}
+                    {#                        #}
+                    {#                    </div>#}
+
+
                 </div>
                 <div class="invisible group-hover:visible swiper-button-next">
                     <img src="{% static 'icon/img.png' %}"/>
@@ -263,7 +273,7 @@
 
         <!-- HERO AREA END -->
 
-    <!----main page inside this block----->          
+        <!----main page inside this block----->
 
         <div class="grid grid-cols-1 md:grid-cols-[auto_30%] mx-6 items-start  gap-6">
 

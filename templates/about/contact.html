@@ -40,20 +40,20 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
-        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
-            <i class="fa-solid fa-phone text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
-            <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">01521416544</p>
-        </div>
-        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
-            <i class="fa-solid fa-envelope text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
-            <p class="h-14 text-white  duration-300 group-hover:text-[#FC0002] text-base">freelanceit@gmail.com</p>
-        </div>
-        <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
-            <i class="fa-solid fa-location-dot text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
-            <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">24/1 Minto Tower(5th Floor)
-                Shamacaron Ray Road, Natun
-                Bazar, Mymensingh, Bangladesh</p>
-        </div>
+        {% for contact in settings %}
+            <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+                <i class="fa-solid fa-phone text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+                <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">{{ contact.mobile_number }}</p>
+            </div>
+            <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+                <i class="fa-solid fa-envelope text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+                <p class="h-14 text-white  duration-300 group-hover:text-[#FC0002] text-base">{{ contact.email }}</p>
+            </div>
+            <div class="border flex items-center justify-center h-[170px] text-center flex-col bg-[#FC0002] group relative z-[1] after:absolute after:content-[''] after:left-0 after:bottom-0 after:rounded-tr-full after:h-10 after:w-10 after:z-[-1] after:bg-white after:duration-200 after:invisible after:opacity-0 hover:after:visible hover:after:opacity-100 hover:after:h-full hover:after:w-full hover:after:rounded-tr-none hover:after:rounded-r-none">
+                <i class="fa-solid fa-location-dot text-[#FC0002] duration-300 bg-white rounded-full group-hover:bg-[#FC0002] group-hover:text-white shadow-md mb-3 h-14 w-14 flex items-center justify-center"></i>
+                <p class="h-14 text-white text-base duration-300 group-hover:text-[#FC0002]">{{ contact.address }}</p>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

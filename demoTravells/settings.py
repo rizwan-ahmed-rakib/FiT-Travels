@@ -82,6 +82,7 @@ JAZZMIN_SETTINGS = {
         "first_app.Settings": "fas fa-tools ",
         "first_app.Nav_Links": "fas fa-link ",
         "first_app.HomeSlides": "fas fa-file-image ",
+        "first_app.SideHomeSlides": "fas fa-image ",
 
     },
 
