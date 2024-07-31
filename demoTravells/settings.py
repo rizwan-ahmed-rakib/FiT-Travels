@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration_app.apps.RegistrationAppConfig',
     'first_app',
+    'ckeditor',
+    'embed_video',
 ]
 JAZZMIN_SETTINGS = {
     "show_ui_builder": True,
@@ -183,8 +185,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 USE_I18N = True
 
 USE_TZ = True

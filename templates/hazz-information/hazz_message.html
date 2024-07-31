@@ -3,28 +3,15 @@
 {% block title_block %} Hazz Message | Freelance iT{% endblock %}
 {% block sectionName_block %} Hazz Message {% endblock %}
 {% block body_block %}
-    <h2 class="text-2xl font-bold mb-5">The journey of Hajj carries profound messages and lessons for all travelers. Here are some important messages that Hajj travelers should take to heart:</h2>
+    {% for hazz_message in hazz_message %}
+    	
+    
+    
+    <h2 class="text-2xl font-bold mb-5" style="text-align: center">{{ hazz_message.title | safe }}</h2><br>
 
         <ul class="flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Unity and Equality:</strong> Hajj brings together people from all walks of life, backgrounds, and cultures, emphasizing the unity and equality of all believers. It teaches us that in the eyes of Allah, all are equal and distinctions are based on piety.</li>
-            <li><strong class="underline text-[#FC0002]">Sacrifice and Obedience:</strong> The rituals of Hajj, such as the sacrifice of an animal, symbolize the willingness to obey Allah's commands and demonstrate a readiness to make personal sacrifices for the sake of faith.</li>
-            <li><strong class="underline text-[#FC0002]">Humility and Submission:</strong> Hajj encourages humility and submission to Allah's will. The act of wearing simple white garments (ihram) removes material distinctions, reminding us of our true nature and the importance of humility.</li>
-            <li><strong class="underline text-[#FC0002]">Forgiveness and Repentance: </strong> Hajj is a time to seek forgiveness for one's sins and to repent sincerely. It signifies Allah's infinite mercy and His readiness to accept the repentance of His servants.</li>
-            <li><strong class="underline text-[#FC0002]">Patience and Endurance:</strong> The physically and emotionally demanding aspects of Hajj, such as standing in Arafat, teach us patience, perseverance, and the ability to endure challenges in our spiritual journey and daily lives.</li>
-            <li><strong class="underline text-[#FC0002]">Maintain a Spiritual Focus: </strong> Keep your Hajj journey centered on sincere devotion and unwavering dedication to Allah.</li>
-            <li><strong class="underline text-[#FC0002]">Renewal of Faith:</strong> Hajj provides an opportunity for believers to rekindle their faith, revitalize their spiritual connection with Allah, and return to their communities as better individuals.</li>
-            <li><strong class="underline text-[#FC0002]">Generosity and Charity:</strong> Hajj encourages acts of charity and helping those in need. It reminds us of the importance of sharing our blessings with others and contributing to the well-being of society.</li>
-            <li><strong class="underline text-[#FC0002]">Global Brotherhood:</strong> Meeting people from around the world reinforces the concept of a global Muslim brotherhood. It teaches the importance of cooperation, mutual understanding, and support among Muslims.</li>
-            <li><strong class="underline text-[#FC0002]">Appreciation of Blessings:</strong> The challenges faced during Hajj, such as physical discomfort and heat, remind us to be grateful for the blessings we often take for granted in our daily lives.</li>
-            <li><strong class="underline text-[#FC0002]">Eternal Journey: </strong> Hajj signifies the spiritual journey of a lifetime and serves as a reminder of the ultimate journey of the soul towards Allah. It encourages us to prepare for the Hereafter.</li>
-            <li><strong class="underline text-[#FC0002]">Focus on Intentions: </strong>Hajj emphasizes the significance of sincere intentions and pure motives in worship. It underscores that actions are judged by the intentions behind them.</li>
-            <li><strong class="underline text-[#FC0002]">Reflect and Reform:</strong> Hajj is an opportunity for self-reflection, self-improvement, and transformation. It prompts us to assess our actions, seek forgiveness, and commit to positive change.</li>
-            <li><strong class="underline text-[#FC0002]">Diversity and Tolerance:</strong> Hajj showcases the diverse nature of the Muslim Ummah. It fosters an understanding of different cultures and languages and promotes tolerance and respect.</li>
-            <li><strong class="underline text-[#FC0002]">Purity and Cleansing: </strong> The symbolic cleansing rituals of Hajj represent spiritual purification. They remind us of the importance of purifying our hearts and souls from negative traits.</li>
-            <li><strong class="underline text-[#FC0002]">Connection with History: </strong> Hajj connects believers to the historical and sacred sites associated with Prophets, reminding us of our link to a rich spiritual heritage.</li>
-            <li><strong class="underline text-[#FC0002]">Renewed Commitment: </strong> Hajj strengthens one's commitment to upholding Islamic values, following the Sunnah, and living a righteous life.</li>
-            <li><strong class="underline text-[#FC0002]">Gratitude for Guidance: </strong> Hajj is a testament to Allah's guidance and blessings upon His creation. It reinforces gratitude for being among those guided to Islam.</li>
-            <li><strong class="underline text-[#FC0002]">Hope and Mercy: </strong> Hajj instills hope for Allah's mercy and forgiveness. It reminds us that no matter how far we may have strayed, there is always a chance to return to the path of righteousness.</li>
-            <li><strong class="underline text-[#FC0002]">Responsibility as Witnesses: </strong> Hajj travelers return as witnesses to the rituals, experiences, and lessons of Hajj. They have a duty to share and spread the knowledge gained with their communities.</li>
+            <li>{{ hazz_message.body |safe}}</li>
         </ul>
+        <br><br>
+    {% endfor %}
 {% endblock %}

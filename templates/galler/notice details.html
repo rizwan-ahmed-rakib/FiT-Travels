@@ -1,0 +1,64 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %}notice-details{% endblock %}
+{% block sectionName_block %}Notice Details{% endblock %}
+{% block body_block %}
+
+
+
+
+
+    <div class=" bg-white mx-auto shadow-sm ">
+        <div class="pl-5 border-l-4 border-l-[#B6982D]">
+            <h1 class="text-[28px] font-semibold mb-4">{{ notice.subject }}</h1>
+            <p class="text-gray-600 text-sm mb-5">
+                <i class="fa-regular fa-clock"></i>
+                {{ notice.updated }}
+            </p>
+            <p class="leading-10">
+                {{ notice.notice_body | safe }}
+            </p>
+        </div>
+        <figure class="aspect-[3.5/4] mt-5 border">
+            <embed type="" src="{{ notice.file.url }}" alt="{{ notice.subject }}" class="h-full w-full mb-6"/>
+        </figure>
+        <figure class="aspect-[3.5/4] mt-5 border">
+
+            <embed type="application/pdf" src="{{ notice.file.url }}"
+                   alt="{{ notice.subject }}" class="h-full w-full mb-6"/>
+        </figure>
+    </div>
+
+
+    <div class="h-[calc(100%-65px)] border p-6">
+        <div class=" bg-white mx-auto shadow-sm ">
+            <div class="pl-5 border-l-4 border-l-[#B6982D]">
+                <h1 class="text-[28px] font-semibold mb-4">সুস্থতার জন্য দোয়া কামনা</h1>
+                <p class="text-gray-600 text-sm mb-5">
+                    <i class="fa-regular fa-clock"></i>
+                    Published on Tuesday 10th October 2023
+                </p>
+                <p class="leading-10">
+                <p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayor&iacute;a sufri&oacute;
+                    alteraciones en alguna manera, ya sea porque se le agreg&oacute; humor, o palabras aleatorias que no
+                    parecen ni un poco cre&iacute;bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesit&aacute;s
+                    estar seguro de que no hay nada avergonzante escondido en el medio del texto.</p>
+
+                <p>Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos
+                    predefinidos cuando sea necesario, haciendo a este el &uacute;nico generador verdadero (v&aacute;lido)
+                    en la Internet. Usa un diccionario de mas de 200 palabras provenientes del lat&iacute;n, combinadas
+                    con estructuras muy &uacute;tiles de sentencias, para generar texto de Lorem Ipsum que parezca
+                    razonable.</p>
+
+                <p>Este Lorem Ipsum generado siempre estar&aacute; libre de repeticiones, humor agregado o palabras no
+                    caracter&iacute;sticas del lenguaje, etc.</p></p>
+            </div>
+            <figure class="aspect-[3.5/4] mt-5 border">
+
+                <embed type="application/pdf" src="https://sadmantravels.com/public/uploads/notices/1691919144.pdf"
+                       alt="সুস্থতার জন্য দোয়া কামনা" class="h-full w-full mb-6"/>
+            </figure>
+        </div>
+    </div>
+
+{% endblock %}

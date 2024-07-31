@@ -3,40 +3,14 @@
 {% block sectionName_block %} About Freelance iT Software Solution {% endblock %}
 {% block body_block %}
 
-    
-    <img src="{% static 'settings/img.png' %}" class="w-full h-auto"
-         alt="">
-    <p class="mt-5">
-    <p>Established in 1995, Jara Aviation Private Limited has left an indelible mark on the history of Hajj
-        pilgrimage through its innovative website. From its inception in the early 2000s, the agency has
-        been committed to enhancing the pilgrimage experience through digital advancements.</p>
-
-    <p>&nbsp;</p>
-
-    <p>The user-friendly website streamlined the process of Hajj preparation, allowing pilgrims to
-        effortlessly book flights, hotels in Mecca and Medina, and access crucial visa and travel
-        information. Jara Aviation&#39;s digital platform revolutionized the way pilgrims planned their
-        sacred journey, making it more accessible and convenient.</p>
-
-    <p>&nbsp;</p>
-
-    <p>As technology advanced, Jara Aviation continuously upgraded its website, offering interactive virtual
-        tours of holy sites and live streaming of religious ceremonies. This immersive experience brought
-        pilgrims closer to the spiritual essence of Hajj and fostered a sense of unity among Muslims
-        worldwide.</p>
-
-    <p>&nbsp;</p>
-
-    <p>Beyond its practicality, the website also acted as a platform for cultural exchange, connecting
-        pilgrims from diverse backgrounds and promoting mutual understanding.</p>
-
-    <p>&nbsp;</p>
-
-    <p>In conclusion, Jara Aviation Private Limited&#39;s website has been a trailblazer in the Hajj travel
-        industry. With its commitment to innovation, it has provided millions of pilgrims with a seamless
-        and spiritually enriching experience, leaving an enduring impact on the history of Hajj
-        pilgrimage.</p></p>
-
+    {% for about in about_us %}
+        <img src="{{ about.image.url }}" class="w-full h-auto"
+             alt="">
+        <p class="mt-5">
+        {{ about.about_us | safe }}
+        </p>
+        <br>
+    {% endfor %}
 
 
 

@@ -3,28 +3,13 @@
 {% block title_block %} Hazz must be done | Freelance iT{% endblock %}
 {% block sectionName_block %} Hazz Must be done {% endblock %}
 {% block body_block %}
-     <h2 class="text-2xl font-bold mb-5">Here are some things that Hajj travelers should do:</h2>
-
-        <ul class="flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Direct Your Intentions Towards Allah:</strong> The foremost and most important task in Hajj is to perform acts of worship and turn your heart solely towards Allah without any distractions.</li>
-            <li><strong class="underline text-[#FC0002]">Acquire Islamic Knowledge:</strong> Gain basic knowledge about Hajj and its social significance in Islam. Understand the rituals, local customs, etiquette, and the commitment required for performing Hajj.</li>
-            <li><strong class="underline text-[#FC0002]">Make Preparations:</strong>  Undergo a medical check-up before your journey. Seek advice from qualified medical professionals for health precautions and vaccinations for your safety.</li>
-            <li><strong class="underline text-[#FC0002]">Organize Your Travel Documents: </strong> Organize your passport, visa, identification, and necessary documentation. Keep physical and digital copies for security and emergency purposes.</li>
-            <li><strong class="underline text-[#FC0002]">Embrace the Rituals:</strong> Familiarize yourself with Islamic practices such as prayer, supplication, and tawaf (circumambulation) before you depart.</li>
-            <li><strong class="underline text-[#FC0002]">Maintain a Spiritual Focus: </strong> Keep your Hajj journey centered on sincere devotion and unwavering dedication to Allah.</li>
-            <li><strong class="underline text-[#FC0002]">Practice Good Etiquette:</strong> Maintain Islamic etiquette and behavior during your Hajj journey, treating fellow pilgrims with respect and kindness.</li>
-            <li><strong class="underline text-[#FC0002]">Stay Hygienic:</strong> Adhere to personal hygiene and cleanliness standards. Carry hand sanitizer and ensure you are in a state of purity before performing rituals.</li>
-            <li><strong class="underline text-[#FC0002]">Patience and Perseverance:</strong> Hajj can be physically and emotionally demanding. Exercise patience, perseverance, and a positive attitude throughout the journey.</li>
-            <li><strong class="underline text-[#FC0002]">Stay Connected to Faith:</strong> Keep your spiritual connection with Allah strong, offering prayers, supplications, and seeking forgiveness.</li>
-            <li><strong class="underline text-[#FC0002]">Memorize Important Locations:</strong> Familiarize yourself with key landmarks to avoid getting lost during the crowded pilgrimage.</li>
-            <li><strong class="underline text-[#FC0002]">Take Care of Your Health:</strong> Eat well, stay hydrated, and rest adequately to maintain your physical well-being during the pilgrimage.</li>
-            <li><strong class="underline text-[#FC0002]">Respect Local Customs:</strong> Be aware of and respect local laws and customs, showing cultural sensitivity during your stay.</li>
-            <li><strong class="underline text-[#FC0002]">Document Your Journey:</strong> Keep a journal or take photos to capture your Hajj experience, allowing you to reflect and share your experience with others.</li>
-            <li><strong class="underline text-[#FC0002]">Show Gratitude: </strong> Express gratitude to Allah for granting you the opportunity to perform Hajj and for the blessings received.</li>
-            <li><strong class="underline text-[#FC0002]">Strive for Spiritual Growth: </strong>  Use the Hajj experience to reflect on your life, seek personal growth, and strive for positive changes.</li>
-            <li><strong class="underline text-[#FC0002]">Seek Forgiveness:  </strong> Utilize this sacred journey to seek forgiveness for your sins and purify your soul.</li>
-            <li><strong class="underline text-[#FC0002]">Maintain the Spirit of Hajj: </strong> Carry the lessons and spiritual energy of Hajj back home, continuing to practice good deeds and worship.</li>
-            <li><strong class="underline text-[#FC0002]">Share Your Experience: </strong> Share your Hajj experiences with friends and family, spreading knowledge and inspiration.</li>
-            <li><strong class="underline text-[#FC0002]">Continue Good Deeds: </strong> After Hajj, continue performing acts of worship, charity, and kindness, sustaining the positive changes you made during your pilgrimage.</li>
-        </ul>
+    {% for hazz_mb_done in hazz_mustbe_done %}
+        <div>
+        <h3 class="text-2xl font-bold mb-5">{{ hazz_mb_done.title | safe}}</h3><br>
+        <p>{{ hazz_mb_done.body | safe }}</p>
+        </div>
+        
+        <br><br>
+    
+    {% endfor %}
 {% endblock %}

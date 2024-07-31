@@ -21,7 +21,9 @@
     <title>{% block title_block %}Home | Saadman Travels{% endblock %}</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{% static 'icon/Freelance iT (2).png' %}">
+    {% for icon in settings %}
+    <link rel="shortcut icon" href="{{ icon.slider_image.url }}">
+{% endfor %}
 
 
     <!-- Tailwind CDN link -->
@@ -62,32 +64,43 @@
         <!-- HEADER AREA START -->
         <div class="flex items-center justify-between px-2 py-2 relative z-[1] ">
             <a href="####" class="lg:flex-[4] h-20 inline-flex items-center">
-                <img src="{% static 'settings/1.jpg' %}" class="h-full" alt="Logo"/>
+                 {% for logo in settings %}
+                <img src="{{ logo.logoimage.url }}" class="h-full" alt="Logo"/>
+                {% endfor %}
             </a>
 
             <div class="lg:flex-[4] justify-center flex items-center gap-2 h-full">
-                <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"
-                     id="play-music-button">
-                    <i class="fa-solid fa-pause" id="icon"></i>
-                    Audio
-                </div>
+                 {% for audio in settings %}
+                    
+                        <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"
+                             id="play-music-button">
+                            <i class="fa-solid fa-pause" id="icon"></i>
+                            Audio
+                        </div>
 
-                <audio id="music" class="hidden" loop autoplay controls
-                       src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">
-                    <a href="#"> Download audio </a>
-                </audio>
+                        <audio id="music" class="hidden" loop autoplay controls
+{#                               src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">#}
+                            src="{{ audio.audio.url }}">
+                            <a href="#"> Download audio </a>
+                        </audio>
+                    
+                {% endfor %}
             </div>
 
             <div class="lg:flex-[4] hidden lg:flex flex-col items-end h-full">
                 <div class="flex items-end flex-col gap-1 justify-center">
                     <a class="text-lg text-black flex items-center gap-2" href="#">
-                        01521416544
+                        {% for phone in settings %}
+                            {{ phone.mobile_number }}
+                        {% endfor %}
                         <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
                             <i class="fa-solid fa-mobile-screen"></i>
                         </div>
                     </a>
                     <a class="text-lg text-black flex items-center gap-2" href="##">
-                        freelanceit.bd@gmail.com
+                       {% for email in settings %}
+                            {{ email.email }}
+                        {% endfor %}
                         <div class="h-7 w-7 flex items-center justify-center bg-[#fc0002] text-white rounded text-sm">
                             <i class="fa-regular fa-envelope"></i>
                         </div>

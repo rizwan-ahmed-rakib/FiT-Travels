@@ -3,47 +3,9 @@
 {% block title_block %} Agency-Should | Freelance iT{% endblock %}
 {% block sectionName_block %} Agency Should {% endblock %}
 {% block body_block %}
-    <p class="text-lg my-2">A Hajj agency plays a crucial role in ensuring a smooth and successful pilgrimage for its clients. Here are some important responsibilities and actions that a Hajj agency should take:</p>
-
-        <p class="font-bold my-3 text-xl">Preparation and Planning:</p>
-        <ul class=" flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Provide Information: </strong> Furnish comprehensive information to pilgrims about the Hajj journey, including the rituals, requirements, travel details, and essential documents.</li>
-            <li><strong class="underline text-[#FC0002]">Legal and Regulatory Compliance:</strong> Ensure compliance with all legal and regulatory requirements set by the government of the host country (Saudi Arabia) for organizing Hajj trips.</li>
-            <li><strong class="underline text-[#FC0002]">Package Options:</strong> Offer a range of Hajj packages catering to different budgets and preferences, including accommodation, transportation, meals, and guided services.</li>
-            <li><strong class="underline text-[#FC0002]">Visa Processing: </strong>Facilitate the visa application process, ensuring timely and accurate submission of required documents to the Saudi authorities.</li>
-            <li><strong class="underline text-[#FC0002]">Health and Safety:</strong> Provide guidance on necessary vaccinations, health precautions, and medical facilities available during the pilgrimage.</li>
-        </ul>
-
-        <p class="font-bold my-3 text-xl">Logistics and Services:</p>
-        <ul class=" flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Accommodation: </strong> Arrange suitable and comfortable accommodations for pilgrims, taking into account proximity to the holy sites and necessary amenities.</li>
-            <li><strong class="underline text-[#FC0002]">Transportation:</strong> Organize transportation between airports, accommodations, and the holy sites, ensuring a safe and convenient journey.</li>
-            <li><strong class="underline text-[#FC0002]">Guidance and Assistance: </strong> Provide knowledgeable guides who are well-versed in Hajj rituals, local customs, and safety measures. Offer assistance to pilgrims throughout their journey.</li>
-            <li><strong class="underline text-[#FC0002]">Meals and Hygiene:</strong> Ensure access to clean and hygienic meals that cater to dietary requirements. Promote food safety and proper waste disposal.</li>
-        </ul>
-
-
-        <p class="font-bold my-3 text-xl">Safety:</p>
-        <ul class=" flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]"> Secure Valuables:</strong> Keep your valuables, such as money, documents, and electronic devices, secure at all times. Consider using a money belt or pouch.</li>
-            <li><strong class="underline text-[#FC0002]"> Emergency Contacts:</strong> Carry a list of emergency contacts, including your Hajj agency, embassy, and local authorities. Share your whereabouts with a family member or friend.</li>
-            <li><strong class="underline text-[#FC0002]"> Stay Informed:</strong> Be aware of the local emergency procedures, safety exits, and the nearest medical facilities in case of any unforeseen events.</li>
-            <li><strong class="underline text-[#FC0002]"> Avoid Crowds:</strong> While participating in rituals, try to avoid getting caught in overcrowded areas, as they can pose safety risks.</li>
-        </ul>
-
-
-        <p class="font-bold my-3 text-xl">Spiritual Focus:</p>
-        <ul class=" flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Sincerity:</strong> Approach the rituals with a sincere and focused intention. Purify your intentions and seek closeness to Allah throughout your pilgrimage.</li>
-            <li><strong class="underline text-[#FC0002]">Supplication:</strong> Utilize this blessed time to make heartfelt supplications and seek forgiveness for yourself and your loved ones.</li>
-            <li><strong class="underline text-[#FC0002]">Reflect and Learn:</strong> Use the spiritual experience of Hajj to reflect on your life, seek personal growth, and make positive changes.</li>
-        </ul>
-
-
-        <p class="font-bold my-3 text-xl">After Hajj:</p>
-        <ul class=" flex flex-col gap-3 ">
-            <li><strong class="underline text-[#FC0002]">Gratitude:</strong> Express gratitude for the opportunity to perform Hajj and for the blessings you have received during the journey.</li>
-            <li><strong class="underline text-[#FC0002]">Share Experiences:</strong> Share your Hajj experiences with family and friends, conveying the significance and the lessons learned.</li>
-            <li><strong class="underline text-[#FC0002]">Continued Good Deeds:</strong> Maintain the positive changes you made during Hajj in your daily life. Continue performing acts of worship, kindness, and charity.</li>
-        </ul>            
+    {% for agency in agency_should %}
+        <h2 class="text-2xl font-bold mb-5"> {{ agency.title | safe}}</h2>
+        {{ agency.body | safe }}<br>
+    {% endfor%}
+   
 {% endblock %}

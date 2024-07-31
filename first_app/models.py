@@ -1,10 +1,13 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+from embed_video.fields import EmbedVideoField
 
 
 # Create your models here.
 class Settings(models.Model):
     logoimage = models.ImageField(upload_to='settings/')
-    slider_image = models.ImageField(upload_to='settings/')  # use it for link image/icon image
+    slider_image = models.ImageField(
+        upload_to='settings/')  # use it for link inside(which is use inside <head> image/icon image
     company_name = models.CharField(max_length=264)
     mobile_number = models.CharField(max_length=264)
     email = models.CharField(max_length=264)
@@ -45,3 +48,95 @@ class PresidentSpeach(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AboutUs(models.Model):
+    image = models.ImageField(upload_to='aboutUs/')
+    about_us = models.TextField()
+    name = models.CharField(max_length=264)
+
+    def __str__(self):
+        return self.name
+
+
+class TopManagement(models.Model):
+    name = models.CharField(max_length=264)
+    title = models.CharField(max_length=264)
+    want_to_say = RichTextField(null=True)
+    picture = models.ImageField(upload_to='topManagement/', null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Hazz_Message(models.Model):
+    number = models.CharField(max_length=264, blank=True)
+    title = RichTextField(null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.number
+
+
+class HazzMustbeDone(models.Model):
+    number = models.CharField(max_length=264, blank=True)
+    title = models.CharField(max_length=500, null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.number
+
+
+class Agency_Should(models.Model):
+    number = models.CharField(max_length=264, blank=True)
+    title = models.CharField(max_length=500, null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.number
+
+
+class Hazz_Tips(models.Model):
+    number = models.CharField(max_length=264, blank=True)
+    title = models.CharField(max_length=500, null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.number
+
+
+class Image_Gallery(models.Model):
+    name = models.CharField(max_length=264, blank=True)
+    image = models.ImageField(upload_to='gallery/')
+
+    def __str__(self):
+        return self.name
+
+
+class Video_Gallery(models.Model):
+    name = models.CharField(max_length=264, blank=True)
+    video = models.FileField(upload_to='gallery/video/', blank=True)
+    add_video_from_any_link = EmbedVideoField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Notice(models.Model):
+    subject = models.TextField(blank=True)
+    notice_body = RichTextField()
+    file = models.FileField(upload_to='notice/', blank=True, null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+
+class Form(models.Model):
+    subject = models.TextField(blank=True)
+    pub_date = models.DateField(auto_now_add=True)
+    file = models.FileField(upload_to='form/', null=True)
+
+    def __str__(self):
+        return self.subject
