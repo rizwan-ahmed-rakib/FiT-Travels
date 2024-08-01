@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'first_app',
     'ckeditor',
     'embed_video',
+    'crispy_forms', 'crispy_tailwind',
 ]
+CRISPY_TEMPLATE_PACK = ' crispy-tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
 JAZZMIN_SETTINGS = {
     "show_ui_builder": True,
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -185,7 +189,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-#TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Dhaka'
 USE_I18N = True
 

@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 from embed_video.fields import EmbedVideoField
+from django.urls import reverse
 
 
 # Create your models here.
@@ -140,3 +141,15 @@ class Form(models.Model):
 
     def __str__(self):
         return self.subject
+
+
+class Email_Inbox(models.Model):
+    name = models.CharField(max_length=264, blank=True, )
+    email = models.EmailField(blank=True)
+    message = RichTextField()
+
+    def __str__(self):
+        return self.email
+
+    def get_absolute_url(self):
+        return reverse('contact_us')

@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,CreateView
 from first_app.models import (Settings, Nav_Links, HomeSlides, SideHomeSlides,
                               PresidentSpeach, AboutUs, TopManagement, Hazz_Message, HazzMustbeDone, Agency_Should,
-                              Hazz_Tips, Image_Gallery, Video_Gallery, Notice,Form)
+                              Hazz_Tips, Image_Gallery, Video_Gallery, Notice,Form,Email_Inbox)
 
 
 # Create your views here.
@@ -197,8 +197,10 @@ class FormDownload(TemplateView):
         return context
 
 
-class ContactUs(TemplateView):
+class ContactUs(CreateView):
     template_name = 'about/contact.html'
+    model = Email_Inbox
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
