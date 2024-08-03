@@ -1,4 +1,5 @@
 {% load static %}
+{% load embed_video_tags %}
 <!--------------2nd Section Start------------------->
 
 <!--it need to include in first section,html-->
@@ -17,101 +18,39 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
+    {% for iframe in settings %}
 
-    <iframe class="h-[200px] mb-7 w-full" src="https://www.youtube.com/embed/fngsHQ-Zv5s"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+        {% video iframe.eye_frame_video as i_video %}
+
+            <iframe class="h-[200px] mb-7 w-full" src="{{ i_video.url }}"
+                    title="YouTube video player" frameborder="0"
+                    {#                {% video iframe.eye_frame_video.url %}#}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+        {% endvideo %}
+    {% endfor %}
 
     <div class="mt-5">
         <h3 class="bg-[#FC0002] bg-gradient-to-tr from-[#fc002a] to-purple-800 relative after:absolute after:content after:left-0 after:top-0 after:bottom-0 after:w-[48px] after:bg-[url({% static 'icon/title-after-bg.png' %})] after:bg-cover before:absolute before:content before:right-0 before:[transform:scaleX(-1)] before:top-0 before:bottom-0 before:w-[48px] before:bg-[url({% static 'icon/title-after-bg.png' %})] before:bg-cover mb-2 p-2 text-2xl font-bold text-center text-white">
             Notice
         </h3>
         <div class="h-[calc(100%-65px)]  overflow-y-auto border">
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        সুস্থতার জন্য দোয়া কামনা
-                    </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
+            {% for notice in notices %}
+                <a href="{% url 'notice-details' pk=notice.pk %}"
+                   class="block p-2 border-b duration-300 hover:bg-slate-200">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
+                        <p class="line-clamp-1 font-medium">
+                            {{ notice.subject }}
+                        </p>
+                    </div>
+                    <p class="text-black pl-6 text-sm">
                                             <span class="font-bold">
                                                 Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        হজ এজেন্সির হালনাগাদ তথ্য সরবরাহ প্রসংগে
+                                            </span> {{ notice.updated }}
                     </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
-                                            <span class="font-bold">
-                                                Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        হজযাত্রীদের প্রাক নিবন্ধন বাতিলের টাকা প্রাপ্তির প্রক্রিয়া সহজীকরণ প্রসঙ্গে
-                    </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
-                                            <span class="font-bold">
-                                                Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        ওমরাহ কার্যক্রমে এজেন্সির তালিকা প্রকাশ সংক্রান্ত বিজ্ঞপ্তি
-                    </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
-                                            <span class="font-bold">
-                                                Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        হজযাত্রীদের ভিসা দ্রুত ইস্যুকরণ প্রসংগে
-                    </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
-                                            <span class="font-bold">
-                                                Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
-            <a href="##"
-               class="block p-2 border-b duration-300 hover:bg-slate-200">
-                <div class="flex items-center gap-3">
-                    <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
-                    <p class="line-clamp-1 font-medium">
-                        পাসপোর্টে হজযাত্রীদের বাড়ীর সঠিক ঠিকানার স্টিকার লাগানো প্রসংগে
-                    </p>
-                </div>
-                <p class="text-black pl-6 text-sm">
-                                            <span class="font-bold">
-                                                Publish:
-                                            </span> Tuesday 10th October 2023
-                </p>
-            </a>
+                </a>
+            {% endfor %}
         </div>
     </div>
 

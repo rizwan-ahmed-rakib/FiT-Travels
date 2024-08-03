@@ -1,0 +1,26 @@
+{% extends 'travel/base.html' %}
+{% block title_block %} news{% endblock %}
+{% block sectionName_block %}News Details{% endblock %}
+{% block body_block %}
+
+    <div class=" bg-white mx-auto shadow-sm ">
+        <div class="aspect-video">
+            <img
+                    src="{{ latest.picture.url }}"
+                    alt="picture"
+                    class="h-full w-full mb-6"
+            />
+        </div>
+        <div class="pl-5 border-l-4 border-l-[#B6982D]">
+            <h1 class="text-[28px] font-semibold mb-4">{{ latest.headline }}</h1>
+            <p class="text-gray-600 text-sm mb-5"><i class="fa-regular fa-clock"></i>{{ latest.updated }}
+            </p>
+            <p class="leading-10">
+            <p>
+                {{ latest.news_details|safe }}
+            </p>
+            </p>
+        </div>
+    </div>
+    
+{% endblock %}

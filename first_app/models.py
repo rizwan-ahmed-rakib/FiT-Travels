@@ -7,15 +7,18 @@ from django.urls import reverse
 # Create your models here.
 class Settings(models.Model):
     logoimage = models.ImageField(upload_to='settings/')
-    slider_image = models.ImageField(
-        upload_to='settings/')  # use it for link inside(which is use inside <head> image/icon image
+    top_link_icon_image = models.ImageField(
+        upload_to='settings/',blank=True)  # use it for link inside(which is use inside <head> image/icon image
+    baner_image = models.ImageField(upload_to='settings/banerImage/', null=True)
     company_name = models.CharField(max_length=264)
     mobile_number = models.CharField(max_length=264)
     email = models.CharField(max_length=264)
     audio = models.FileField(upload_to='settings/', blank=True)
+    eye_frame_video =EmbedVideoField(blank=True)
     about_me = models.TextField(max_length=264, null=True)
     address = models.TextField(max_length=264, null=True)
     office_time = models.CharField(max_length=264, null=True)
+
 
     def __str__(self):
         return self.company_name
@@ -118,6 +121,7 @@ class Video_Gallery(models.Model):
     name = models.CharField(max_length=264, blank=True)
     video = models.FileField(upload_to='gallery/video/', blank=True)
     add_video_from_any_link = EmbedVideoField(blank=True)
+    # thumbnail-picture = models.ImageField(upload_to='gallery/thumbnail/', blank=True)
 
     def __str__(self):
         return self.name
@@ -147,9 +151,21 @@ class Email_Inbox(models.Model):
     name = models.CharField(max_length=264, blank=True, )
     email = models.EmailField(blank=True)
     message = RichTextField()
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.email
 
     def get_absolute_url(self):
         return reverse('contact_us')
+
+
+class Latest_news(models.Model):
+    headline = models.TextField(null=True)
+    picture = models.ImageField(upload_to='news/')
+    news_details = RichTextField()
+    pub_date = models.DateField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return self.headline

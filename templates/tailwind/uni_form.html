@@ -1,5 +1,6 @@
 {% extends 'travel/base.html' %}
 {% load tailwind_filters %}
+
 {% block title_block %} Contact | Freelance iT{% endblock %}
 {% block sectionName_block %}  Contact Us  {% endblock %}
 {% block body_block %}
@@ -10,42 +11,43 @@
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d78254.31332103485!2d0.0375862747179876!3d52.19891862333509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d85d89f32a012d%3A0x63a320e1a35e3d21!2sCambridge%2C%20UK!5e0!3m2!1sen!2sbd!4v1686138023513!5m2!1sen!2sbd"></iframe>
         </div>
 
-{#        <div class="flex-[6] p-3 lg:p-8 border shadow-lg bg-white">#}
-{#            <form class="text-gray-600 w-full" action="https://sadmantravels.com/contact/store" method="POST">#}
-{#                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">#}
-{#                <h3 class="text-center text-3xl mb-8 font-mono font-bold text-gray-700"> Get In Touch</h3>#}
-{#                <div class="flex flex-col gap-4">#}
-{#                    <div>#}
-{#                        <input type="text" name="name" id="name" required#}
-{#                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"#}
-{#                               placeholder="Enter Your Name"/>#}
-{#                        <input type="hidden" name="type" value="contact">#}
-{#                    </div>#}
-{#                    <div>#}
-{#                        <input type="email" name="email" id="email" required#}
-{#                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"#}
-{#                               placeholder="Enter Your Email"/>#}
-{#                    </div>#}
-{#                    <div>#}
-{#                        <textarea name="message" id="message" rows="4" required placeholder="Type Your Message Here"#}
-{#                                  class="w-full mt-2 p-3 border focus:border--[#FC0002] outline-none"></textarea>#}
-{#                    </div>#}
-{#                    <button type="submit"#}
-{#                            class="w-full mt-2 p-3 border-none bg-[#FC0002] hover:bg-[#FC0002] text-white text-center">#}
-{#                        Send Now#}
-{#                    </button>#}
-{#                </div>#}
-{#            </form>#}
-{#        </div>#}
+        <div class="flex-[6] p-3 lg:p-8 border shadow-lg bg-white">
+            <form class="text-gray-600 w-full" action="https://sadmantravels.com/contact/store" method="POST">
+                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">
+                <h3 class="text-center text-3xl mb-8 font-mono font-bold text-gray-700"> Get In Touch</h3>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <input type="text" name="name" id="name" required
+                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"
+                               placeholder="Enter Your Name"/>
+                        <input type="hidden" name="type" value="contact">
+                    </div>
+                    <div>
+                        <input type="email" name="email" id="email" required
+                               class="w-full mt-2 p-3 border focus:border-[#FC0002] outline-none"
+                               placeholder="Enter Your Email"/>
+                    </div>
+                    <div>
+                        <textarea name="message" id="message" rows="4" required placeholder="Type Your Message Here"
+                                  class="w-full mt-2 p-3 border focus:border--[#FC0002] outline-none"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full mt-2 p-3 border-none bg-[#FC0002] hover:bg-[#FC0002] text-white text-center">
+                        Send Now
+                    </button>
+                </div>
+            </form>
+        </div>
     <!----- copy div start------>
         <div class="flex-[6] p-3 lg:p-8 border shadow-lg bg-white">
             <form class="text-gray-600 w-full" method="POST">
 
                 <h3 class="text-center text-3xl mb-8 font-mono font-bold text-gray-700"> Get In Touch</h3>
                 <div class="flex flex-col gap-4">
-                    <div  style="text-align: center">
-                        {{ form.as_p}}
+                    <div >
                         {% csrf_token %}
+                        {{ form }}
+                        
                     </div>
 
                     <button type="submit"

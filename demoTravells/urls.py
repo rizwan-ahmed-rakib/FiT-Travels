@@ -42,6 +42,8 @@ urlpatterns = [
     path('notice-details/<int:pk>/',views.NoticeDetail.as_view(), name='notice-details'),
     path('form/',views.FormDownload.as_view(), name='form_download'),
     path('contact-us/',views.ContactUs.as_view(), name='contact_us'),
+    path('news-details/<int:pk>',views.News_details.as_view(), name='news_details'),
+    path('news',views.All_News.as_view(), name='news_all'),
    # path('login-outlayer/',views.LoginOutlayer.as_view(), name='login_outlayer'),
     path('dashboard/',views.DashBoard.as_view(), name='dashboard'),
 

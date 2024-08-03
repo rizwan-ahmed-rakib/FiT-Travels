@@ -9,7 +9,7 @@
                             {{ about.company_name }}
                         {% endfor %}</h3>
                     <div>{% for about in settings %}
-                        <img src="{{ about.slider_image.url }}" alt="Logo" class="h-16 mb-2">
+                        <img src="{{ about.top_link_icon_image.url }}" alt="Logo" class="h-16 mb-2">
                         <p>
                             {{ about.about_me }}
                         </p>
@@ -38,41 +38,13 @@
                 <div class="lg:flex-[3]">
                     <h3 class="inline-block text-2xl  mb-5 text-white font-bold font-mono">Awesome Gallery</h3>
                     <div class="grid grid-cols-4 gap-2">
-                        <a href="###image-gallery"
+                        {% for image in image_gallery %}
+                        <a href="{{ image.image.url }}"
                            class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/1.jpg' %}"
+                            <img src="{{ image.image.url }}"
                                  class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
                         </a>
-                        <a href="###image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/2.jpg' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
-                        <a href="image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/download1.jpeg' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
-                        <a href="image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/download (1).jpeg' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
-                        <a href="image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/images.jpeg' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
-                        <a href="image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/sadmantravellsLogo.png' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
-                        <a href="image-gallery"
-                           class="h-[50px] overflow-hidden group">
-                            <img src="{% static 'settings/1.jpg' %}"
-                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
-                        </a>
+                        {% endfor %}
 
                     </div>
                 </div>

@@ -28,7 +28,9 @@
         </div>
 
         <div class="bg-amber-700 w-full aspect-square my-5">
-            <img src="{% static 'picture/hajNiyom2.jpg' %}" class="h-full w-full" alt=""/>
+            {% for baner_img in settings %}
+                <img src="{{ baner_img.baner_image.url }}" class="h-full w-full" alt=""/>
+            {% endfor %}
         </div>
 
         <div>
@@ -36,54 +38,14 @@
                 Image Gallery
             </h3>
             <div class="gap-3 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start">
-                <a href="###"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg.jpg' %}" alt="N/A"/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img.png' %}" alt=""/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_1.png' %}" alt=""/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_2.png' %}" alt=""/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_3.png' %}" alt=""/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_4.png' %}" alt=""/>
-                </a>
-                <a href="$$"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_5.png' %}" alt=""/>
-                </a>
-                <a href="##"
-                   data-fslightbox="gallery"
-                   class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
-                    <img class="h-full w-full object-cover"
-                         src="{% static 'picture/img_6.png' %}" alt=""/>
-                </a>
+                {% for img in image_gallery %}
+                    <a href="{{ img.image.url }}"
+                       data-fslightbox="gallery"
+                       class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
+                        <img class="h-full w-full object-cover"
+                             src="{{ img.image.url }}" alt="N/A"/>
+                    </a>
+                {% endfor %}
             </div>
         </div>
 
@@ -92,105 +54,26 @@
                 Latest News
             </h3>
             <div class="gap-3 grid md:grid-cols-2 lg:grid-cols-3 items-start">
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/img_7.png' %}"
-                             alt="মক্কা | ইসলাম ধর্মের পবিত্রতম নগরী | বিশ্ব প্রান্তরে | Mecca | Bishwo Prantore"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="***"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">মক্কা | ইসলাম
-                            ধর্মের পবিত্রতম নগরী | বিশ্ব প্রান্তরে |....</a>
+                {% for latest in latest_news %}
+                    <div class="border p-1 group">
+                        <div class="w-full aspect-video overflow-hidden">
+                            <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
+                                 src="{{ latest.picture.url }}"
+                                 alt="{{ latest.headline |safe }}"/>
+                        </div>
+                        <div class="h-[120px]">
+                            <a href="{% url 'news_details' pk=latest.pk %}"
+                               class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">{{ latest.headline|safe }}|....</a>
 
-                        <a href="$###"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
+                            <a href="{% url 'news_details' pk=latest.pk %}"
+                               class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
+                                More</a>
+                        </div>
                     </div>
-                </div>
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/modina.png' %}"
-                             alt="মদীনা | হযরত মোহাম্মদ (সা:) এর প্রিয় শহর | বিশ্ব প্রান্তরে | Medina | Bishwo Prantore"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="###"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">মদীনা | হযরত
-                            মোহাম্মদ (সা:) এর প্রিয় শহর | বিশ্ব....</a>
-
-                        <a href="###"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
-                    </div>
-                </div>
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/umraNiyomTalim.png' %}"
-                             alt="উমরাহ তালিম: উমরাহ করার নিয়ম, মাসলা-মাসায়েল এবং প্রশ্নোত্তর পর্ব"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="##"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">উমরাহ তালিম:
-                            উমরাহ করার নিয়ম, মাসলা-মাসায়েল এবং প্রশ্নোত্তর পর্ব </a>
-
-                        <a href="##"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
-                    </div>
-                </div>
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/umraPodhooti.jpg' %}"
-                             alt="উমরাহ করার পদ্ধতি ।। হজ ও উমরা ।। Haj &amp; Umrah ।। Invitation to Change"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="##"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">উমরাহ করার
-                            পদ্ধতি ।। হজ ও উমরা ।। Haj &amp;....</a>
-
-                        <a href="##"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
-                    </div>
-                </div>
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/safaMarwaIndicator.png' %}"
-                             alt="Learn How to Perform Hajj Step By Step Complete Video"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="##"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">Learn How to
-                            Perform Hajj Step By Step Complete Video </a>
-
-                        <a href="##"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
-                    </div>
-                </div>
-                <div class="border p-1 group">
-                    <div class="w-full aspect-video overflow-hidden">
-                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
-                             src="{% static 'picture/doaPic.jpg' %}"
-                             alt="Hajj: 7 things you don&#039;t know about the Muslim Pilgrimage - BBC News"/>
-                    </div>
-                    <div class="h-[120px]">
-                        <a href="##"
-                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">Hajj: 7 things
-                            you don&#039;t know about the Muslim Pilgrimage....</a>
-
-                        <a href="##"
-                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
-                            More</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="text-center mt-14">
-                <a href="##"
+                <a href="{% url 'news_all' %}"
                    class="bg-[#fc0002] hover:bg-[#A80001] text-white px-6 py-2 rounded-full border border-x-2 border-b-4 border-black ">All
                     News</a>
             </div>

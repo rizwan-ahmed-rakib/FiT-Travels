@@ -1,5 +1,4 @@
 {% load static %}
-{% load embed_video_tags %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +22,7 @@
 
     <!-- favicon -->
     {% for icon in settings %}
-        <link rel="shortcut icon" href="{{ icon.slider_image.url }}">
+        <link rel="shortcut icon" href="{{ icon.top_link_icon_image.url }}">
     {% endfor %}
 
     <!-- Tailwind CDN link -->

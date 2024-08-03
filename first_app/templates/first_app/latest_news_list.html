@@ -1,0 +1,31 @@
+{% extends 'travel/base.html' %}
+{% block title_block %} all-news{% endblock %}
+{% block sectionName_block %}Latest News {% endblock %}
+{% block body_block %}
+
+
+    <div class="h-[calc(100%-65px)] border p-6">
+        <div class="gap-3 grid md:grid-cols-2 2xl:grid-cols-3 items-start">
+            {% for latest in news %}
+                <div class="border p-1 group">
+                    <div class="w-full aspect-video overflow-hidden">
+                        <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
+                             src="{{ latest.picture.url }}"
+                             alt="pic"/>
+                    </div>
+                    <div>
+                        <a href="{% url 'news_details' pk=latest.pk %}"
+                           class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">{{ latest.headline }}
+                            |....</a>
+
+                        <a href="{% url 'news_details' pk=latest.pk %}"
+                           class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
+                            More</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

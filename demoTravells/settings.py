@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     'first_app',
     'ckeditor',
     'embed_video',
-    'crispy_forms', 'crispy_tailwind',
+    'crispy_forms',
+    'crispy_tailwind',
+    'ckeditor_uploader',
 ]
-CRISPY_TEMPLATE_PACK = ' crispy-tailwind'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = ' tailwind'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
 
 JAZZMIN_SETTINGS = {
     "show_ui_builder": True,
