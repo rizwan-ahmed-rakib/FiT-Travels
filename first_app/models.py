@@ -8,17 +8,16 @@ from django.urls import reverse
 class Settings(models.Model):
     logoimage = models.ImageField(upload_to='settings/')
     top_link_icon_image = models.ImageField(
-        upload_to='settings/',blank=True)  # use it for link inside(which is use inside <head> image/icon image
+        upload_to='settings/', blank=True)  # use it for link inside(which is use inside <head> image/icon image
     baner_image = models.ImageField(upload_to='settings/banerImage/', null=True)
     company_name = models.CharField(max_length=264)
     mobile_number = models.CharField(max_length=264)
     email = models.CharField(max_length=264)
     audio = models.FileField(upload_to='settings/', blank=True)
-    eye_frame_video =EmbedVideoField(blank=True)
+    eye_frame_video = EmbedVideoField(blank=True)
     about_me = models.TextField(max_length=264, null=True)
     address = models.TextField(max_length=264, null=True)
     office_time = models.CharField(max_length=264, null=True)
-
 
     def __str__(self):
         return self.company_name
@@ -121,6 +120,7 @@ class Video_Gallery(models.Model):
     name = models.CharField(max_length=264, blank=True)
     video = models.FileField(upload_to='gallery/video/', blank=True)
     add_video_from_any_link = EmbedVideoField(blank=True)
+
     # thumbnail-picture = models.ImageField(upload_to='gallery/thumbnail/', blank=True)
 
     def __str__(self):
@@ -139,13 +139,13 @@ class Notice(models.Model):
 
 
 class Form(models.Model):
-    subject = models.TextField(blank=True)
+    subject = models.TextField(null=True)
     pub_date = models.DateField(auto_now_add=True)
     file = models.FileField(upload_to='form/', null=True)
 
     def __str__(self):
         return self.subject
-
+https://github.com/rizwan-ahmed-rakib/FiT-Travels.git
 
 class Email_Inbox(models.Model):
     name = models.CharField(max_length=264, blank=True, )

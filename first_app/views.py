@@ -96,6 +96,21 @@ class PresidenSpeach(TemplateView):
         context['image_gallery'] = Image_Gallery.objects.all()
         return context
 
+class Speach(TemplateView):
+    template_name = 'about/speach.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['sliders'] = HomeSlides.objects.all()
+        context['side_sliders'] = SideHomeSlides.objects.all()
+        context['settings'] = Settings.objects.all()
+        # context['president_speach'] = PresidentSpeach.objects.all()
+        context['notices'] = Notice.objects.all()
+        context['image_gallery'] = Image_Gallery.objects.all()
+        context['speach'] = PresidentSpeach.objects.get(pk=pk)
+        return context
+
 
 class HazzMessage(TemplateView):
     template_name = 'hazz-information/hazz_message.html'

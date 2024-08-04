@@ -10,12 +10,12 @@
         <a class="text-center border-r py-3 font-bold">Download</a>
     </div>
     
-    {% for forms in form %}
+    {% for forms  in form %}
     <div class="grid odd:bg-slate-100 hover:bg-slate-100 grid-cols-[50px_100px_auto_100px] border-b">
-        <p class="text-center border-l border-r py-3">{{ forms.pk }}</p>
+        <p class="text-center border-l border-r py-3">{{ forloop.counter }}</p>
         <p class="text-center border-r py-3">{{ forms.pub_date }}</p>
         <p class="text-center border-r py-3">{{ forms.subject }}(Form No-{{ forms.pk }})</p>
-        <a class="text-center border-r py-3" href="{{ forms.file }}" download><i class="fa-solid fa-file-arrow-down text-2xl"></i></a>
+        <a class="text-center border-r py-3" href="{{ forms.file.url }}" download><i class="fa-solid fa-file-arrow-down text-2xl"></i></a>
     </div>
 {% endfor %}
 

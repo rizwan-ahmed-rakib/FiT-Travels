@@ -32,6 +32,7 @@ urlpatterns = [
     path('management/',views.ManagementPageView.as_view(), name='management'),
     path('base/',views.BaseView.as_view(), name='base'),
     path('president-speach/',views.PresidenSpeach.as_view(), name='president_speach'),
+    path('speach/<int:pk>/',views.Speach.as_view(), name='speach'),
     path('hazz-message/',views.HazzMessage.as_view(), name='hazz_message'),
     path('hazz-must-be-done/',views.HazzMustBeDone.as_view(), name='hazz_must_be_done'),
     path('agency-should/', views.AgencyShould.as_view(), name='agency_should'),

@@ -62,7 +62,7 @@
 
         <!-- HEADER AREA START -->
         <div class="flex items-center justify-between px-2 py-2 relative z-[1] ">
-            <a href="####" class="lg:flex-[4] h-20 inline-flex items-center">
+            <a href="/" class="lg:flex-[4] h-20 inline-flex items-center">
                 {% for logo in settings %}
                     <img src="{{ logo.logoimage.url }}" class="h-full" alt="Logo"/>
                 {% endfor %}
@@ -140,7 +140,12 @@
                 <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
                     <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0">
                         <li>
-                            <a href="{% url 'travell_go' %}"
+                            <a href="{% url 'home' %}"    
+                               
+                               
+                               
+                               
+                               
                                class="bg-[#A80001] block py-3 px-4 text-white hover:bg-[#A80001]">Home</a>
                         </li>
                         <li>
