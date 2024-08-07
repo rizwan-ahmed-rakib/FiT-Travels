@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{% static 'css/perfectScrolbar.css' %}">
     <!-- include style -->
     <link rel="stylesheet" href="{% static 'css/adminDashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    {% block style_block %}{% endblock %}
         </head>
 <body>
 
@@ -53,8 +55,8 @@
         <ul class="aside_nav">
             <!-- dashboard -->
             <li id="dashboard">
-                <a href="{% url 'dashboard' %}">  <!----dashBoard Linnk add here---->
-                    
+                <a href="#">  <!----dashBoard Linnk add here---->
+
                     <i class="fas fa-th-large"></i>
                     <span class="menu_title">Dashboard</span>
                 </a>
@@ -71,8 +73,8 @@
                     </span>
                 </a>
                 <ul>
-                    <li class="imageGallery"><a href="https://sadmantravels.com/admin/media/image">Image Gallery</a></li>
-                    <li class="videoGallery"><a href="https://sadmantravels.com/admin/media/video">Video Gallery</a></li>
+                    <li class="imageGallery"><a href="{% url 'dashBoard_app:image_gallery' %}">Image Gallery</a></li>    <!----add link here--->
+                    <li class="videoGallery"><a href="#">Video Gallery</a></li>
                 </ul>
             </li>
 
@@ -88,7 +90,7 @@
                     </span>
                 </a>
                 <ul>
-                    <li class="addIncome"><a href="https://sadmantravels.com/admin/income/create">New Income</a></li>
+                    <li class="addIncome"><a href="#">New Income</a></li>
                     <li class="allIncome"><a href="https://sadmantravels.com/admin/income">All Income</a></li>
                     <li class="fieldIncome"><a href="https://sadmantravels.com/admin/income/field">Field Of Income</a></li>
                 </ul>
@@ -230,7 +232,7 @@
             </li>
 
             <!-- Member -->
-            
+
 
             <!-- Service -->
             <li id="service">
@@ -241,13 +243,13 @@
             </li>
 
             <!-- Career -->
-            
+
 
             <!-- FAQ -->
-            
+
 
             <!-- Testimonial -->
-            
+
 
             <!-- User -->
                         <li id="user" class="dropdown">
@@ -284,7 +286,7 @@
     </aside>
     <!-- panel aside end -->
 
-    <!-- body section start -->
+
     <div class="main_body">
         <!-- main nav start -->
         <nav class="main_nav">
@@ -472,67 +474,14 @@
             }
         </style>
 
-        <!-- body content start -->
-        <div class="body_content">
-            
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3">
-                       <a href="">
-                           <div class="dash-box dash-box-1">
-                              <span>Today's Income</span>
-                              <h1>0</h1>
-                           </div>
-                       </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="">
-                            <div class="dash-box dash-box-2">
-                               <span>Today's Cost</span>
-                               <h1>0</h1>
-                            </div>
-                        </a>
-                     </div>
-                     <div class="col-md-3">
-                        <a href="">
-                            <div class="dash-box dash-box-3">
-                               <span>Today's Balance</span>
-                               <h1>0</h1>
-                            </div>
-                        </a>
-                     </div>
-                     <div class="col-md-3">
-                        <a href="">
-                            <div class="dash-box dash-box-4">
-                               <span>Monthly Income</span>
-                               <h1>0</h1>
-                            </div>
-                        </a>
-                     </div>
-                     <div class="col-md-3">
-                        <a href="">
-                            <div class="dash-box dash-box-5">
-                               <span>Monthly Cost</span>
-                               <h1>0</h1>
-                            </div>
-                        </a>
-                     </div>
-                     <div class="col-md-3">
-                        <a href="">
-                            <div class="dash-box dash-box-6">
-                               <span>Monthly Balance</span>
-                               <h1>0</h1>
-                            </div>
-                        </a>
-                     </div>
-                </div>
-             </div>
-        </div>
-        <!-- body content end -->
+        {% block body_block %}
+
+{% endblock %}
+
+
     </div>
     <!-- body container end -->
     </div>
-    <!-- body section end -->
 
     <!-- footer start -->
     <div class="developer">
@@ -560,7 +509,7 @@
 <script src="https://sadmantravels.com/backend/js/app.js"></script>
 
 <script>
-    
+
     // option
     toastr.options = {
         "positionClass": "toast-top-right",
@@ -580,6 +529,7 @@
         "extendedTimeOut": "1000",
     }
 </script>
+{% block script_block %}{% endblock %}
 
 </body>
 </html>

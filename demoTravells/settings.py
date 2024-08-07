@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration_app.apps.RegistrationAppConfig',
     'first_app',
+    'dashboard_app',
     'ckeditor',
     'embed_video',
     'crispy_forms',

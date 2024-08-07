@@ -287,9 +287,4 @@ class All_News(ListView):
         return context
 
 
-class LoginOutlayer(TemplateView):
-    template_name = 'login/loginOutlayer.html'
 
-
-class DashBoard(TemplateView):
-    template_name = 'login/adminsiteDashBoard.html'
