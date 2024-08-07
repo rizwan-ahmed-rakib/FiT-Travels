@@ -1,4 +1,5 @@
 {% load static %}
+{% load active_nav %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,24 +70,24 @@
             </a>
 
             <div class="lg:flex-[4] justify-center flex items-center gap-2 h-full">
-                
-                    {% for audio in settings %}
 
-                        <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"
-                             id="play-music-button">
-                            <i class="fa-solid fa-pause" id="icon"></i>
-                            Audio
-                        </div>
+                {% for audio in settings %}
 
-                        <audio id="music" class="hidden" loop autoplay controls
-                                {#                               src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">#}
-                               src="{{ audio.audio.url }}">
-                            <a href="#"> Download audio </a>
-                        </audio>
-                    {% endfor %}
+                    <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"
+                         id="play-music-button">
+                        <i class="fa-solid fa-pause" id="icon"></i>
+                        Audio
+                    </div>
+
+                    <audio id="music" class="hidden" loop autoplay controls
+                            {#                               src="{% static 'audio/StockTune-Emerald Sky Dreaming_1721104248.mp3' %}">#}
+                           src="{{ audio.audio.url }}">
+                        <a href="#"> Download audio </a>
+                    </audio>
+                {% endfor %}
 
 
-            
+
                 <!-----if I do only the code which have commented here  then an error will arrive if there haven't any audio file------->
 
                 {#                 <div class="bg-[#fc0002] border border-r-2 border-l-2 border-b-4 border-black px-4 py-2 w-[150px] cursor-pointer text-center text-white rounded-full"#}
@@ -137,130 +138,130 @@
                               d="M1 1h15M1 7h15M1 13h15"/>
                     </svg>
                 </button>
-                <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0">
-                        <li>
-                            <a href="{% url 'home' %}"    
-                               
-                               
-                               
-                               
-                               
-                               class="bg-[#A80001] block py-3 px-4 text-white hover:bg-[#A80001]">Home</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'about' %}"
-                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">About Us </a>
-                        </li>
+                                <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+                                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0">
+                                        <li>
+                                            <a href="{% url 'home' %}"    
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/home/' %}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'about' %}"
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/about/' %}">About Us </a>
+                                        </li>
 
-                        <li>
-                            <a href="{% url 'management' %}"
-                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Top Management </a>
-                        </li>
+                                        <li>
+                                            <a href="{% url 'management' %}"
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/management/' %}" >Top Management </a>
+                                        </li>
 
-                        <li class="group relative">
-                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Speeches <img
-                                    src="{% static 'icon/down-arrow.png' %}"/></div>
-                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
-                                <ul class="text-sm text-white">
-                                    <li>
-                                        <a href="{% url 'president_speach' %}"
-                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">President
-                                            Speech</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                                        <li class="group relative">
+                                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001] {% active request '/group/' %}">Speeches <img
+                                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                                <ul class="text-sm text-white">
+                                                    <li>
+                                                        <a href="{% url 'president_speach' %}"
+                                                           class=" block px-4 py-2 hover:bg-[#A80001] {% active request '/president_speach/' %} whitespace-nowrap ">President
+                                                            Speech</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
 
-                        <li class="group relative">
-                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Hajj
-                                Information <img src="{% static 'icon/down-arrow.png' %}"/>
-                            </div>
-                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
-                                <ul class="text-sm text-white">
-                                    <li>
-                                        <a href="{% url 'hazz_message' %}"
-                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
-                                            Message</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'hazz_must_be_done' %}"
-                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
-                                            Must be Done</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'agency_should' %}"
-                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Agency
-                                            Should</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'hazz_tips' %}"
-                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Hajj Tips</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                                        <li class="group relative">
+                                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001] ">Hajj
+                                                Information <img src="{% static 'icon/down-arrow.png' %}"/>
+                                            </div>
+                                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                                <ul class="text-sm text-white">
+                                                    <li>
+                                                        <a href="{% url 'hazz_message' %}"
+                                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
+                                                            Message</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'hazz_must_be_done' %}"
+                                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Hajj
+                                                            Must be Done</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'agency_should' %}"
+                                                           class=" block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">Agency
+                                                            Should</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'hazz_tips' %}"
+                                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Hajj Tips</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
 
-                        <li class="group relative">
-                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]">Gallery <img
-                                    src="{% static 'icon/down-arrow.png' %}"/></div>
-                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
-                                <ul class="text-sm text-white">
-                                    <li>
-                                        <a href="{% url 'image_gallery' %}"
-                                           class=" block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Image
-                                            Gallery</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'video_gallery' %}"
-                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Video
-                                            Gallery</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                                        <li class="group relative">
+                                            <div class="flex items-center gap-1 py-3 px-4 text-white  hover:bg-[#A80001]{% active request '(image_gallery|video_gallery)' %} ">Gallery <img
+                                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                                            <div class="absolute duration-300 group-hover:top-[48px] top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                                <ul class="text-sm text-white">
+                                                    <li>
+                                                        <a href="{% url 'image_gallery' %}"
+                                                           class=" block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap {% active request '/image_gallery/' %}">Image
+                                                            Gallery</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'video_gallery' %}"
+                                                           class=" block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap {% active request '/video_gallery/' %}">Video
+                                                            Gallery</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
 
-                        <li>
-                            <a href="{% url 'notice' %}"
-                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Notice </a>
-                        </li>
+                                        <li>
+                                            <a href="{% url 'notice' %}"
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/notice/' %}">Notice </a>
+                                        </li>
 
-                        <li>
-                            <a href="{% url 'form_download' %}"
-                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">
-                                Form
-                            </a>
-                        </li>
+                                        <li>
+                                            <a href="{% url 'form_download' %}"
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/form/' %}">
+                                                Form
+                                            </a>
+                                        </li>
 
-                        <li>
-                            <a href="{% url 'contact_us' %}"
-                               class=" block py-3 px-4 text-white hover:bg-[#A80001]">Contact</a>
-                        </li>
+                                        <li>
+                                            <a href="{% url 'contact_us' %}"
+                                               class=" block py-3 px-4 text-white hover:bg-[#A80001] {% active request '/contact_us/'%}">
+                                                Contact
+                                            </a>
+                                        </li>
 
-                        <li class="group relative">
-                            <div class="flex items-center gap-1 py-3 px-4 text-white hover:bg-[#A80001]">Login <img
-                                    src="{% static 'icon/down-arrow.png' %}"/></div>
-                            <div class="absolute duration-300 group-hover:top-[48px] right-0 top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
-                                <ul class="text-sm text-white">
-                                    <li>
-                                        <a href="{% url 'dashboard' %}"
-                                           class="block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">DashBoard</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'contact_us' %}"
-                                           class="block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Webmail</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'admin:index' %}"
-                                           class="block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Go to Admin
-                                            Panel</a>
+                                        <li class="group relative">
+                                            <div class="flex items-center gap-1 py-3 px-4 text-white hover:bg-[#A80001] {% active request '/#/' %}">Login <img
+                                                    src="{% static 'icon/down-arrow.png' %}"/></div>
+                                            <div class="absolute duration-300 group-hover:top-[48px] right-0 top-[100px] z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 font-normal bg-[#FC0002] divide-y divide-gray-100 shadow min-w-[200px] ">
+                                                <ul class="text-sm text-white">
+                                                    <li>
+                                                        <a href="{% url 'dashboard' %}"
+                                                           class="block px-4 py-2  border-b hover:bg-[#A80001] whitespace-nowrap">DashBoard</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'contact_us' %}"
+                                                           class="block px-4 py-2 border-b hover:bg-[#A80001] whitespace-nowrap">Webmail</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'admin:index' %}"
+                                                           class="block px-4 py-2 hover:bg-[#A80001] whitespace-nowrap">Go to Admin
+                                                            Panel</a>
 
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                
+
             </div>
         </nav>
         <!-- HEADER AREA END -->

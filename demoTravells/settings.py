@@ -91,8 +91,22 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "first_app.Settings": "fas fa-tools ",
         "first_app.Nav_Links": "fas fa-link ",
-        "first_app.HomeSlides": "fas fa-file-image ",
+        "first_app.HomeSlides": "fas fa-sliders-h ",
         "first_app.SideHomeSlides": "fas fa-image ",
+        "first_app.Email_Inbox": "fas fa-envelope ",
+        "first_app.AboutUs": "fas fa-deaf ",
+        "first_app.Form": "fas fa-file-pdf  ",
+        "first_app.Image_Gallery": "fas fa-images  ",
+        "first_app.Notice": "fas fa-file-alt  ",
+        "first_app.Latest_news": "fas fa-blog  ",
+        "first_app.Video_Gallery": "fas fa-photo-video  ",
+        "first_app.Hazz_Message": "fas fa-comments    ",
+        "first_app.TopManagement": "fas fa-users    ",
+        "first_app.PresidentSpeach": "fas fa-user    ",
+        "first_app.Hazz_Tips": "fas fa-blog     ",
+        "first_app.HazzMustbeDone": "fas fa-blog    ",
+        "first_app.Agency_Should": "fas fa-file-alt    ",
+
 
     },
 

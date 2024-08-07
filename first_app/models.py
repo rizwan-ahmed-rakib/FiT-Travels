@@ -145,12 +145,12 @@ class Form(models.Model):
 
     def __str__(self):
         return self.subject
-https://github.com/rizwan-ahmed-rakib/FiT-Travels.git
+
 
 class Email_Inbox(models.Model):
     name = models.CharField(max_length=264, blank=True, )
     email = models.EmailField(blank=True)
-    message = RichTextField()
+    message = models.TextField(blank=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
