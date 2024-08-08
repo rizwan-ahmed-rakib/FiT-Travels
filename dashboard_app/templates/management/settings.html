@@ -1,0 +1,10 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+<form method="POST">
+{{ form.as_p }}
+{% csrf_token %}
+<input type="submit">
+</form>
+
+{% endblock %}

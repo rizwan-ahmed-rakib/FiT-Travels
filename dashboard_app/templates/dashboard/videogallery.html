@@ -1,7 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load embed_video_tags %}
 {% block style_block %}
-
     <style>
         .gallery_content {
             border: 4px solid #F2F2F2;
@@ -61,8 +61,7 @@
             color: #fff;
         }
 
-        .gallery_content a.delete:focus,
-        .gallery_content a.view:hover {
+        .gallery_content a.delete:focus, .gallery_content a.view:hover {
             background: #1C6AD1;
         }
 
@@ -72,8 +71,7 @@
             font-size: 14px;
         }
 
-        .gallery_content a.view:focus,
-        .gallery_content a.edit:hover {
+        .gallery_content a.view:focus, .gallery_content a.edit:hover {
             background: #449D44;
         }
 
@@ -82,8 +80,7 @@
             color: #fff;
         }
 
-        .gallery_content a.edit:focus,
-        .gallery_content a {
+        .gallery_content a.edit:focus, .gallery_content a {
             background: rgba(92, 184, 92, 0.5);
             display: inline-block;
             text-align: center;
@@ -102,14 +99,16 @@
             vertical-align: middle;
         }
 
-        .gallery_content a:focus,
-        .gallery_content a:hover {
+        .gallery_content a:focus, .gallery_content a:hover {
             background: rgba(48, 63, 159, 0.3);
         }
     </style>
 {% endblock %}
+
+
+
 {% block body_block %}
-    <!-- body container start -->
+
     <div class="body_container">
         <!-- body nav start -->
         <div class="body_nav">
@@ -120,12 +119,11 @@
             </ul>
         </div>
         <!-- body nav start -->
-
         <!-- body content start -->
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>Image Gallery</h4>
+                    <h4>Video Gallery</h4>
                     <div class="">
                         <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"
                            data-whatever="@mdo"><i class="fa fa-plus"></i> Add New</a>
@@ -133,33 +131,33 @@
                 </div>
                 <div class="panel_body">
                     <div class="row">
-                        {% for images in image_gallery %}
-
+                        {% for video in video_gallery %}
                             <div class="col-lg-3 col-sm- col-6">
                                 <div class="gallery_content">
                                     <div class="gallery_img">
-                                        <img src="{{ images.image.url }}"
-                                             alt="">
-                                        <div class="cover">
-                                            <a href="#" onclick="editData('121')" data-toggle="modal"
-                                               data-target="#editModal" data-whatever="@mdo" class="edit"
-                                               title="Edit">
-                                                <i class="far fa-edit"></i>
-                                            </a>
-                                            <a href="{{ images.image.url }}"
-                                               onclick="return confirm('Do you want to delete this data?')"
-                                               class="delete" title="Delete">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
-                                        </div>
+                                        {% video video.add_video_from_any_link as videos %}
+                                            <iframe width="100%" height="100%" src="{{ videos.url }}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            <div class="cover">
+                                                <a href="#" onclick="editData('145')" data-toggle="modal"
+                                                   data-target="#editModal" data-whatever="@mdo" class="edit"
+                                                   title="Edit">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                                <a href="{{ videos.url }}"
+                                                   onclick="return confirm('Do you want to delete this data?')"
+                                                   class="delete" title="Delete">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        {% endvideo %}
                                     </div>
                                     <h5 class="gallery_title">N/A</h5>
                                 </div>
                             </div>
                         {% endfor %}
-
-
-
                     </div>
                 </div>
                 <div class="panel_footer"></div>
@@ -175,16 +173,16 @@
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
                 <form action="https://sadmantravels.com/admin/media/store" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="uzqwAJPCIZrGSjDJoTbvbyTZdf5lA5aJmtvJu3gh">
+                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Image</h5>
+                        <h5 class="modal-title">Add Video</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <input type="hidden" name="media_type" value="image">
+                        <input type="hidden" name="media_type" value="video">
 
                         <div class="form-group">
                             <label class="form-label">Title </label>
@@ -192,11 +190,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Upload Image <span class="text-danger">*</span></label>
-                            <input type="file" name="avatar" class="form-control" required>
+                            <label class="form-label">Video ID <span class="text-danger">*</span></label>
+                            <input type="text" name="avatar" class="form-control"
+                                   placeholder="https://www.youtube.com/watch?v=" required>
                         </div>
-
-
                         <div class="text-right">
                             <button type="submit" class="btn submit_btn" name="submit">Save</button>
                         </div>
@@ -211,7 +208,7 @@
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
                 <form action="https://sadmantravels.com/admin/media/update" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="uzqwAJPCIZrGSjDJoTbvbyTZdf5lA5aJmtvJu3gh">
+                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
                     <div class="modal-header">
                         <h5 class="modal-title">Update Image</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -220,8 +217,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <input type="hidden" name="media_type" value="image">
-
+                        <input type="hidden" name="media_type" value="video">
                         <input type="hidden" id="mediaId" name="id">
 
                         <div class="form-group">
@@ -231,11 +227,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Upload Image <span class="text-danger">*</span></label>
-                            <img id="mediaAvatar" src="" alt="" style="width: 150px; height: 80px;">
-                            <input type="file" name="avatar" class="form-control" readonly>
+                            <label class="form-label">Video ID <span class="text-danger">*</span></label>
+                            <input type="text" name="avatar" value="" class="form-control"
+                                   placeholder="https://www.youtube.com/watch?v=">
                         </div>
-
 
                         <div class="text-right">
                             <button type="submit" class="btn submit_btn" name="submit">Save</button>
@@ -245,46 +240,7 @@
             </div>
         </div>
     </div>
-    </div>
-    <!-- body section end
 
 
-    {% block script_block %}
-<script>
-        function editData(id) {
-            // set access token
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            // clear input data
-            $('#mediaId').val('');
-            $('#mediaTitle').val('');
-            $('#mediaAvatar').hide();
-            $('#mediaAvatar').attr('src', '');
-
-            $.ajax({
-                type: "POST",
-                url: "https://sadmantravels.com/admin/media/edit",
-                data: {id: id},
-                dataType: 'json',
-                success: function (response) {
-                    if(response.id){
-                        console.log(response);
-                        let avatar = 'https://sadmantravels.com/' + response.avatar;
-                        // set input data
-                        $('#mediaId').val(response.id);
-                        $('#mediaTitle').val(response.title);
-                        $('#mediaAvatar').attr('src', avatar);
-                        if (response.avatar != '') {
-                            $('#mediaAvatar').show();
-                        }
-
-                    }
-                },
-            });
-        }
-    </script>
-    {% endblock %}
 
 {% endblock %}
-

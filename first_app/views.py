@@ -96,6 +96,7 @@ class PresidenSpeach(TemplateView):
         context['image_gallery'] = Image_Gallery.objects.all()
         return context
 
+
 class Speach(TemplateView):
     template_name = 'about/speach.html'
 
@@ -285,6 +286,3 @@ class All_News(ListView):
         context['image_gallery'] = Image_Gallery.objects.all()
         context['latest'] = Latest_news.objects.all
         return context
-
-
-

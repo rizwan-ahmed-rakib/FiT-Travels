@@ -1,0 +1,75 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+    <!-- body container start -->
+    <div class="body_container">
+        <!-- body nav start -->
+        <div class="body_nav">
+            <ul>
+                <li><a class="addPost" href="{% url 'dashBoard_app:add_news' %}">Add News</a></li>
+                <li><a class="allPost" href="{% url 'dashBoard_app:all_news' %}">All News</a></li>
+            </ul>
+        </div>
+        <!-- body nav start -->
+
+        <!-- body content start -->
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>All Post</h4>
+                    <div class="">
+                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"
+                           data-whatever="@mdo"><i class="fa fa-plus"></i> Add New</a>
+                        <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
+                    </div>
+                </div>
+                <div class="panel_body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered list-table">
+                            <thead>
+                            <tr>
+                                <th style="width: 40px;">SL</th>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Featured Image</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th style="width: 120px;" class="text-right print_hide">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for all_news in all_news %}
+                            	<tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ all_news.updated }}</td>
+                                <td> {{ all_news.headline }}</td>
+                                <td><img src="{{ all_news.picture.url }}"
+                                         alt=""></td>
+                                <td>{{ all_news.news_details|safe }}....</td>
+                                <td class="font-weight-bold">Publish</td>
+                                <td class="operation_btn text-right print_hide">
+                                    <a href="https://sadmantravels.com/admin/post/edit/11" class="edit" title="Edit">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="https://sadmantravels.com/news?hajj-7-things-you-dont-know-about-the-muslim-pilgrimage---bbc-news"
+                                       target="_blank" class="view" title="View">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <a href="https://sadmantravels.com/admin/post/destroy/11"
+                                       onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                       title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel_footer"></div>
+            </div>
+        </div>
+        <!-- body content end -->
+    </div>
+{% endblock %}

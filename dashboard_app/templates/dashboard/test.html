@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>where is my loop</p>
+{% for d in image_gallery %}
+    <img src="{{ d.image.url }}">
+    <p>{{ d.name }}</p>
+{% endfor %}
+
+
+</body>
+</html>

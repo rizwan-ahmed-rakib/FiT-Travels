@@ -1,0 +1,170 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+    {% block data_menu %}
+    	"about_slider"
+    {% endblock %}
+    <div class="body_container">
+        <!-- body content start -->
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>About Slider</h4>
+                    <div class="">
+                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"
+                           data-whatever="@mdo">
+                            <i class="fa fa-plus"></i> Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="panel_body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered list-table">
+                            <thead>
+                            <tr>
+                                <th width="40">SL</th>
+                                <!-- <th>Title</th>
+                                <th>Description</th>
+                                <th>Link</th> -->
+                                <!-- <th>Type</th> -->
+                                <th>About Slider Image</th>
+                                <th width="100" class="text-right print_hide">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for side_slide in side_slides %}
+                            	<tr>
+                                <td>{{ forloop.counter }}</td>
+                                <!-- <td></td>
+                                <td></td>
+                                <td></td> -->
+                                <!-- <td>about</td> -->
+                                <td style="padding: 0px;"><img
+                                        src="{{ side_slide.side_slide_picture.url }}" alt=""
+                                        style="width: 70px; height: 100px;"></td>
+                                <td class="operation_btn text-right print_hide">
+                                    <a href="#" onclick="editData('8')" data-toggle="modal" data-target="#editModal"
+                                       data-whatever="@mdo" class="edit" title="Edit">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="https://sadmantravels.com/admin/slider/destroy/8"
+                                       onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                       title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel_footer"></div>
+            </div>
+        </div>
+        <!-- body content end -->
+    </div>
+    <!-- body container end -->
+
+
+    <!-- Add modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <form action="https://sadmantravels.com/admin/about_slider/store" method="POST"
+                      enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add About Slider</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="hidden" name="position" value="5">
+                        <input type="hidden" name="type" value="about">
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Title <span class="text-danger">*</span></label>
+                            <input type="text" name="title" class="form-control modal_form" autocomplete="off">
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Description <span class="text-danger"></span></label>
+                            <textarea name="description" class="form-control"></textarea>
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Link <span class="text-danger"></span></label>
+                            <input type="text" name="link" class="form-control modal_form" autocomplete="off">
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="form-label">About Slider Image <span class="text-danger">(Max: 300px X 600px) *</span></label>
+                            <input type="file" name="avatar" class="form-control" readonly>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn submit_btn" name="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <form action="https://sadmantravels.com/admin/about_slider/update" method="POST"
+                      enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update About Slider</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="hidden" id="sliderId" name="id">
+                        <input type="hidden" name="type" value="about">
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Title <span class="text-danger">*</span></label>
+                            <input type="text" id="sliderTitle" name="title" class="form-control modal_form" autocomplete="off">
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Description <span class="text-danger"></span></label>
+                            <textarea id="sliderDescription" name="description" class="form-control"></textarea>
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="form-label">Link <span class="text-danger"></span></label>
+                            <input type="text" id="sliderLink" name="link" class="form-control modal_form" autocomplete="off">
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="form-label"> About Slider Image <span class="text-danger">(Max: 300px X 600px) *</span></label>
+                            <img id="sliderAvatar" src="" alt="" style="width: 150px; height: 80px;">
+                            <input type="file" name="avatar" class="form-control" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Position <span class="text-danger"></span></label>
+                            <input type="text" id="sliderPosition" name="position" class="form-control modal_form"
+                                   autocomplete="off">
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn submit_btn" name="submit">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

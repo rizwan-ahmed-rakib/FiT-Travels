@@ -1,0 +1,68 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+    <!-- body container start -->
+    <div class="body_container">
+        <!-- body nav start -->
+        <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_about' %}">Add Page</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_about' %}">All Page</a></li>
+            </ul>
+        </div>
+        <!-- body nav start -->
+
+        <!-- body content start -->
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>All Pages</h4>
+                    <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
+                </div>
+                <div class="panel_body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered list-table">
+                            <thead>
+                            <tr>
+                                <th style="width: 40px;">SL</th>
+                                <th>Title</th>
+                                <th style="white-space: nowrap;">Featured Image</th>
+                                <th>Description</th>
+                                <th style="width: 100px;" class="text-center print_hide">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for about in all_about %}
+                            	 <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ about.name }}</td>
+                                <td><img src="{{ about.image.url }}"
+                                         alt=""></td>
+                                <td>
+                                <p>{{ about.about_us }}</p>
+                                </td>
+                                <td class="operation_btn text-center print_hide">
+                                    <a href="https://sadmantravels.com/admin/page/edit/6" class="edit" title="Edit">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="https://sadmantravels.com/admin/page/destroy/6"
+                                       onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                       title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel_footer"></div>
+            </div>
+        </div>
+        <!-- body content end -->
+    </div>
+    <!-- body container end -->
+    </div>
+    <!-- body section end -->
+{% endblock %}

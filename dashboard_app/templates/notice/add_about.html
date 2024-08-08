@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+    <!-- body container start -->
+    <div class="body_container">
+        <!-- body nav start -->
+        <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_about' %}">Add Page</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_about' %}">All Page</a></li>
+            </ul>
+        </div>
+        <!-- body nav start -->
+
+        <!-- body content start -->
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>Add New Page</h4>
+                </div>
+
+                <div class="panel_body">
+                    <form action="https://sadmantravels.com/admin/page/store" method="POST"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Title <span class="text-danger">*</span></label>
+                                    <input type="text" name="title" class="form-control" required>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Featured Image</label>
+                                <div class="form-group">
+                                    <input type="file" name="featured_image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label>Description <span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <textarea name="description" id="description" placeholder="Your Description"
+                                              class="form-control" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group text-right">
+                                    <button type="submit" class="btn submit_btn" name="save">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel_footer"></div>
+            </div>
+        </div>
+        <!-- body content end -->
+    </div>
+    <!-- body container end -->
+    <!-- body section end -->
+{% endblock %}
