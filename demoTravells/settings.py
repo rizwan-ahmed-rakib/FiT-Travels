@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import bootstrap_modal_forms
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -108,7 +110,6 @@ JAZZMIN_SETTINGS = {
         "first_app.Hazz_Tips": "fas fa-blog     ",
         "first_app.HazzMustbeDone": "fas fa-blog    ",
         "first_app.Agency_Should": "fas fa-file-alt    ",
-
 
     },
 
@@ -220,6 +221,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = BASE_DIR / "staticfiles"  # For production, collect static files here
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

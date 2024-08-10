@@ -20,8 +20,8 @@ class DashBoard(TemplateView):
 
 
 class ImageGallery(TemplateView):
+    # template_name = 'crud/image_gallery.html'
     template_name = 'crud/image_gallery.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['image_gallery'] = Image_Gallery.objects.all()
