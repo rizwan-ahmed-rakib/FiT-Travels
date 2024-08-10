@@ -1,0 +1,183 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block style_block %}
+    <!-- Your existing CSS styles here -->
+    <style>
+        .gallery_content {
+            border: 4px solid #F2F2F2;
+            margin: 10px 0;
+            border-top: none;
+            border-left: none;
+        }
+
+        .gallery_img {
+            border: 1px solid #efefef;
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .gallery_img .cover {
+            justify-content: flex-end;
+            position: absolute;
+            display: flex;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 15px;
+            align-items: flex-start;
+        }
+
+        .gallery_img img {
+            object-fit: cover;
+            overflow: hidden;
+            border: none;
+            height: 100%;
+            width: 100%;
+            transition: all .2s;
+        }
+
+        .gallery_content:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery_content .gallery_title {
+            text-transform: uppercase;
+            white-space: nowrap;
+            font-size: 14px;
+            margin: 0;
+            padding: 10px 0;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gallery_content a.delete:hover {
+            background: #D92114;
+        }
+
+        .gallery_content a.delete {
+            background: #EC4034;
+            color: #fff;
+        }
+
+        .gallery_content a.delete:focus,
+        .gallery_content a.view:hover {
+            background: #1C6AD1;
+        }
+
+        .gallery_content a.view {
+            background: #3B84E5;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .gallery_content a.view:focus,
+        .gallery_content a.edit:hover {
+            background: #449D44;
+        }
+
+        .gallery_content a.edit {
+            background: #5CB85C;
+            color: #fff;
+        }
+
+        .gallery_content a.edit:focus,
+        .gallery_content a {
+            background: rgba(92, 184, 92, 0.5);
+            display: inline-block;
+            text-align: center;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            margin: 2px 0;
+            font-size: 13px;
+            margin-left: 5px;
+            line-height: 30px;
+            border-radius: 2px;
+            transition: all .2s;
+        }
+
+        .gallery_content a i {
+            vertical-align: middle;
+        }
+
+        .gallery_content a:focus,
+        .gallery_content a:hover {
+            background: rgba(48, 63, 159, 0.3);
+        }
+    </style>
+
+{% endblock %}
+{% block body_block %}
+    <div class="body_container">
+        <div class="body_nav">
+            <ul>
+                <li><a class="imageGallery" href="{% url 'dashBoard_app:image_gallery' %}">Image Gallery</a></li>
+                <li><a class="videoGallery" href="{% url 'dashBoard_app:videos' %}">Video Gallery</a></li>
+            </ul>
+        </div>
+
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>Image Gallery</h4>
+                    <div class="">
+                        <a href="{% url 'dashBoard_app:image_gallery_create' %}" class="print_btn" id="plus" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-plus"></i> Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="panel_body">
+                    <div class="row">
+                        {% for image in image_gallery %}
+                            <div class="col-lg-3 col-sm- col-6">
+                                <div class="gallery_content">
+                                    <div class="gallery_img">
+                                        <img src="{{ image.image.url }}" alt="">
+                                        <div class="cover">
+                                            <a href="{% url 'dashBoard_app:image_gallery_update' image.pk %}" data-toggle="modal" data-target="#modal" class="edit" title="Edit">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'dashBoard_app:image_gallery_delete' image.pk %}" data-toggle="modal" data-target="#modal" class="delete" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <h5 class="gallery_title">{{ image.name }}</h5>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="{% static 'path/to/jquery.js' %}"></script>
+    <script src="{% static 'path/to/bootstrap.js' %}"></script>
+    <script src="{% static 'bootstrap_modal_forms/js/bootstrap_modal_forms.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var url = button.attr('href');
+                var modal = $(this);
+
+                $.ajax({
+                    url: url,
+                    success: function (data) {
+                        modal.find('.modal-content').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

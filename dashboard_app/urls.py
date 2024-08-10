@@ -1,6 +1,7 @@
 from django.urls import path, reverse
 from dashboard_app import views
 
+
 app_name = 'dashBoard_app'
 urlpatterns = [
     path('dashboard/', views.DashBoard.as_view(), name='dashboard'),
@@ -20,6 +21,10 @@ urlpatterns = [
     path('add-management/', views.AddManagement.as_view(), name='add_management'),
     path('mail/', views.FrontendMessage.as_view(), name='mail'),
     path('settings/', views.Settings.as_view(), name='settings'),
-
+    # crud image gallery----------------------------------------------------start
+    path('create/', views.ImageGalleryCreateView.as_view(), name='image_gallery_create'),
+    path('update/<int:pk>/', views.ImageGalleryUpdateView.as_view(), name='image_gallery_update'),
+    path('delete/<int:pk>/', views.ImageGalleryDeleteView.as_view(), name='image_gallery_delete'),
+    # crud image gallery----------------------------------------------------End
 
 ]

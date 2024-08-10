@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, CreateView
+
+from dashboard_app.forms import ImageGalleryForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
                               AboutUs, HazzMustbeDone, Email_Inbox)
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView
 
 
 # Create your views here.
@@ -16,12 +20,33 @@ class DashBoard(TemplateView):
 
 
 class ImageGallery(TemplateView):
-    template_name = 'dashboard/imagegallery.html'
+    template_name = 'crud/image_gallery.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['image_gallery'] = Image_Gallery.objects.all()
         return context
+
+#image gallery crud---------------------------------------------------------start
+class ImageGalleryCreateView(BSModalCreateView):
+    template_name = 'crud/image gallery/image_gallery_create.html'
+    form_class = ImageGalleryForm
+    success_message = 'Success: Image was created.'
+    success_url = reverse_lazy('dashboard:image_gallery')
+
+class ImageGalleryUpdateView(BSModalUpdateView):
+    model = Image_Gallery
+    template_name = 'crud/image gallery/image_gallery_update.html'
+    form_class = ImageGalleryForm
+    success_message = 'Success: Image was updated.'
+    success_url = reverse_lazy('dashBoard_app:image_gallery')
+
+class ImageGalleryDeleteView(BSModalDeleteView):
+    model = Image_Gallery
+    template_name = 'crud/image gallery/image_gallery_delete.html'
+    success_message = 'Success: Image was deleted.'
+    success_url = reverse_lazy('dashBoard_app:image_gallery')
+#image gallery crud-----------------------------------------------------------End
 
 
 class videoGallery(TemplateView):
