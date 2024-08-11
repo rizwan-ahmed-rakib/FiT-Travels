@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, CreateView
 
-from dashboard_app.forms import ImageGalleryForm
+from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
                               AboutUs, HazzMustbeDone, Email_Inbox)
-from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -19,34 +20,68 @@ class DashBoard(TemplateView):
     template_name = 'dashboard/index.html'
 
 
+###################################################################Image Gallery#####################################
 class ImageGallery(TemplateView):
-    # template_name = 'crud/image_gallery.html'
+    # template_name = 'dashboard/imagegallery.html'
     template_name = 'crud/image_gallery.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['image_gallery'] = Image_Gallery.objects.all()
         return context
 
-#image gallery crud---------------------------------------------------------start
-class ImageGalleryCreateView(BSModalCreateView):
-    template_name = 'crud/image gallery/image_gallery_create.html'
-    form_class = ImageGalleryForm
-    success_message = 'Success: Image was created.'
-    success_url = reverse_lazy('dashboard:image_gallery')
 
-class ImageGalleryUpdateView(BSModalUpdateView):
-    model = Image_Gallery
-    template_name = 'crud/image gallery/image_gallery_update.html'
-    form_class = ImageGalleryForm
-    success_message = 'Success: Image was updated.'
-    success_url = reverse_lazy('dashBoard_app:image_gallery')
+# image gallery crud---------------------------------------------------------start
 
-class ImageGalleryDeleteView(BSModalDeleteView):
-    model = Image_Gallery
-    template_name = 'crud/image gallery/image_gallery_delete.html'
-    success_message = 'Success: Image was deleted.'
-    success_url = reverse_lazy('dashBoard_app:image_gallery')
-#image gallery crud-----------------------------------------------------------End
+# View for the image gallery page
+def image_gallery_view(request):
+    image_gallery = Image_Gallery.objects.all()
+    return render(request, 'crud/image_gallery.html', {'image_gallery': image_gallery})
+
+
+# Create a new image
+def image_create_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        image = request.FILES.get('image')
+        Image_Gallery.objects.create(name=name, image=image)
+    return redirect('dashBoard_app:image_gallery')
+
+
+# Update image
+def image_update_view(request):
+    if request.method == 'POST':
+        image_id = request.POST.get('id')
+        image_instance = get_object_or_404(Image_Gallery, id=image_id)
+        image_instance.name = request.POST.get('name')
+        if 'image' in request.FILES:
+            image_instance.image = request.FILES['image']
+        image_instance.save()
+    return redirect('dashBoard_app:image_gallery')
+
+
+# Image detail for editing
+def image_detail_view(request):
+    image_id = request.GET.get('id')
+    image_instance = get_object_or_404(Image_Gallery, id=image_id)
+    data = {
+        'id': image_instance.id,
+        'name': image_instance.name,
+        'image': image_instance.image.url
+    }
+    return JsonResponse(data)
+
+
+# Delete image
+def image_delete_view(request):
+    image_id = request.GET.get('id')
+    image_instance = get_object_or_404(Image_Gallery, id=image_id)
+    image_instance.delete()
+    return JsonResponse({'deleted': True})
+
+
+# image gallery crud-----------------------------------------------------------End
+#######################################################  Video Dallery    #################################################################
 
 
 class videoGallery(TemplateView):
@@ -57,7 +92,54 @@ class videoGallery(TemplateView):
         context['video_gallery'] = Video_Gallery.objects.all()
         return context
 
+    # video gallery crud start -------------------------------------start
 
+
+def video_create_view(request):
+    if request.method == 'POST':
+        form = VideoGalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('dashBoard_app:videos')
+    else:
+        form = VideoGalleryForm()
+    return render(request, 'dashboard/video_form.html', {'form': form})
+
+
+def video_update_view(request, pk):
+    video = get_object_or_404(Video_Gallery, pk=pk)
+    if request.method == 'POST':
+        form = VideoGalleryForm(request.POST, request.FILES, instance=video)
+        if form.is_valid():
+            form.save()
+            return redirect('dashBoard_app:video_gallery')
+    else:
+        form = VideoGalleryForm(instance=video)
+    return render(request, 'dashboard/video_form.html', {'form': form})
+
+
+def video_delete_view(request, pk):
+    video = get_object_or_404(Video_Gallery, pk=pk)
+    if request.method == 'POST':
+        video.delete()
+        return redirect('dashBoard_app:videos')
+    return render(request, 'dashboard/video_confirm_delete.html', {'video': video})
+
+
+def video_detail_view(request, pk):
+    video = get_object_or_404(Video_Gallery, pk=pk)
+    return JsonResponse({
+        'id': video.pk,
+        'name': video.name,
+        'video_url': video.video.url,
+        'embed_url': video.add_video_from_any_link
+    })
+
+
+# video gallery crud end -------------------------------------end
+
+
+####################################################################################################################################
 class HomeSlide(TemplateView):
     template_name = 'dashboard/homeslides.html'
 
@@ -154,4 +236,3 @@ class Settings(CreateView):
     template_name = 'management/settings.html'
     model = Settings
     fields = '__all__'
-

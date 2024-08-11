@@ -32,11 +32,15 @@
     <!-- include style -->
     <link rel="stylesheet" href="{% static 'css/adminDashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
-   <!-- Bootstrap 5 -->
-{#    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>#}
-{#    <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>#}
+    <!-- Bootstrap 5 -->
+    {#    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>#}
+    {#    <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>#}
     <!-- You can alternatively load the minified version -->
-{#    <script src="{% static 'js/bootstrap5.modal.forms.min.js' %}"></script>#}
+    {#    <script src="{% static 'js/bootstrap5.modal.forms.min.js' %}"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>
+    <!-- You can alternatively load the minified version -->
+    <script src="{% static 'js/bootstrap5.modal.forms.min.js' %}"></script>
     {% block style_block %}{% endblock %}
 </head>
 <body>
@@ -286,9 +290,9 @@
             <!-- Settings -->
             <li id="settings">
 
-                <a href="{% url 'dashBoard_app:settings'%}">
+                <a href="{% url 'dashBoard_app:settings' %}">
                     <i class=" fas fa-cogs"></i>
-                <span class="menu_title">Settings</span>
+                    <span class="menu_title">Settings</span>
                 </a>
 
 
@@ -564,7 +568,7 @@
         "extendedTimeOut": "1000",
     }
 </script>
-{% block script_block %}{% endblock %}
+{% block script_block %}{% endblock script_block %}
 
 </body>
 </html>

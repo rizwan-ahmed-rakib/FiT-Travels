@@ -159,7 +159,6 @@
                         {% endfor %}
 
 
-
                     </div>
                 </div>
                 <div class="panel_footer"></div>
@@ -245,46 +244,47 @@
             </div>
         </div>
     </div>
-    </div>
-    <!-- body section end
+
+    <!-- body section end--->
 
 
     {% block script_block %}
-<script>
-        function editData(id) {
-            // set access token
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            // clear input data
-            $('#mediaId').val('');
-            $('#mediaTitle').val('');
-            $('#mediaAvatar').hide();
-            $('#mediaAvatar').attr('src', '');
+        <script>
+            function editData(id) {
+                // set access token
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                });
+                // clear input data
+                $('#mediaId').val('');
+                $('#mediaTitle').val('');
+                $('#mediaAvatar').hide();
+                $('#mediaAvatar').attr('src', '');
 
-            $.ajax({
-                type: "POST",
-                url: "https://sadmantravels.com/admin/media/edit",
-                data: {id: id},
-                dataType: 'json',
-                success: function (response) {
-                    if(response.id){
-                        console.log(response);
-                        let avatar = 'https://sadmantravels.com/' + response.avatar;
-                        // set input data
-                        $('#mediaId').val(response.id);
-                        $('#mediaTitle').val(response.title);
-                        $('#mediaAvatar').attr('src', avatar);
-                        if (response.avatar != '') {
-                            $('#mediaAvatar').show();
+                $.ajax({
+                    type: "POST",
+                    url: "https://sadmantravels.com/admin/media/edit",
+                    data: {id: id},
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.id) {
+                            console.log(response);
+                            let avatar = 'https://sadmantravels.com/' + response.avatar;
+                            // set input data
+                            $('#mediaId').val(response.id);
+                            $('#mediaTitle').val(response.title);
+                            $('#mediaAvatar').attr('src', avatar);
+                            if (response.avatar != '') {
+                                $('#mediaAvatar').show();
+                            }
+
                         }
+                    },
+                });
+            }
+        </script>
+    {% endblock script_block %}
 
-                    }
-                },
-            });
-        }
-    </script>
-    {% endblock %}
 
 
 
