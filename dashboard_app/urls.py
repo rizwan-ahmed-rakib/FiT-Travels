@@ -12,6 +12,7 @@ urlpatterns = [
     path('all-notice/', views.AllNotice.as_view(), name='all_notice'),
     path('add-about/', views.AddAbout.as_view(), name='add_about'),
     path('all-about/', views.AllAbout.as_view(), name='all_about'),
+    path('edit-about/<int:pk>/', views.EditAbout.as_view(), name='edit_about'),
     path('add-news/', views.AddNews.as_view(), name='add_news'),
     path('all-news/', views.AllNews.as_view(), name='all_news'),
     path('add-speach/', views.AddSpeach.as_view(), name='add_speach'),
@@ -28,9 +29,23 @@ urlpatterns = [
     # crud image gallery----------------------------------------------------End
     # crud video gallery----------------------------------------------------End
     path('video/create/', views.video_create_view, name='video_create'),  # Create a new video
-    path('video/update/<int:pk>/', views.video_update_view, name='video_update'),  # Update an existing video
-    path('video/delete/<int:pk>/', views.video_delete_view, name='video_delete'),  # Delete a video
-    path('video/detail/<int:pk>/', views.video_detail_view, name='video_detail'),  # Get details of a video
-    # crud image gallery----------------------------------------------------End
+    path('video/update/', views.video_update_view, name='video_update'),  # Update a video
+    path('video/detail/', views.video_detail_view, name='video_detail'),  # Get details of a video for editing
+    path('video/delete/', views.video_delete_view, name='video_delete'),  # Delete a video
 
+    # crud home sliders----------------------------------------------------start
+    path('homeslides/create/', views.CreateHomeSlide.as_view(), name='create_home_slide'),
+    path('homeslides/update/', views.UpdateHomeSlide.as_view(), name='update_home_slide'),
+    path('homeslides/delete/', views.DeleteHomeSlide.as_view(), name='delete_home_slide'),
+    # crud notice----------------------------------------------------end
+    path('notice/create/', views.notice_create, name='notice_create'),  # Create a new notice
+    path('notice/update/', views.notice_update, name='notice_update'),  # Update a notice
+    path('notice/detail/', views.notice_detail, name='notice_detail'),  # Get details of a notice for editing
+    path('notice/delete/', views.notice_delete, name='notice_delete'),  # Delete a notice
+    # crud side slider------------------------------------------------------start
+    path('side-slider/create/', views.side_slide_create_view, name='side_lide_create'),  # Create a new notice
+    path('side-slider/update/', views.side_slide_update_view, name='side_lide_update'),  # Update a notice
+    path('side-slider/detail/', views.side_slide_detail_view, name='side_lide_detail'),  # Get details of a notice for editing
+    path('side-slider/delete/', views.side_slide_delete_view, name='side_lide_delete'),  # Delete a notice
+    # crud side slider------------------------------------------------------end
 ]

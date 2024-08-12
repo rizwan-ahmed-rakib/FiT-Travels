@@ -1,16 +1,176 @@
+{#{% extends 'dashboard/base.html' %}#}
+{#{% load static %}#}
+{#{% block body_block %}#}
+{#    <!-- body container start -->#}
+{#    <div class="body_container">#}
+{#        <!-- body content start -->#}
+{#        <div class="body_content">#}
+{#            <div class="panel_container">#}
+{#                <div class="panel_heading">#}
+{#                    <h4>Slider</h4>#}
+{#                    <div class="">#}
+{#                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"#}
+{#                           data-whatever="@mdo"><i class="fa fa-plus"></i> Add New</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="panel_body">#}
+{#                    <div class="table-responsive">#}
+{#                        <table class="table table-bordered list-table">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th width="40">SL</th>#}
+{#                                <!-- <th>Title</th>#}
+{#                                <th>Description</th>#}
+{#                                <th>Link</th> -->#}
+{#                                <th>Slider Image</th>#}
+{#                                <th width="100" class="text-right print_hide">Action</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for home_slide in home_slides %}#}
+{#                                <tr>#}
+{#                                    <td>{{ forloop.counter }}</td>#}
+{#                                    <!-- <td></td>#}
+{#                                    <td></td>#}
+{#                                    <td></td> -->#}
+{#                                    <td style="padding: 0px;"><img#}
+{#                                            src="{{ home_slide.slide_picture.url }}" alt=""#}
+{#                                            style="width: 200px; height: 100px;"></td>#}
+{#                                    <td class="operation_btn text-right print_hide">#}
+{#                                        <a href="#" onclick="editData('13')" data-toggle="modal"#}
+{#                                           data-target="#editModal"#}
+{#                                           data-whatever="@mdo" class="edit" title="Edit">#}
+{#                                            <i class="far fa-edit"></i>#}
+{#                                        </a>#}
+{#                                        <a href="https://sadmantravels.com/admin/slider/destroy/13"#}
+{#                                           onclick="return confirm('Do you want to delete this data?')" class="delete"#}
+{#                                           title="Delete">#}
+{#                                            <i class="fas fa-trash-alt"></i>#}
+{#                                        </a>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="panel_footer"></div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <!-- body content end -->#}
+{#    </div>#}
+{#    <!-- body container end -->#}
+{##}
+{##}
+{#    <!-- Add modal -->#}
+{#    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">#}
+{#        <div class="modal-dialog modal-dialog-centered modal-md">#}
+{#            <div class="modal-content">#}
+{#                <form action="https://sadmantravels.com/admin/slider/store" method="POST" enctype="multipart/form-data">#}
+{#                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">#}
+{#                    <div class="modal-header">#}
+{#                        <h5 class="modal-title">Add Slider</h5>#}
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                            <span aria-hidden="true">&times;</span>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                    <div class="modal-body">#}
+{##}
+{#                        <input type="hidden" name="position" value="6">#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Title <span class="text-danger">*</span></label>#}
+{#                            <input type="text" name="title" class="form-control modal_form" autocomplete="off">#}
+{#                        </div> -->#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Description <span class="text-danger"></span></label>#}
+{#                            <textarea name="description" class="form-control"></textarea>#}
+{#                        </div> -->#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Link <span class="text-danger"></span></label>#}
+{#                            <input type="text" name="link" class="form-control modal_form" autocomplete="off">#}
+{#                        </div> -->#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <label class="form-label">Slider Image <span class="text-danger">*</span></label>#}
+{#                            <input type="file" name="avatar" class="form-control" readonly>#}
+{#                        </div>#}
+{#                        <div class="text-right">#}
+{#                            <button type="submit" class="btn submit_btn" name="submit">Save</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <!-- Edit modal -->#}
+{#    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">#}
+{#        <div class="modal-dialog modal-dialog-centered modal-md">#}
+{#            <div class="modal-content">#}
+{#                <form action="https://sadmantravels.com/admin/slider/update" method="POST"#}
+{#                      enctype="multipart/form-data">#}
+{#                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">#}
+{#                    <div class="modal-header">#}
+{#                        <h5 class="modal-title">Update Slider</h5>#}
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                            <span aria-hidden="true">&times;</span>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                    <div class="modal-body">#}
+{##}
+{#                        <input type="hidden" id="sliderId" name="id">#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Title <span class="text-danger">*</span></label>#}
+{#                            <input type="text" id="sliderTitle" name="title" class="form-control modal_form" autocomplete="off">#}
+{#                        </div> -->#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Description <span class="text-danger"></span></label>#}
+{#                            <textarea id="sliderDescription" name="description" class="form-control"></textarea>#}
+{#                        </div> -->#}
+{##}
+{#                        <!-- <div class="form-group">#}
+{#                            <label class="form-label">Link <span class="text-danger"></span></label>#}
+{#                            <input type="text" id="sliderLink" name="link" class="form-control modal_form" autocomplete="off">#}
+{#                        </div> -->#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <label class="form-label">Slider Image <span class="text-danger">*</span></label>#}
+{#                            <img id="sliderAvatar" src="" alt="" style="width: 150px; height: 80px;">#}
+{#                            <input type="file" name="avatar" class="form-control" readonly>#}
+{#                        </div>#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <label class="form-label">Position <span class="text-danger"></span></label>#}
+{#                            <input type="text" id="sliderPosition" name="position" class="form-control modal_form"#}
+{#                                   autocomplete="off">#}
+{#                        </div>#}
+{#                        <div class="text-right">#}
+{#                            <button type="submit" class="btn submit_btn" name="submit">Update</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+<!---------------------------------------------------------------------->
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block body_block %}
-    <!-- body container start -->
     <div class="body_container">
-        <!-- body content start -->
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
                     <h4>Slider</h4>
-                    <div class="">
-                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"
-                           data-whatever="@mdo"><i class="fa fa-plus"></i> Add New</a>
+                    <div>
+                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"><i
+                                class="fa fa-plus"></i> Add New</a>
                     </div>
                 </div>
                 <div class="panel_body">
@@ -19,34 +179,24 @@
                             <thead>
                             <tr>
                                 <th width="40">SL</th>
-                                <!-- <th>Title</th>
-                                <th>Description</th>
-                                <th>Link</th> -->
                                 <th>Slider Image</th>
                                 <th width="100" class="text-right print_hide">Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="slidesTable">
                             {% for home_slide in home_slides %}
-                                <tr>
+                                <tr id="slide-{{ home_slide.id }}">
                                     <td>{{ forloop.counter }}</td>
-                                    <!-- <td></td>
-                                    <td></td>
-                                    <td></td> -->
-                                    <td style="padding: 0px;"><img
-                                            src="{{ home_slide.slide_picture.url }}" alt=""
-                                            style="width: 200px; height: 100px;"></td>
+                                    <td style="padding: 0px;">
+                                        <img src="{{ home_slide.slide_picture.url }}" alt=""
+                                             style="width: 200px; height: 100px;">
+                                    </td>
                                     <td class="operation_btn text-right print_hide">
-                                        <a href="#" onclick="editData('13')" data-toggle="modal"
-                                           data-target="#editModal"
-                                           data-whatever="@mdo" class="edit" title="Edit">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a href="https://sadmantravels.com/admin/slider/destroy/13"
-                                           onclick="return confirm('Do you want to delete this data?')" class="delete"
-                                           title="Delete">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        <a href="#" onclick="editSlide({{ home_slide.id }})" data-toggle="modal"
+                                           data-target="#editModal" class="edit" title="Edit"><i
+                                                class="far fa-edit"></i></a>
+                                        <a href="#" onclick="deleteSlide({{ home_slide.id }})" class="delete"
+                                           title="Delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -54,20 +204,16 @@
                         </table>
                     </div>
                 </div>
-                <div class="panel_footer"></div>
             </div>
         </div>
-        <!-- body content end -->
     </div>
-    <!-- body container end -->
 
-
-    <!-- Add modal -->
+    <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
-                <form action="https://sadmantravels.com/admin/slider/store" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                <form id="addSlideForm" action="{% url 'dashBoard_app:create_home_slide' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title">Add Slider</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -75,27 +221,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
-                        <input type="hidden" name="position" value="6">
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Title <span class="text-danger">*</span></label>
-                            <input type="text" name="title" class="form-control modal_form" autocomplete="off">
-                        </div> -->
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Description <span class="text-danger"></span></label>
-                            <textarea name="description" class="form-control"></textarea>
-                        </div> -->
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Link <span class="text-danger"></span></label>
-                            <input type="text" name="link" class="form-control modal_form" autocomplete="off">
-                        </div> -->
-
+                        <div class="form-group">
+                            <label class="form-label">Title</label>
+                            <input type="text" name="title" class="form-control modal_form" autocomplete="off" required>
+                        </div>
                         <div class="form-group">
                             <label class="form-label">Slider Image <span class="text-danger">*</span></label>
-                            <input type="file" name="avatar" class="form-control" readonly>
+                            <input type="file" name="slide_picture" class="form-control" required>
                         </div>
                         <div class="text-right">
                             <button type="submit" class="btn submit_btn" name="submit">Save</button>
@@ -106,13 +238,12 @@
         </div>
     </div>
 
-    <!-- Edit modal -->
+    <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
-                <form action="https://sadmantravels.com/admin/slider/update" method="POST"
-                      enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                <form id="editSlideForm" action="{% url 'dashBoard_app:update_home_slide' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title">Update Slider</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -120,34 +251,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
-                        <input type="hidden" id="sliderId" name="id">
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Title <span class="text-danger">*</span></label>
-                            <input type="text" id="sliderTitle" name="title" class="form-control modal_form" autocomplete="off">
-                        </div> -->
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Description <span class="text-danger"></span></label>
-                            <textarea id="sliderDescription" name="description" class="form-control"></textarea>
-                        </div> -->
-
-                        <!-- <div class="form-group">
-                            <label class="form-label">Link <span class="text-danger"></span></label>
-                            <input type="text" id="sliderLink" name="link" class="form-control modal_form" autocomplete="off">
-                        </div> -->
-
+                        <input type="hidden" id="editSlideId" name="id">
                         <div class="form-group">
-                            <label class="form-label">Slider Image <span class="text-danger">*</span></label>
-                            <img id="sliderAvatar" src="" alt="" style="width: 150px; height: 80px;">
-                            <input type="file" name="avatar" class="form-control" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Position <span class="text-danger"></span></label>
-                            <input type="text" id="sliderPosition" name="position" class="form-control modal_form"
+                            <label class="form-label">Title</label>
+                            <input type="text" id="editSlideTitle" name="title" class="form-control modal_form"
                                    autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Slider Image</label>
+                            <img id="editSlideImage" src="" alt="" style="width: 150px; height: 80px;">
+                            <input type="file" name="slide_picture" class="form-control">
                         </div>
                         <div class="text-right">
                             <button type="submit" class="btn submit_btn" name="submit">Update</button>
@@ -157,4 +270,102 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#addSlideForm').submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '{% url "dashBoard_app:create_home_slide" %}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.slide) {
+                            appendToSlideTable(data.slide);
+                            $('#addModal').modal('hide');
+                            $('#addSlideForm').trigger("reset");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            $('#editSlideForm').submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '{% url "dashBoard_app:update_home_slide" %}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.slide) {
+                            updateSlideTable(data.slide);
+                            $('#editModal').modal('hide');
+                            $('#editSlideForm').trigger("reset");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+
+        function editSlide(id) {
+            $.getJSON('/api/homeslides/' + id + '/', function (data) {
+                $('#editSlideId').val(data.id);
+                $('#editSlideTitle').val(data.title);
+                $('#editSlideImage').attr('src', data.slide_picture);
+            });
+        }
+
+        function deleteSlide(id) {
+            if (confirm('Are you sure you want to delete this slide?')) {
+                $.ajax({
+                    url: '{% url "dashBoard_app:delete_home_slide" %}',
+                    type: 'POST',
+                    data: {
+                        'id': id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        if (response.deleted) {
+                            $('#slide-' + id).remove();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        }
+
+        function appendToSlideTable(slide) {
+            $('#slidesTable').append(
+                '<tr id="slide-' + slide.id + '">' +
+                '<td></td>' +
+                '<td style="padding: 0px;">' +
+                '<img src="' + slide.slide_picture + '" alt="" style="width: 200px; height: 100px;">' +
+                '</td>' +
+                '<td class="operation_btn text-right print_hide">' +
+                '<a href="#" onclick="editSlide(' + slide.id + ')" data-toggle="modal" data-target="#editModal" class="edit" title="Edit"><i class="far fa-edit"></i></a>' +
+                '<a href="#" onclick="deleteSlide(' + slide.id + ')" class="delete" title="Delete"><i class="fas fa-trash-alt"></i></a>' +
+                '</td>' +
+                '</tr>'
+            );
+        }
+
+        function updateSlideTable(slide) {
+            var slideRow = $('#slide-' + slide.id);
+            slideRow.find('img').attr('src', slide.slide_picture);
+            slideRow.find('td:eq(1)').html(slide.title);
+        }
+    </script>
 {% endblock %}

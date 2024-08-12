@@ -1,9 +1,91 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{#{% block body_block %}#}
+{#    <!-- body container start -->#}
+{#    <div class="body_container">#}
+{#        <!-- body nav start -->#}
+{#        <div class="body_nav">#}
+{#            <ul>#}
+{#                <li>#}
+{#                    <a class="addNotice" href="{% url 'dashBoard_app:add_notice' %}">#}
+{#                        Add Notice#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li>#}
+{#                    <a class="allNotice" href="{% url 'dashBoard_app:all_notice' %}">#}
+{#                        All Notice#}
+{#                    </a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+{#        <!-- body nav start -->#}
+{##}
+{#        <!-- body content start -->#}
+{#        <div class="body_content">#}
+{#            <div class="panel_container">#}
+{#                <div class="panel_heading">#}
+{#                    <h4>All Notice</h4>#}
+{#                    <a id="print" class="print_btn">#}
+{#                        <i class="icon ion-md-print"></i>#}
+{#                        Print#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="panel_body">#}
+{#                    <div class="table-responsive">#}
+{#                        <table class="table table-bordered list-table">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th style="width: 40px;">SL</th>#}
+{#                                <th>Notice Title</th>#}
+{#                                <th>Images</th>#}
+{#                                <th>Description</th>#}
+{#                                <th style="width: 120px;" class="text-right print_hide">Action</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for notice in all_notice %}#}
+{#                                <tr>#}
+{#                                    <td>{{ forloop.counter }}</td>#}
+{#                                    <td>{{ notice.subject }}</td>#}
+{#                                    <td>#}
+{#                                        <img style="max-height: 50px;" class="img-thumbnail"#}
+{#                                             src="{{ notice.file.url }}" alt="">#}
+{##}
+{#                                    </td>#}
+{#                                    <td>{{ notice.notice_body|safe }},....</td>#}
+{#                                    <td class="operation_btn text-right print_hide">#}
+{#                                        <a href="https://sadmantravels.com/admin/notice/edit/1" class="edit"#}
+{#                                           title="Edit">#}
+{#                                            <i class="far fa-edit"></i>#}
+{#                                        </a>#}
+{#                                        <a href="https://sadmantravels.com/admin/notice/show/1" target="_blank"#}
+{#                                           class="view"#}
+{#                                           title="View">#}
+{#                                            <i class="far fa-eye"></i>#}
+{#                                        </a>#}
+{#                                        <a href="https://sadmantravels.com/admin/notice/destroy/1"#}
+{#                                           onclick="return confirm('Do you want to delete this data?')" class="delete"#}
+{#                                           title="Delete">#}
+{#                                            <i class="fas fa-trash-alt"></i>#}
+{#                                        </a>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="panel_footer"></div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <!-- body content end -->#}
+{#    </div>#}
+{#    <!-- body container end -->#}
+{#    </div>#}
+{#    <!-- body section end -->#}
+{#{% endblock %}#}
 {% block body_block %}
-    <!-- body container start -->
     <div class="body_container">
-        <!-- body nav start -->
         <div class="body_nav">
             <ul>
                 <li>
@@ -13,18 +95,16 @@
                 </li>
                 <li>
                     <a class="allNotice" href="{% url 'dashBoard_app:all_notice' %}">
-                        All Notice
+                        All Notices
                     </a>
                 </li>
             </ul>
         </div>
-        <!-- body nav start -->
 
-        <!-- body content start -->
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>All Notice</h4>
+                    <h4>All Notices</h4>
                     <a id="print" class="print_btn">
                         <i class="icon ion-md-print"></i>
                         Print
@@ -48,24 +128,21 @@
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ notice.subject }}</td>
                                     <td>
-                                        <img style="max-height: 50px;" class="img-thumbnail"
-                                             src="{{ notice.file.url }}" alt="">
-
+                                        {% if notice.file %}
+                                            <img style="max-height: 50px;" class="img-thumbnail"
+                                                 src="{{ notice.file.url }}" alt="">
+                                        {% endif %}
                                     </td>
                                     <td>{{ notice.notice_body|safe }},....</td>
                                     <td class="operation_btn text-right print_hide">
-                                        <a href="https://sadmantravels.com/admin/notice/edit/1" class="edit"
-                                           title="Edit">
+                                        <button onclick="editData({{ notice.id }})" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#editModal">
                                             <i class="far fa-edit"></i>
-                                        </a>
-                                        <a href="https://sadmantravels.com/admin/notice/show/1" target="_blank"
-                                           class="view"
-                                           title="View">
+                                        </button>
+                                        <a href="#" onclick="viewData({{ notice.id }})" class="view" title="View">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="https://sadmantravels.com/admin/notice/destroy/1"
-                                           onclick="return confirm('Do you want to delete this data?')" class="delete"
-                                           title="Delete">
+                                        <a href="#" onclick="deleteData({{ notice.id }})" class="delete" title="Delete">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
@@ -75,12 +152,121 @@
                         </table>
                     </div>
                 </div>
-                <div class="panel_footer"></div>
             </div>
         </div>
-        <!-- body content end -->
     </div>
-    <!-- body container end -->
+
+    <!----------------------------lknvkvdfkvmndn--------------------->
+
+    <!----------------------------lknvkvdfkvmndn--------------------->
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Notice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <form id="editNoticeForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <input type="hidden" id="editNoticeId" name="id">
+                        <div class="mb-3">
+                            <label for="editSubject" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="editSubject" name="subject">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editNoticeBody" class="form-label">Description</label>
+                            <textarea class="form-control" id="editNoticeBody" name="notice_body"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFile" class="form-label">File</label>
+                            <input type="file" class="form-control" id="editFile" name="file">
+                            <img id="editFilePreview" src="" style="max-height: 100px;" alt="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- body section end -->
+    </div>
+
 {% endblock %}
+{% block script_block %}
+    <script>
+        function editData(id) {
+            $.ajax({
+                url: '{% url "dashBoard_app:notice_update" %}',
+                data: {id: id},
+                dataType: 'json',
+                success: function (data) {
+                    $('#editModal').find('input[name="id"]').val(data.id);
+                    $('#editModal').find('input[name="subject"]').val(data.subject);
+                    $('#editModal').find('textarea[name="notice_body"]').val(data.notice_body);
+                    if (data.file) {
+                        $('#editFilePreview').attr('src', data.file).show();
+                    } else {
+                        $('#editFilePreview').hide();
+                    }
+                }
+            });
+        }
+
+        $(document).on('submit', '#editNoticeForm', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "dashBoard_app:notice_update" %}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        $('#editModal').modal('hide');
+                        location.reload();  // Reload the page to reflect changes
+                    } else {
+                        // Display errors
+                        console.log(response.errors);
+                        // Handle errors accordingly, possibly by showing them on the form
+                    }
+                }
+            });
+        });
+
+
+        function viewData(id) {
+            $.ajax({
+                url: '{% url "dashBoard_app:notice_detail" %}',
+                data: {id: id},
+                dataType: 'json',
+                success: function (data) {
+                    $('#viewModal').find('h2').text(data.subject);
+                    $('#viewModal').find('img').attr('src', data.file);
+                    $('#viewModal').find('.notice_body').html(data.notice_body);
+                }
+            });
+        }
+
+        function deleteData(id) {
+            if (confirm("Are you sure you want to delete this notice?")) {
+                $.ajax({
+                    url: '{% url "dashBoard_app:notice_delete" %}',
+                    data: {id: id},
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.deleted) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock script_block %}
