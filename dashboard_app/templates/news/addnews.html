@@ -1,5 +1,32 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block body_block %}
+    <div class="body_container">
+        <div class="body_nav">
+            <ul>
 
+                <li>
+                    <a class="allNotice" href="{% url 'dashBoard_app:all_news' %}">
+                        All News
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>Add New News</h4>
+                </div>
+
+                <div class="panel_body">
+                    <form enctype="multipart/form-data" method="POST">
+                        {{ form|crispy }}
+                        {% csrf_token %}
+                        <input type="submit" value="Add News" class="btn  btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

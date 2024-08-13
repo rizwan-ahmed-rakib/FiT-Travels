@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'ckeditor',
     'embed_video',
     'crispy_forms',
+
     'crispy_tailwind',
     'ckeditor_uploader',
     'bootstrap_modal_forms',
+    'crispy_bootstrap5',
 ]
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-CRISPY_TEMPLATE_PACK = ' tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 

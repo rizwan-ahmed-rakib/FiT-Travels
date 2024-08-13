@@ -6,26 +6,26 @@
         <!-- body nav start -->
         <div class="body_nav">
             <ul>
-                <li><a class="addPost" href="{% url 'dashBoard_app:add_news' %}">Add News</a></li>
-                <li><a class="allPost" href="{% url 'dashBoard_app:all_news' %}">All News</a></li>
+                <li><a class="addPost" href="{% url 'dashBoard_app:add_speach' %}">Add Speach</a></li>
+                <li><a class="allPost" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>
             </ul>
         </div>
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>Update Your News</h4>
+                    <h4>Update Your Speach</h4>
                 </div>
             </div>
-<img src="{{ all_news.picture.url }}">
+<img src="{{ all_speach.image.url }}">
             <div class="panel_body">
                 <form enctype="multipart/form-data" method="POST">
                     {{ form|crispy }}
                     {% csrf_token %}
-                    <input type="submit" value="Update News" class="btn  btn-primary">
+                    <input type="submit" value="Update Speach" class="btn  btn-primary">
                 </form>
             </div>
         </div>
     </div>
-    
+
 
 {% endblock %}

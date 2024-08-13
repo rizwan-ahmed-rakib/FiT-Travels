@@ -55,7 +55,7 @@ class PresidentSpeach(models.Model):
 
 class AboutUs(models.Model):
     image = models.ImageField(upload_to='aboutUs/')
-    about_us = models.TextField()
+    about_us = RichTextField()
     name = models.CharField(max_length=264)
 
     def __str__(self):
@@ -128,7 +128,7 @@ class Video_Gallery(models.Model):
 
 
 class Notice(models.Model):
-    subject = models.TextField(blank=True)
+    subject = models.CharField(max_length=500,blank=True)
     notice_body = RichTextField()
     file = models.FileField(upload_to='notice/', blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -161,7 +161,7 @@ class Email_Inbox(models.Model):
 
 
 class Latest_news(models.Model):
-    headline = models.TextField(null=True)
+    headline = models.CharField(max_length=500,null=True)
     picture = models.ImageField(upload_to='news/')
     news_details = RichTextField()
     pub_date = models.DateField(auto_now_add=True, null=True)

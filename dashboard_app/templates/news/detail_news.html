@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+     <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_news' %}">Add Page</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_news' %}">All Page</a></li>
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Details news</h4>
+
+
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <img src="{{ all_news.picture.url }}">
+            <br><br>
+            <h3>{{ all_news.headline }} </h3>
+            <span style="color: red">{{ all_news.updated }}</span>
+            <span>{{ all_news.news_details|safe }}</span>
+        </form>
+
+    </div>
+{% endblock %}

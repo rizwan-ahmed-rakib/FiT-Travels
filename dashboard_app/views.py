@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, UpdateView, CreateView
+from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView
 
 from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
@@ -9,6 +9,8 @@ from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, Si
                               AboutUs, HazzMustbeDone, Email_Inbox)
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+
+from first_app.views import Speach
 
 
 # Create your views here.
@@ -275,8 +277,12 @@ def side_slide_delete_view(request):
 
 
 #########################################################################################################################
-class AddNotice(TemplateView):
+class AddNotice(CreateView):
     template_name = 'notice/addnotice.html'
+    model = Notice
+    fields = ('file', 'subject', 'notice_body')
+    success_url = reverse_lazy('dashBoard_app:all_notice')
+    context_object_name = 'notice'
 
 
 class AllNotice(TemplateView):
@@ -343,8 +349,18 @@ def notice_delete(request):
 
 
 #######################################################################################################################
-class AddAbout(TemplateView):
+class AddAbout(CreateView):
     template_name = 'notice/add_about.html'
+    model = AboutUs
+    fields = ('image', 'name', 'about_us')
+    success_url = reverse_lazy('dashBoard_app:all_about')
+
+
+class AllAbout_delete(DeleteView):
+    template_name = 'notice/delete_about.html'
+    model = AboutUs
+    success_url = reverse_lazy('dashBoard_app:all_about')
+    context_object_name = 'all_about_delete'
 
 
 class AllAbout(TemplateView):
@@ -353,6 +369,7 @@ class AllAbout(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['all_about'] = AboutUs.objects.all()
+
         return context
 
 
@@ -362,9 +379,20 @@ class EditAbout(UpdateView):
     fields = ('image', 'name', 'about_us')
     success_url = reverse_lazy('dashBoard_app:all_about')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['about'] = AboutUs.objects.get(pk=pk)
 
-class AddNews(TemplateView):
+        return context
+
+
+#############################################################################################################################
+class AddNews(CreateView):
     template_name = 'news/addnews.html'
+    model = Latest_news
+    fields = ('picture', 'headline', 'news_details')
+    success_url = reverse_lazy('dashBoard_app:all_news')
 
 
 class AllNews(TemplateView):
@@ -376,8 +404,38 @@ class AllNews(TemplateView):
         return context
 
 
-class AddSpeach(TemplateView):
+class EditNews(UpdateView):
+    template_name = 'news/editnews.html'
+    model = Latest_news
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_news')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['all_news'] = Latest_news.objects.get(pk=pk)
+        return context
+
+
+class DeleteNews(DeleteView):
+    template_name = 'news/delete_news.html'
+    model = Latest_news
+    success_url = reverse_lazy('dashBoard_app:all_news')
+    context_object_name = 'all_news'
+
+
+class News_detail(DetailView):
+    template_name = 'news/detail_news.html'
+    model = Latest_news
+    context_object_name = 'all_news'
+
+
+######################################################################################################
+class AddSpeach(CreateView):
     template_name = 'news/add_speach.html'
+    model = PresidentSpeach
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_speach')
 
 
 class AllSpeach(TemplateView):
@@ -389,6 +447,33 @@ class AllSpeach(TemplateView):
         return context
 
 
+class EditSpeach(UpdateView):
+    template_name = 'news/update_speach.html'
+    model = PresidentSpeach
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_speach')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['all_speach'] = PresidentSpeach.objects.get(pk=pk)
+        return context
+
+
+class DeleteSpeach(DeleteView):
+    template_name = 'news/delete_speach.html'
+    model = PresidentSpeach
+    success_url = reverse_lazy('dashBoard_app:all_speach')
+    context_object_name = 'all_speach'
+
+
+class Speach_detail(DetailView):
+    template_name = 'news/details_speach.html'
+    model = PresidentSpeach
+    context_object_name = 'all_speach'
+
+
+#################################################################################
 class AddManagement(TemplateView):
     template_name = 'management/add_management.html'
 

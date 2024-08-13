@@ -16,10 +16,10 @@
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>All Post</h4>
+                    <h4>All News</h4>
                     <div class="">
-                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"
-                           data-whatever="@mdo"><i class="fa fa-plus"></i> Add New</a>
+                        <a href="{% url 'dashBoard_app:add_news' %}" class="print_btn" id="plus">
+                            <i class="fa fa-plus"></i> Add New</a>
                         <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
                     </div>
                 </div>
@@ -39,29 +39,30 @@
                             </thead>
                             <tbody>
                             {% for all_news in all_news %}
-                            	<tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ all_news.updated }}</td>
-                                <td> {{ all_news.headline }}</td>
-                                <td><img src="{{ all_news.picture.url }}"
-                                         alt=""></td>
-                                <td>{{ all_news.news_details|safe }}....</td>
-                                <td class="font-weight-bold">Publish</td>
-                                <td class="operation_btn text-right print_hide">
-                                    <a href="https://sadmantravels.com/admin/post/edit/11" class="edit" title="Edit">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a href="https://sadmantravels.com/news?hajj-7-things-you-dont-know-about-the-muslim-pilgrimage---bbc-news"
-                                       target="_blank" class="view" title="View">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a href="https://sadmantravels.com/admin/post/destroy/11"
-                                       onclick="return confirm('Do you want to delete this data?')" class="delete"
-                                       title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ all_news.updated }}</td>
+                                    <td> {{ all_news.headline }}</td>
+                                    <td><img src="{{ all_news.picture.url }}"
+                                             alt=""></td>
+                                    <td>{{ all_news.news_details|safe }}....</td>
+                                    <td class="font-weight-bold">Publish</td>
+                                    <td class="operation_btn text-right print_hide">
+                                        <a href="{% url 'dashBoard_app:edit_news' pk=all_news.pk %}" class="edit"
+                                           title="Edit">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'dashBoard_app:details_news' pk=all_news.pk %}"
+                                           target="_blank" class="view" title="View">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'dashBoard_app:delete_news' pk=all_news.pk %}"
+                                           onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                           title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>
