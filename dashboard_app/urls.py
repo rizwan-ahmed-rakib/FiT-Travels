@@ -26,8 +26,41 @@ urlpatterns = [
     path('details-speach/<int:pk>/', views.Speach_detail.as_view(), name='details_speach'),
     path('all-management/', views.AllManagement.as_view(), name='all_management'),
     path('add-management/', views.AddManagement.as_view(), name='add_management'),
+    path('edit-management/<int:pk>/', views.EditMaagement.as_view(), name='edit_management'),
+    path('delete-management/<int:pk>/', views.DeleteMaagement.as_view(), name='delete_management'),
+    path('details-management/<int:pk>/', views.Maagement_detail.as_view(), name='details_management'),
+
+    path('all-hazz-message/', views.AllHazzMessage.as_view(), name='all_hazz_message'),
+    path('edit-hazz-message/<int:pk>/', views.EditHazzMessage.as_view(), name='edit_hazz_message'),
+    path('delete-hazz-message/<int:pk>/', views.DeleteHazzMessage.as_view(), name='delete_hazz_message'),
+    path('details-hazz-message/<int:pk>/', views.HazzMessage_detail.as_view(), name='details_hazz_message'),
+    path('add-hazz-message/', views.AddHazzMessage.as_view(), name='add_hazz_message'),
+
+    path('all-hazz-mustbe-done/', views.AllHazzMustbeDone.as_view(), name='all_hazz_mustbe_done'),
+    path('edit-hazz-mustbe-done/<int:pk>/', views.EditHazzMustbeDone.as_view(), name='edit_hazz_mustbe_done'),
+    path('delete-hazz-mustbe-done/<int:pk>/', views.DeleteHazzMustbeDone.as_view(), name='delete_hazz_mustbe_done'),
+    path('details-hazz-mustbe-done/<int:pk>/', views.HazzMustbeDone_detail.as_view(), name='details_hazz_mustbe_done'),
+    path('add-hazz-mustbe-done/', views.AddHazzMustbeDone.as_view(), name='add_hazz_mustbe_done'),
+
+    path('all-agency-should/', views.AllAgencyShould.as_view(), name='all_agency_should'),
+    path('edit-agency-should/<int:pk>/', views.EditAgencyShould.as_view(), name='edit_agency_should'),
+    path('delete-agency-should/<int:pk>/', views.DeleteAgencyShould.as_view(), name='delete_agency_should'),
+    path('details-agency-should/<int:pk>/', views.AgencyShould_detail.as_view(), name='details_agency_should'),
+    path('add-agency-should/', views.AddAgencyShould.as_view(), name='add_agency_should'),
+
+    path('all-hazz-tips/', views.AllHazzTips.as_view(), name='all_hazz_tips'),
+    path('edit-hazz-tips/<int:pk>/', views.EditHazzTips.as_view(), name='edit_hazz_tips'),
+    path('delete-hazz-tips/<int:pk>/', views.DeleteHazzTips.as_view(), name='delete_hazz_tips'),
+    path('details-hazz-tips/<int:pk>/', views.HazzTips_detail.as_view(), name='details_hazz_tips'),
+    path('add-hazz-tips/', views.AddHazzHazzTips.as_view(), name='add_hazz_tips'),
+
     path('mail/', views.FrontendMessage.as_view(), name='mail'),
-    path('settings/', views.Settings.as_view(), name='settings'),
+    path('details-frontend-message/<int:pk>/', views.FrontendMessage_detail.as_view(), name='details_frontend_message'),
+    path('delete-frontend-message/<int:pk>/', views.DeleteFrontendMessage.as_view(), name='delete_frontend_message'),
+
+    path('settings/', views.Settings_for_setting.as_view(), name='settings'),
+    path('edit-settings/<int:pk>/', views.UpdateSettings.as_view(), name='edit_settings'),
+
     # crud image gallery----------------------------------------------------start
     path('image/create/', views.image_create_view, name='image_create'),  # Create a new image
     path('image/update/', views.image_update_view, name='image_update'),  # Update an image
@@ -52,7 +85,8 @@ urlpatterns = [
     # crud side slider------------------------------------------------------start
     path('side-slider/create/', views.side_slide_create_view, name='side_lide_create'),  # Create a new notice
     path('side-slider/update/', views.side_slide_update_view, name='side_lide_update'),  # Update a notice
-    path('side-slider/detail/', views.side_slide_detail_view, name='side_lide_detail'),  # Get details of a notice for editing
+    path('side-slider/detail/', views.side_slide_detail_view, name='side_lide_detail'),
+    # Get details of a notice for editing
     path('side-slider/delete/', views.side_slide_delete_view, name='side_lide_delete'),  # Delete a notice
     # crud side slider------------------------------------------------------end
 ]

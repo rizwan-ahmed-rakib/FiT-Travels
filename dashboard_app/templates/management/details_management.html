@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+     <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_management' %}">Add New</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_management' %}">All Management</a></li>
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Details Management </h4>
+
+
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <img src="{{ all_management.picture.url }}">
+            <br><br>
+            <h3> Name: {{ all_management.name }} </h3><br>
+            <span style="color: red">Title: {{ all_management.title }}</span><br>
+            <p>Joining Date: {{ all_management.joining_date }}</p>
+            <h4>Description:</h4><br>
+            <span>{{ all_management.want_to_say|safe }}</span>
+        </form>
+
+    </div>
+{% endblock %}

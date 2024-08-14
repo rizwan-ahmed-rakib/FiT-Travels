@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <div class="body_container">
+        <!-- body nav start -->
+        <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_management' %}">Add New</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_management' %}">All Management</a></li>
+            </ul>
+        </div>
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>Update Management</h4>
+                </div>
+            </div>
+            <img src="{{ management.picture.url }}" alt="image">
+            <div class="panel_body">
+                <form enctype="multipart/form-data" method="POST">
+                    {{ form|crispy }}
+                    {% csrf_token %}
+                    <input type="submit" value="Update Management" class="btn  btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

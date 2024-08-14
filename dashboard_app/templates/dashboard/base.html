@@ -247,12 +247,30 @@
 
 
             <!-- Service -->
-            <li id="service">
-                <a href="https://sadmantravels.com/admin/service">
-                    <i class="fas fa-tools"></i>
+{#            <li id="service">#}
+{#                <a href="https://sadmantravels.com/admin/service">#}
+{#                    <i class="fas fa-tools"></i>#}
+{#                    <span class="menu_title">Service</span>#}
+{#                </a>#}
+{#            </li>#}
+              <li id="team" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-users"></i>
                     <span class="menu_title">Service</span>
+                    <span class="menu_arrow">
+                        <i class="icon ion-ios-arrow-forward right"></i>
+                        <i class="icon ion-ios-arrow-down down"></i>
+                    </span>
                 </a>
+
+                <ul>
+                    <li class="addTeam"><a href="{% url 'dashBoard_app:all_hazz_message' %}">Hzaa Message</a></li>
+                    <li class="allTeam"><a href="{% url 'dashBoard_app:all_hazz_mustbe_done' %}">Hazz Mustbe Done</a></li>
+                    <li class="allTeam"><a href="{% url 'dashBoard_app:all_agency_should' %}">Agency should</a></li>
+                    <li class="allTeam"><a href="{% url 'dashBoard_app:all_hazz_tips' %}">Hazz Tips</a></li>
+                </ul>
             </li>
+
 
             <!-- Career -->
 

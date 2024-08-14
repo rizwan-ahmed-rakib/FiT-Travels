@@ -6,8 +6,8 @@
         <!-- body nav start -->
         <div class="body_nav">
             <ul>
-                <li><a class="addTeam" href="{% url 'dashBoard_app:add_management' %}">Add Management</a></li>
-                <li><a class="allTeam" href="{% url 'dashBoard_app:all_management' %}">All Management</a></li>
+                <li><a class="addTeam" href="{% url 'dashBoard_app:add_hazz_mustbe_done' %}">Add  HAzz Mustbe Done</a></li>
+                <li><a class="allTeam" href="{% url 'dashBoard_app:all_hazz_mustbe_done' %}">All Hazz Mustbe Done</a></li>
             </ul>
         </div>
         <!-- body nav start -->
@@ -16,9 +16,9 @@
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>All Management</h4>
+                    <h4>All Hazz Mustbe Done</h4>
                     <div class="">
-                        <a href="{% url 'dashBoard_app:add_management' %}" class="print_btn" id="plus"><i
+                        <a href="{% url 'dashBoard_app:add_hazz_mustbe_done' %}" class="print_btn" id="plus"><i
                                 class="fa fa-plus"></i> Add New</a>
                         <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
                     </div>
@@ -29,38 +29,29 @@
                             <thead>
                             <tr>
                                 <th style="width: 40px;">SL</th>
-                                <th>Joining Date</th>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Designation Details</th>
-                                <th>Image</th>
-
+                                <th>Title</th>
+                                <th>Hazz Mustbe Done</th>
                                 <th style="width: 120px;" class="text-right print_hide">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for management in top_management %}
+                            {% for message in haze_m %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ management.joining_date }}</td>
-                                    <td>{{ management.name }}</td>
-                                    <td>{{ management.title }}</td>
-                                    <td>{{ management.want_to_say|safe }}</td>
-                                    <td><img src="{{ management.picture.url }}"></td>
-
-
+                                    <td>{{ message.title }}</td>
+                                    <td>{{ message.body|safe }}</td>
                                     <td class="operation_btn text-right print_hide">
-                                        <a href="{% url 'dashBoard_app:edit_management' pk=management.pk %}" class="edit"
+                                        <a href="{% url 'dashBoard_app:edit_hazz_mustbe_done' pk=message.pk %}" class="edit"
                                            title="Edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a href="{% url 'dashBoard_app:details_management' pk=management.pk %}"
+                                        <a href="{% url 'dashBoard_app:details_hazz_mustbe_done' pk=message.pk %}"
                                            class="view"
                                            title="View">
                                             <i class="far fa-eye"></i>
                                             {#                                            target="_blank"#}
                                         </a>
-                                        <a href="{% url 'dashBoard_app:delete_management' pk=management.pk %}"
+                                        <a href="{% url 'dashBoard_app:delete_hazz_mustbe_done' pk=message.pk %}"
                                            onclick="return confirm('Do you want to delete this data?')" class="delete"
                                            title="Delete">
                                             <i class="fas fa-trash-alt"></i>

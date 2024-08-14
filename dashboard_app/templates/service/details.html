@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+     <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{{ custom_url }}">All {{ heading }}</a></li>
+{#                <li><a class="allPage" href="{% url 'dashBoard_app:all_news' %}">All Page</a></li>#}
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Details {{ heading }} </h4>
+
+
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+
+            <br><br>
+
+            Title: {{ all.date }}<span style="color: red">{{ all.title|safe }}</span><br>
+            {{ all.name }}<br>
+            {{ all.email }}
+            {{ all.date }}<br>
+            {{ all.message }}<br>
+            <span>{{ all.body|safe }}</span>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <div class="body_container">
+        <!-- body nav start -->
+        <div class="body_nav">
+            <ul>
+                <li><a class="addPost" href={{ custom_url }}>All {{ heading }}</a></li>
+{#                <li><a class="allPost" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>#}
+            </ul>
+        </div>
+        <div class="body_content">
+            <div class="panel_container">
+                <div class="panel_heading">
+                    <h4>Update {{ heading }} </h4>
+                </div>
+            </div>
+<img src="{{ all_speach.image.url }}">
+            <div class="panel_body">
+                <form enctype="multipart/form-data" method="POST">
+                    {{ form|crispy}}
+                    {% csrf_token %}
+                    <input type="submit" value="Update" class="btn  btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

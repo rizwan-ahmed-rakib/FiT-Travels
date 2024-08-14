@@ -67,6 +67,7 @@ class TopManagement(models.Model):
     title = models.CharField(max_length=264)
     want_to_say = RichTextField(null=True)
     picture = models.ImageField(upload_to='topManagement/', null=True)
+    joining_date = models.DateField(null=True)
 
     def __str__(self):
         return self.name
@@ -128,7 +129,7 @@ class Video_Gallery(models.Model):
 
 
 class Notice(models.Model):
-    subject = models.CharField(max_length=500,blank=True)
+    subject = models.CharField(max_length=500, blank=True)
     notice_body = RichTextField()
     file = models.FileField(upload_to='notice/', blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -151,7 +152,7 @@ class Email_Inbox(models.Model):
     name = models.CharField(max_length=264, blank=True, )
     email = models.EmailField(blank=True)
     message = models.TextField(blank=True)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.email
@@ -161,7 +162,7 @@ class Email_Inbox(models.Model):
 
 
 class Latest_news(models.Model):
-    headline = models.CharField(max_length=500,null=True)
+    headline = models.CharField(max_length=500, null=True)
     picture = models.ImageField(upload_to='news/')
     news_details = RichTextField()
     pub_date = models.DateField(auto_now_add=True, null=True)

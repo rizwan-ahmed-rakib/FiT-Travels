@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView
+from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView, ListView
 
 from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
@@ -474,19 +474,307 @@ class Speach_detail(DetailView):
 
 
 #################################################################################
-class AddManagement(TemplateView):
+class AddManagement(CreateView):
     template_name = 'management/add_management.html'
+    model = TopManagement
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_management')
 
 
 class AllManagement(TemplateView):
     template_name = 'management/all_management.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data()
         context['top_management'] = TopManagement.objects.all()
         return context
 
 
+class EditMaagement(UpdateView):
+    template_name = 'management/update_management.html'
+    model = TopManagement
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_management')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['management'] = TopManagement.objects.get(pk=pk)
+        return context
+
+
+class DeleteMaagement(DeleteView):
+    template_name = 'management/delete_management.html'
+    model = TopManagement
+    success_url = reverse_lazy('dashBoard_app:all_management')
+    context_object_name = 'all_management'
+
+
+class Maagement_detail(DetailView):
+    template_name = 'management/details_management.html'
+    model = TopManagement
+    context_object_name = 'all_management'
+
+
+#############################hazz message###########################################################
+class AllHazzMessage(TemplateView):
+    template_name = 'service/hazzmessage/all_hazz_message.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['haze_m'] = Hazz_Message.objects.all()
+        return context
+
+
+class EditHazzMessage(UpdateView):
+    template_name = 'service/edit_service.html'
+    model = Hazz_Message
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_message')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['haze_m'] = Hazz_Message.objects.get(pk=pk)
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_message')
+        context['heading'] = "Hazz Message"
+        return context
+
+
+class DeleteHazzMessage(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = Hazz_Message
+    success_url = reverse_lazy('dashBoard_app:all_hazz_message')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_message')
+        context['heading'] = "Hazz Message"
+        return context
+
+
+class HazzMessage_detail(DetailView):
+    template_name = 'service/details.html'
+    model = Hazz_Message
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_message')
+        context['heading'] = "Hazz Message"
+        return context
+
+
+class AddHazzMessage(CreateView):
+    template_name = 'service/add_service.html'
+    model = TopManagement
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_message')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_message')
+        context['heading'] = "Hazz Message"
+        return context
+
+    ##############################hazz must be done##########################################################
+
+
+class AllHazzMustbeDone(TemplateView):
+    template_name = 'service/hazzmustbedone/all_hazz_must_be_done.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['haze_m'] = HazzMustbeDone.objects.all()
+        return context
+
+
+class EditHazzMustbeDone(UpdateView):
+    template_name = 'service/edit_service.html'
+    model = HazzMustbeDone
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+        context['heading'] = "Hazz Mustbe Done"
+        context['haze_m'] = HazzMustbeDone.objects.get(pk=pk)
+        return context
+
+
+class DeleteHazzMustbeDone(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = HazzMustbeDone
+    success_url = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+        context['heading'] = "Hazz Mustbe Done"
+        return context
+
+
+class HazzMustbeDone_detail(DetailView):
+    template_name = 'service/details.html'
+    model = HazzMustbeDone
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+        context['heading'] = "Hazz Mustbe Done"
+        return context
+
+
+class AddHazzMustbeDone(CreateView):
+    template_name = 'service/add_service.html'
+    model = HazzMustbeDone
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_mustbe_done')
+        context['heading'] = "Hazz Mustbe Done"
+        return context
+
+
+##############################agency should##########################################################
+class AllAgencyShould(TemplateView):
+    template_name = 'service/agencyshould/all_agency_should.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['haze_m'] = Agency_Should.objects.all()
+        return context
+
+
+class EditAgencyShould(UpdateView):
+    template_name = 'service/edit_service.html'
+    model = Agency_Should
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_agency_should')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_agency_should')
+        context['heading'] = "Agency Should"
+        context['haze_m'] = Agency_Should.objects.get(pk=pk)
+        return context
+
+
+class DeleteAgencyShould(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = Agency_Should
+    success_url = reverse_lazy('dashBoard_app:all_agency_should')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_agency_should')
+        context['heading'] = "Agency Should"
+        return context
+
+
+class AgencyShould_detail(DetailView):
+    template_name = 'service/details.html'
+    model = Agency_Should
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_agency_should')
+        context['heading'] = "Agency Should"
+        return context
+
+
+class AddAgencyShould(CreateView):
+    template_name = 'service/add_service.html'
+    model = Agency_Should
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_agency_should')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_agency_should')
+        context['heading'] = "Agency Should"
+        return context
+
+
+##############################hazz tips##########################################################
+class AllHazzTips(TemplateView):
+    template_name = 'service/hazztips/all_hazz_tips.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['haze_m'] = Hazz_Tips.objects.all()
+        return context
+
+
+class EditHazzTips(UpdateView):
+    template_name = 'service/edit_service.html'
+    model = Hazz_Tips
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_tips')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_tips')
+        context['heading'] = "Hazz Tips"
+        context['haze_m'] = Hazz_Tips.objects.get(pk=pk)
+        return context
+
+
+class DeleteHazzTips(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = Hazz_Tips
+    success_url = reverse_lazy('dashBoard_app:all_hazz_tips')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_tips')
+        context['heading'] = "Hazz Tips"
+        return context
+
+
+class HazzTips_detail(DetailView):
+    template_name = 'service/details.html'
+    model = Hazz_Tips
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_tips')
+        context['heading'] = "Hazz Tips"
+        return context
+
+
+class AddHazzHazzTips(CreateView):
+    template_name = 'service/add_service.html'
+    model = Hazz_Tips
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_hazz_tips')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_tips')
+        context['heading'] = "Hazz Tips"
+        return context
+
+
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
 class FrontendMessage(TemplateView):
     template_name = 'news/frontend_message.html'
 
@@ -496,7 +784,46 @@ class FrontendMessage(TemplateView):
         return context
 
 
-class Settings(CreateView):
+class FrontendMessage_detail(DetailView):
+    template_name = 'service/details.html'
+    model = Email_Inbox
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:mail')
+        context['heading'] = "Frontend Message"
+        return context
+
+
+class DeleteFrontendMessage(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = Email_Inbox
+    success_url = reverse_lazy('dashBoard_app:mail')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:mail')
+        context['heading'] = "Frontend Message"
+        return context
+
+
+#####################################################################################################
+class Settings_for_setting(ListView):
     template_name = 'management/settings.html'
     model = Settings
+    context_object_name = 'all'
+class UpdateSettings(UpdateView):
+    template_name = 'management/updatesettings.html'
+    model = Settings
     fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:settings')
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     pk = self.kwargs.get('pk')
+    #     context['custom_url'] = reverse_lazy('dashBoard_app:all_hazz_tips')
+    #     context['heading'] = "Hazz Tips"
+    #     context['haze_m'] = Hazz_Tips.objects.get(pk=pk)
+    #     return context

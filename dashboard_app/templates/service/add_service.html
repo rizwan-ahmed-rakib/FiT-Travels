@@ -7,8 +7,8 @@
             <ul>
 
                 <li>
-                    <a class="allNotice" href="{% url 'dashBoard_app:all_management' %}">
-                        All Management
+                    <a class="allNotice" href="{{ custom_url }}">
+                        All {{ heading }}
                     </a>
                 </li>
             </ul>
@@ -16,14 +16,14 @@
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>Add New </h4>
+                    <h4>Add {{ heading }}</h4>
                 </div>
 
                 <div class="panel_body">
                     <form enctype="multipart/form-data" method="POST">
                         {{ form|crispy }}
                         {% csrf_token %}
-                        <input type="submit" value="Add Management" class="btn  btn-primary">
+                        <input type="submit" value="Add {{ heading }}" class="btn  btn-primary">
                     </form>
                 </div>
             </div>

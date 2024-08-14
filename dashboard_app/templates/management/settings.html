@@ -1,10 +1,15 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block body_block %}
-<form method="POST">
-{{ form.as_p }}
-{% csrf_token %}
-<input type="submit">
-</form>
+{#<form method="POST">#}
+{#{{ form|crispy }}#}
+{#{% csrf_token %}#}
+{#<input type="submit">#}
+{#</form>#}
+    {% for all in all %}
+        <h2><a href="{% url 'dashBoard_app:edit_settings' pk=all.pk %}" >{{ all.company_name }} </a> click to edit settings</h2>
+        <a href="{% url 'dashBoard_app:edit_settings' pk=all.pk %}"><img src="{{ all.logoimage.url }}" style="width: 500px" alt="logo image"></a>
+    {% endfor %}
 
 {% endblock %}
