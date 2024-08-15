@@ -61,6 +61,12 @@ urlpatterns = [
     path('settings/', views.Settings_for_setting.as_view(), name='settings'),
     path('edit-settings/<int:pk>/', views.UpdateSettings.as_view(), name='edit_settings'),
 
+    path('all-forms/', views.All_Form.as_view(), name='all_forms'),
+    path('edit-all-forms/<int:pk>/', views.EditAll_Form.as_view(), name='edit_all_forms'),
+    path('delete-all-forms/<int:pk>/', views.DeleteAll_Form.as_view(), name='delete_all_forms'),
+    path('details-all-forms/<int:pk>/', views.All_Form_detail.as_view(), name='details_all_forms'),
+    path('add-all-forms/', views.AddAll_Form.as_view(), name='add_all_forms'),
+
     # crud image gallery----------------------------------------------------start
     path('image/create/', views.image_create_view, name='image_create'),  # Create a new image
     path('image/update/', views.image_update_view, name='image_update'),  # Update an image
@@ -75,7 +81,8 @@ urlpatterns = [
 
     # crud home sliders----------------------------------------------------start
     path('homeslides/create/', views.CreateHomeSlide.as_view(), name='create_home_slide'),
-    path('homeslides/update/', views.UpdateHomeSlide.as_view(), name='update_home_slide'),
+    path('homeslides/update/', views.home_slide_update_view, name='update_home_slide'),
+    path('homeslide/detail/', views.home_slide_detail_view, name='home_slide_detail'),  # Get details of an image for editing
     path('homeslides/delete/', views.DeleteHomeSlide.as_view(), name='delete_home_slide'),
     # crud notice----------------------------------------------------end
     path('notice/create/', views.notice_create, name='notice_create'),  # Create a new notice

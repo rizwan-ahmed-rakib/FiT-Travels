@@ -1,12 +1,12 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block body_block %}
-     <div class="body_nav">
-           <ul>
-                <li><a class="addPost" href="{{ custom_url }}">All {{ heading }}</a></li>
-{#                <li><a class="allPost" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>#}
-            </ul>
-        </div>
+    <div class="body_nav">
+        <ul>
+            <li><a class="addPost" href="{{ custom_url }}">All {{ heading }}</a></li>
+            {#                <li><a class="allPost" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>#}
+        </ul>
+    </div>
     <div class="body_content">
         <div class="panel_container">
             <div class="panel_heading">
@@ -18,9 +18,15 @@
         <form method="POST">
             {% csrf_token %}
             <br><br>
-            <a href="#"><h3>Delete {{ all.title }}{{ all.email }}    {{ all.date }}?</h3></a>
+            <a href="#">
+                <h3>Delete {{ all.title }}{{ all.email }} {{ all.date }} {{ all.pub_date }}<h4
+                        style="color: #e55621">{{ all.subject }}</h4> <a
+                        href="{{ all.file.url }}"> {{ all.file.url }}</a>?
+                </h3>
+            </a>
             <input type="submit" value="Delete" class="btn btn-danger" onMouseOver="this.style.color='#0F0'"
-                   onMouseOut="this.style.color='#ffffff'">
+                   onMouseOut="this.style.color='#ffffff'"><br><br>
+                        <img src="{{ all.file.url }}" style="height: 300px;width: 300px;" alt="Click above link to view pdf">
         </form>
 
     </div>

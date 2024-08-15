@@ -113,7 +113,8 @@
                 <div class="panel_heading">
                     <h4>Image Gallery</h4>
                     <div>
-                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</a>
+                        <a href="#" class="print_btn" id="plus" data-toggle="modal" data-target="#addModal"><i
+                                class="fa fa-plus"></i> Add New</a>
                     </div>
                 </div>
                 <div class="panel_body">
@@ -124,10 +125,12 @@
                                     <div class="gallery_img">
                                         <img src="{{ image.image.url }}" alt="">
                                         <div class="cover">
-                                            <a href="#" onclick="editData('{{ image.id }}')" data-toggle="modal" data-target="#editModal" class="edit" title="Edit">
+                                            <a href="#" onclick="editData('{{ image.id }}')" data-toggle="modal"
+                                               data-target="#editModal" class="edit" title="Edit">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <a href="#" onclick="deleteData('{{ image.id }}')" class="delete" title="Delete">
+                                            <a href="#" onclick="deleteData('{{ image.id }}')" class="delete"
+                                               title="Delete">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
                                         </div>
@@ -193,7 +196,8 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Upload Image <span class="text-danger">*</span></label>
-                            <img id="editImagePreview" src="" alt="" style="width: 150px; height: 80px; margin-bottom: 10px;">
+                            <img id="editImagePreview" src="" alt=""
+                                 style="width: 150px; height: 80px; margin-bottom: 10px;">
                             <input type="file" name="image" class="form-control">
                         </div>
                         <div class="text-right">
@@ -211,7 +215,7 @@
         function editData(id) {
             $.ajax({
                 url: '{% url "dashBoard_app:image_detail" %}',
-                data: { id: id },
+                data: {id: id},
                 dataType: 'json',
                 success: function (data) {
                     $('#editImageId').val(data.id);
@@ -226,7 +230,7 @@
             if (confirm("Are you sure you want to delete this image?")) {
                 $.ajax({
                     url: '{% url "dashBoard_app:image_delete" %}',
-                    data: { id: id },
+                    data: {id: id},
                     dataType: 'json',
                     success: function (data) {
                         if (data.deleted) {

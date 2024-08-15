@@ -1,4 +1,3 @@
-<!------------------------------------------------------------------------>
 {% extends 'dashboard/base.html' %}
 {% load embed_video_tags %}
 {% load static %}
@@ -125,12 +124,6 @@
                             <div class="col-lg-3 col-sm-6 col-6">
                                 <div class="gallery_content">
                                     <div class="gallery_video">
-                                        {#                                        {% if video.thumbnail %}#}
-                                        {#                                            <img src="{{ video.thumbnail.url }}" alt="">#}
-                                        {#                                        {% else %}#}
-                                        {#                                            pass#}
-                                        {#                                            <video src="{{ video.video.url }}" controls></video>#}
-                                        {#                                        {% endif %}#}
                                         {% video video.add_video_from_any_link as videos %}
                                             <iframe width="100%" height="100%" src="{{ videos.url }}"
                                                     title="YouTube video player" frameborder="0"
@@ -176,18 +169,18 @@
                             <label class="form-label">Title</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Upload Video</label>
-                            <input type="file" name="video" class="form-control">
-                        </div>
+                        {#                        <div class="form-group">#}
+                        {#                            <label class="form-label">Upload Video</label>#}
+                        {#                            <input type="file" name="video" class="form-control">#}
+                        {#                        </div>#}
                         <div class="form-group">
                             <label class="form-label">Video Link</label>
                             <input type="url" name="add_video_from_any_link" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Thumbnail</label>
-                            <input type="file" name="thumbnail" class="form-control">
-                        </div>
+                        {#                        <div class="form-group">#}
+                        {#                            <label class="form-label">Thumbnail</label>#}
+                        {#                            <input type="file" name="thumbnail" class="form-control">#}
+                        {#                        </div>#}
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary" name="submit">Save</button>
                         </div>
@@ -202,7 +195,8 @@
     <div class="modal fade" id="editVideoModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
-                <form id="updateVideoForm" method="POST" enctype="multipart/form-data">
+                <form id="updateVideoForm" action="{% url 'dashBoard_app:video_update' %}" method="POST"
+                      enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title">Update Video</h5>
@@ -224,17 +218,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Upload Video (Optional)</label>
-                            <video id="editVideoPreview" style="width: 150px; height: 80px; margin-bottom: 10px;"
-                                   controls></video>
-                            <input type="file" name="video" class="form-control">
-                        </div>
+                            <label class="form-label">Preview</label>
 
-                        <div class="form-group">
-                            <label class="form-label">Thumbnail (Optional)</label>
-                            <img id="editThumbnailPreview" src="" alt=""
-                                 style="width: 150px; height: 80px; margin-bottom: 10px;">
-                            <input type="file" name="thumbnail" class="form-control">
+
+{#                            <div id="editVideoPreviewContainer"></div>#}
                         </div>
 
                         <div class="text-right">
@@ -245,14 +232,10 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block script_block %}
     <script>
-
-
-        <!------------------------------->
         function editVideo(id) {
             $.ajax({
                 url: '{% url "dashBoard_app:video_detail" %}',
@@ -262,30 +245,24 @@
                     $('#editVideoId').val(data.id);
                     $('#editVideoTitle').val(data.name);
                     $('#editVideoLink').val(data.add_video_from_any_link);
+                    {#$('#editVideoPreview').val(data.add_video_from_any_link);#}
 
-                    if (data.video) {
-                        $('#editVideoPreview').attr('src', data.video).show();
-                    } else {
-                        $('#editVideoPreview').hide();
-                    }
-
-                    if (data.thumbnail) {
-                        $('#editThumbnailPreview').attr('src', data.thumbnail).show();
-                    } else {
-                        $('#editThumbnailPreview').hide();
-                    }
-
-                    $('#updateVideoForm').attr('action', '{% url "dashBoard_app:video_update" %}');
+                    // Update the video preview with the embedded video
+                    var videoPreviewHTML = '<iframe width="100%" height="200px" src="' + data.add_video_from_any_link.url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    $('#editVideoPreviewContainer').html(videoPreviewHTML);
                 }
             });
         }
-
 
         function deleteVideo(id) {
             if (confirm("Are you sure you want to delete this video?")) {
                 $.ajax({
                     url: '{% url "dashBoard_app:video_delete" %}',
-                    data: {id: id},
+                    type: 'POST',
+                    data: {
+                        'id': id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
                     dataType: 'json',
                     success: function (data) {
                         if (data.deleted) {
@@ -295,10 +272,5 @@
                 });
             }
         }
-
-
     </script>
 {% endblock %}
-
-<!------------------------------------------------------final-------------------------->
-

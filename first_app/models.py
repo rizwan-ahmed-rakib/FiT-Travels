@@ -8,12 +8,12 @@ from django.urls import reverse
 class Settings(models.Model):
     logoimage = models.ImageField(upload_to='settings/')
     top_link_icon_image = models.ImageField(
-        upload_to='settings/', blank=True)  # use it for link inside(which is use inside <head> image/icon image
+        upload_to='settings/',)  # use it for link inside(which is use inside <head> image/icon image
     baner_image = models.ImageField(upload_to='settings/banerImage/', null=True)
     company_name = models.CharField(max_length=264)
     mobile_number = models.CharField(max_length=264)
     email = models.CharField(max_length=264)
-    audio = models.FileField(upload_to='settings/', blank=True)
+    audio = models.FileField(upload_to='settings/',)
     eye_frame_video = EmbedVideoField(blank=True)
     about_me = models.TextField(max_length=264, null=True)
     address = models.TextField(max_length=264, null=True)

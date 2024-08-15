@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, UpdateView, CreateView, DeleteVie
 from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
-                              AboutUs, HazzMustbeDone, Email_Inbox)
+                              AboutUs, Form, HazzMustbeDone, Email_Inbox)
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
@@ -102,11 +102,17 @@ class videoGallery(TemplateView):
 def video_create_view(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        video = request.FILES.get('video')
-        add_video_from_any_link = request.POST.get('add_video_from_any_link')
+        video_link = request.POST.get('add_video_from_any_link')
+        # video_file = request.FILES.get('video')
         # thumbnail = request.FILES.get('thumbnail')
-        Video_Gallery.objects.create(name=name, video=video,
-                                     add_video_from_any_link=add_video_from_any_link)  # thumbnail=thumbnail
+
+        Video_Gallery.objects.create(
+            name=name,
+            add_video_from_any_link=video_link,
+            # video=video_file,
+            # thumbnail=thumbnail
+        )
+
     return redirect('dashBoard_app:videos')
 
 
@@ -115,47 +121,39 @@ def video_update_view(request):
         video_id = request.POST.get('id')
         video_instance = get_object_or_404(Video_Gallery, id=video_id)
 
-        # Update the name
+        # Update the name and video link
         video_instance.name = request.POST.get('name')
-
-        # Update video file if provided, otherwise keep the existing one
-        if 'video' in request.FILES:
-            video_instance.video = request.FILES['video']
-
-        # Update thumbnail if provided, otherwise keep the existing one
-        if 'thumbnail' in request.FILES:
-            video_instance.thumbnail = request.FILES['thumbnail']
-
-        # Update video link, handle cases where it might be empty
         video_link = request.POST.get('add_video_from_any_link')
         if video_link:
             video_instance.add_video_from_any_link = video_link
+
+        # video_file = request.FILES.get('video')
+        # if video_file:
+        #     video_instance.video = video_file
 
         video_instance.save()
 
     return redirect('dashBoard_app:videos')
 
 
-# Video detail for editing
 def video_detail_view(request):
     video_id = request.GET.get('id')
     video_instance = get_object_or_404(Video_Gallery, id=video_id)
     data = {
         'id': video_instance.id,
         'name': video_instance.name,
-        'video': video_instance.video.url if video_instance.video else '',
         'add_video_from_any_link': video_instance.add_video_from_any_link,
-        'thumbnail': video_instance.thumbnail.url if video_instance.thumbnail else '',
     }
     return JsonResponse(data)
 
 
-# Delete video
 def video_delete_view(request):
-    video_id = request.GET.get('id')
-    video_instance = get_object_or_404(Video_Gallery, id=video_id)
-    video_instance.delete()
-    return JsonResponse({'deleted': True})
+    if request.method == 'POST':
+        video_id = request.POST.get('id')
+        video_instance = get_object_or_404(Video_Gallery, id=video_id)
+        video_instance.delete()
+        return JsonResponse({'deleted': True})
+    return JsonResponse({'deleted': False})
 
 
 # video gallery crud end -------------------------------------end
@@ -184,34 +182,77 @@ class CreateHomeSlide(View):
                 'title': new_slide.title,
                 'slide_picture': new_slide.slide_picture.url,
             }
-            # return JsonResponse({'slide': slide})
+        # return JsonResponse({'slide': slide})
 
         # return JsonResponse({'error': 'Invalid data'}, status=400)
 
         return redirect('dashBoard_app:home_slides')
 
 
-class UpdateHomeSlide(View):
-    def post(self, request):
-        slide_id = request.POST.get('id', None)
-        title = request.POST.get('title', None)
-        slide_picture = request.FILES.get('slide_picture', None)
+# class UpdateHomeSlide(View):
+#     def post(self, request):
+#         slide_id = request.POST.get('id', None)
+#         title = request.POST.get('title', None)
+#         slide_picture = request.FILES.get('slide_picture', None)
+#
+#         slide = get_object_or_404(HomeSlides, id=slide_id)
+#         if title:
+#             slide.title = title
+#         if slide_picture:
+#             slide.slide_picture = slide_picture
+#         slide.save()
+#
+#         updated_slide = {
+#             'id': slide.id,
+#             'title': slide.title,
+#             'slide_picture': slide.slide_picture.url,
+#         }
+#
+#         # return JsonResponse({'slide': updated_slide})
+#         return redirect('dashBoard_app:home_slides')
+# class UpdateHomeSlide(View):
+#     def post(self, request):
+#         slide_id = request.POST.get('id', None)
+#         if not slide_id:
+#             return JsonResponse({'error': 'Slide ID is missing.'}, status=400)
+#
+#         title = request.POST.get('title', None)
+#         slide_picture = request.FILES.get('slide_picture', None)
+#
+#         slide = get_object_or_404(HomeSlides, id=slide_id)
+#         if title:
+#             slide.title = title
+#         if slide_picture:
+#             slide.slide_picture = slide_picture
+#         slide.save()
+#
+#         updated_slide = {
+#             'id': slide.id,
+#             'title': slide.title,
+#             'slide_picture': slide.slide_picture.url,
+#         }
+#
+#         return redirect('dashBoard_app:home_slides')
+def home_slide_update_view(request):
+    if request.method == 'POST':
+        image_id = request.POST.get('id')
+        image_instance = get_object_or_404(HomeSlides, id=image_id)
+        image_instance.name = request.POST.get('title')
+        if 'slide_picture' in request.FILES:
+            image_instance.slide_picture = request.FILES['slide_picture']
+        image_instance.save()
+    return redirect('dashBoard_app:home_slides')
 
-        slide = get_object_or_404(HomeSlides, id=slide_id)
-        if title:
-            slide.title = title
-        if slide_picture:
-            slide.slide_picture = slide_picture
-        slide.save()
 
-        updated_slide = {
-            'id': slide.id,
-            'title': slide.title,
-            'slide_picture': slide.slide_picture.url,
-        }
-        # return JsonResponse({'slide': updated_slide})
-
-        return redirect('dashBoard_app:home_slides')
+def home_slide_detail_view(request):
+    image_id = request.GET.get('id')
+    image_instance = get_object_or_404(HomeSlides, id=image_id)
+    data = {
+        'id': image_instance.id,
+        'name': image_instance.title,
+        'image': image_instance.slide_picture.url
+    }
+    return JsonResponse(data)
 
 
 class DeleteHomeSlide(View):
@@ -814,11 +855,14 @@ class Settings_for_setting(ListView):
     template_name = 'management/settings.html'
     model = Settings
     context_object_name = 'all'
+
+
 class UpdateSettings(UpdateView):
     template_name = 'management/updatesettings.html'
     model = Settings
     fields = '__all__'
     success_url = reverse_lazy('dashBoard_app:settings')
+    context_object_name = 'settings'
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -827,3 +871,63 @@ class UpdateSettings(UpdateView):
     #     context['heading'] = "Hazz Tips"
     #     context['haze_m'] = Hazz_Tips.objects.get(pk=pk)
     #     return context
+
+
+###################################################################
+class All_Form(ListView):
+    template_name = 'service/form/all_form.html'
+    model = Form
+    context_object_name = 'all'
+
+
+class EditAll_Form(UpdateView):
+    template_name = 'service/edit_service.html'
+    model = Form
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_forms')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_forms')
+        context['heading'] = "Form "
+        context['haze_m'] = Form.objects.get(pk=pk)
+        return context
+
+
+class DeleteAll_Form(DeleteView):
+    template_name = 'service/delete_service.html'
+    model = Form
+    success_url = reverse_lazy('dashBoard_app:all_forms')
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_forms')
+        context['heading'] = " Form"
+        return context
+
+
+class All_Form_detail(DetailView):
+    template_name = 'service/details.html'
+    model = Form
+    context_object_name = 'all'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_forms')
+        context['heading'] = "Form"
+        return context
+
+
+class AddAll_Form(CreateView):
+    template_name = 'service/add_service.html'
+    model = Form
+    fields = '__all__'
+    success_url = reverse_lazy('dashBoard_app:all_forms')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['custom_url'] = reverse_lazy('dashBoard_app:all_forms')
+        context['heading'] = "Form"
+        return context

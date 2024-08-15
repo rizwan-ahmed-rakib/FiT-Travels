@@ -1,12 +1,30 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load embed_video_tags %}
 {% load crispy_forms_tags %}
 {% block body_block %}
-    <form method="POST">
+    <div class="row">
+        <div class="col" style="border-style: outset"><img src="{{ settings.logoimage.url }}">logo image</div>
+        <div class="col" style="border-style: outset"><img src="{{ settings.top_link_icon_image.url }}">top link icon</div>
+        <div class="col" style="border-style: outset"><img src="{{ settings.baner_image.url }}">banner image</div>
+        <div class="col" style="border-style: outset">
+            <audio controls>
+                <source  src="{{ settings.audio.url }}" type="audio/mpeg">
+            </audio>audio
+        </div>
+        {% video settings.eye_frame_video as eye_frame_video %}
+            <div class="col" style="border-style: outset">
+                <iframe src="{{ eye_frame_video.url }}"  ></iframe>
+            i frame video</div>
+        {% endvideo %}
+
+
+    </div>
+    <form method="POST" enctype="multipart/form-data">
         {{ form|crispy }}
         {% csrf_token %}
         <input type="submit" value="Update Settings" onMouseOver="this.style.color='#0F0'"
-                   onMouseOut="this.style.color='#ffffff'" class="btn btn-primary"><br><br>
+               onMouseOut="this.style.color='#ffffff'" class="btn btn-primary"><br><br>
     </form>
 
 
