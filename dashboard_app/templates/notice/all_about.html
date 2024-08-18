@@ -39,7 +39,7 @@
                                     <td><img src="{{ about.image.url }}"
                                              alt=""></td>
                                     <td>
-                                        <p>{{ about.about_us }}</p>
+                                        <p>{{ about.about_us|safe }}</p>
                                     </td>
                                     <td class="operation_btn text-center print_hide">
                                         <a href="{% url 'dashBoard_app:edit_about' pk=about.pk %}" class="edit"

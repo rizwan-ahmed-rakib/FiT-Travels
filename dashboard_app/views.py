@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView, ListView
 
-from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm
+from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm #AboutUsForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
                               AboutUs, Form, HazzMustbeDone, Email_Inbox)
@@ -394,6 +394,7 @@ class AddAbout(CreateView):
     template_name = 'notice/add_about.html'
     model = AboutUs
     fields = ('image', 'name', 'about_us')
+    # form_class = AboutUsForm
     success_url = reverse_lazy('dashBoard_app:all_about')
 
 

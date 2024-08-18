@@ -293,8 +293,8 @@
                 </span>
                 </a>
                 <ul>
-                    <li class="add_user"><a href="https://sadmantravels.com/admin/user/create">Add User</a></li>
-                    <li class="all_user"><a href="https://sadmantravels.com/admin/user">All User</a></li>
+                    <li class="add_user"><a href="{% url 'registration_app:add_user' %}">Add User</a></li>
+                    <li class="all_user"><a href="{% url 'registration_app:all_user' %}">All User</a></li>
                 </ul>
             </li>
 
@@ -562,9 +562,11 @@
 <!-- datepicker js -->
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"></script>
 <!-- perfect scrollbar js -->
-<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>
+{#<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>#}
+<script src="{% static 'js/app/perfect-scrollbar.min..js' %}"></script>
 <!-- include js -->
-<script src="https://sadmantravels.com/backend/js/app.js"></script>
+{#<script src="https://sadmantravels.com/backend/js/app.js"></script>#}
+<script src="{% static 'js/app/app.js' %}"></script>
 
 <script>
 

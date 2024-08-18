@@ -1,0 +1,159 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block style_block %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+    <!-- toastr css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    <style>
+        .user_profile .header_info {
+            justify-content: center;
+        }
+
+        .user_profile .profile_img {
+            max-width: 185px;
+            width: 100%;
+            height: 185px;
+            margin-right: 0px;
+        }
+
+        .user_profile h4 {
+            border-bottom: 1px solid #303F9F85;
+            padding-bottom: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+    <!-- toastr css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+{% endblock %}
+{% block body_block %}
+    <div class="body_nav">
+        <ul>
+            <li><a class="add_user" href="{% url 'registration_app:create_user' %}" class="active">Add User</a></li>
+            <li><a class="all_user" href="{% url 'registration_app:all_user' %}">All User</a></li>
+        </ul>
+    </div>
+    <!-- body nav start -->
+    <!-- body content start -->
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Create New User</h4>
+            </div>
+            <div class="panel_body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="oinJByDhHNeEN0nKBHfZyG8W3ZuvyCytDoZStjLh">
+                    <div class="user_profile">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="profile_info">
+                                    <div class="header_info">
+                                            <span class="profile_img">
+                                                <img class="file-upload-image"
+                                                     src="https://sadmantravels.com/public/backend/images/user/01.png"
+                                                     src="{% static 'settings/img.png' %}"
+                                                     src="#"
+                                                     alt="">
+                                                <span class="cover">
+                                                    <i class="fas fa-images"></i>
+                                                </span>
+                                                <input class="file-upload-input" type="file" name="avatar"
+                                                       accept="image/*">
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8">
+                                <div class="password_form">
+                                    <h4>Your Information</h4>
+                                    <form action="#" method="POST">
+                                        <div class="form-group row">
+                                            <label class="col-form-label text-md-right required col-md-3">Full
+                                                Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" name="name" placeholder="Your Full Name"
+                                                       class="form-control" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label text-md-right col-md-3">Mobile</label>
+                                            <div class="col-md-9">
+                                                <input type="tel" name="mobile" placeholder="Without +88"
+                                                       class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label text-md-right col-md-3">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="email" name="email" placeholder="Your Email Address"
+                                                       class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label text-md-right col-md-3">Address</label>
+                                            <div class="col-md-9">
+                                                    <textarea name="address" class="form-control"
+                                                              placeholder="Add Your Address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label
+                                                    class="col-form-label text-md-right required col-md-3 ">Username</label>
+                                            <div class="col-md-9">
+                                                <input type="text" name="username"
+                                                       placeholder="lower Case & No Space" class="form-control"
+                                                       autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label
+                                                    class="col-form-label text-md-right required col-md-3">Password</label>
+                                            <div class="col-md-9">
+                                                <input type="password" name="password" placeholder="Password"
+                                                       autocomplete="off" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label text-md-right required col-md-3">Confirm
+                                                Password</label>
+                                            <div class="col-md-9">
+                                                <input type="password" name="password_confirmation"
+                                                       placeholder="Confirm password" class="form-control"
+                                                       autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label
+                                                    class="col-form-label text-md-right required col-md-3">Privilege</label>
+                                            <div class="col-md-9">
+                                                <select name="privilege" class="form-control" required>
+                                                    <option value="" selected>Select Privilege</option>
+
+                                                    <option value="admin">Admin</option>
+                                                    <option value="user">User</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12 text-right">
+                                                <button type="submit" class="btn submit_btn">Submit</button>
+                                                <button type="reset" class="btn reset_btn">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script_block %}
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{#{% extends 'dashboard/base.html' %}#}
+{#{% load static %}#}
+{#{% load crispy_forms_tags %}#}
+{#{% block body_block %}#}
+{##}
+{#    <h2>All Users</h2>#}
+{#    <!-- body content start -->#}
+{#    <div class="body_content">#}
+{#        <div class="panel_container">#}
+{#            <div class="panel_heading">#}
+{#                <h4>All User</h4>#}
+{#                <a href="#" id="print" class="print_btn">#}
+{#                    <i class="icon ion-md-print"></i> Print#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="panel_body">#}
+{#                <div class="table-responsive">#}
+{#                    <table class="table table-bordered list-table">#}
+{#                        <thead>#}
+{#                        <tr>#}
+{#                            <th width="30">SL</th>#}
+{#                            <th width="60">Photo</th>#}
+{#                            <th>Name</th>#}
+{#                            <th>Mobile</th>#}
+{#                            <th>Address</th>#}
+{#                            <th>Username</th>#}
+{#                            <th>Privilege</th>#}
+{#                            <th class="text-right print_hide" width="100">Action</th>#}
+{#                        </tr>#}
+{##}
+{#                        {% for user in users %}#}
+{#                            <tr>#}
+{#                                <td>{{ forloop.counter }}</td>#}
+{#                                <td class="img">#}
+{#                                    <img src="#" alt="">#}
+{#                                </td>#}
+{#                                <td>{{ user.username }}</td>#}
+{#                                <td>01533269911</td>#}
+{#                                <td>Mymensingh natun bazar</td>#}
+{#                                <td>{{ user.username }}</td>#}
+{#                                <td>Admin</td>#}
+{#                                <td class="operation_btn text-right print_hide">#}
+{##}
+{#                                    <a href="https://sadmantravels.com/admin/user/show/5" class="view" title="View">#}
+{#                                        <i class="far fa-eye"></i>#}
+{#                                    </a>#}
+{##}
+{#                                    <a href="https://sadmantravels.com/admin/user/destroy/5"#}
+{#                                       onclick="return confirm('Do you want to delete this data?')" class="delete"#}
+{#                                       title="Delete">#}
+{#                                        <i class="fas fa-trash-alt"></i>#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <a href="{% url 'registration_app:add_user' %}">Add New User</a>#}
+{##}
+{#{% endblock %}#}
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+<h2>All Users</h2>
+<!-- body content start -->
+<div class="body_content">
+    <div class="panel_container">
+        <div class="panel_heading">
+            <h4>All Users</h4>
+            <a href="#" id="print" class="print_btn">
+                <i class="icon ion-md-print"></i> Print
+            </a>
+        </div>
+        <div class="panel_body">
+            <div class="table-responsive">
+                <table class="table table-bordered list-table">
+                    <thead>
+                    <tr>
+                        <th width="30">SL</th>
+                        <th width="60">Photo</th>
+                        <th>Full Name</th>
+                        <th>Mobile</th>
+                        <th>Address</th>
+                        <th>Username</th>
+                        <th>Privilege</th>
+                        <th class="text-right print_hide" width="100">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td class="img">
+                                {% if user.profile.picture %}
+                                    <img src="{{ user.profile.picture.url }}" alt="Profile Picture">
+                                {% else %}
+                                    <img src="{% static 'settings/img.png' %}" alt="Default Picture">
+                                {% endif %}
+                            </td>
+                            <td>{{ user.profile.full_name }}</td>
+                            <td>{{ user.profile.mobile_number }}</td>
+                            <td>{{ user.profile.address }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.profile.get_privileges_display }}</td> <!-- Display human-readable privilege -->
+                            <td class="operation_btn text-right print_hide">
+                                <a href="#" class="view" title="View">
+                                    <i class="far fa-eye"></i>
+                                </a>
+
+                                <a href="#"
+                                   onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                   title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{% url 'registration_app:add_user' %}">Add New User</a>
+
+{% endblock %}

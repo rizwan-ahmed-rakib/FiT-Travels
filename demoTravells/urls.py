@@ -25,6 +25,7 @@ from first_app import views
 urlpatterns = [
                   path('admin/', admin.site.urls, name='admin'),
                   path('dash-board/', include('dashboard_app.urls')),
+                  path('user/', include('registration_app.urls')),
                   path('abc/', views.HomePageView.as_view(), name='homee'),
                   path('', views.TravellsPageView.as_view(), name='home'),
                   path('travel/', views.TravellsPageView.as_view(), name='travell_home'),
