@@ -1,0 +1,121 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+{% endblock %}
+{% block body_block %}
+    <!-- body nav start -->
+    <!-- body content start -->
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Profile</h4>
+            </div>
+            <div class="panel_body">
+                <div class="user_profile">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="profile_info">
+                                <div class="header_info">
+                                    <div class="profile_img">
+                                        <img class="file-upload-image" src="{{ user.profile.picture.url }}" alt="">
+                                        <span class="cover">
+                                                <i class="fas fa-images"></i>
+                                            </span>
+                                        <input class="file-upload-input" type="file" name="avatar" accept="image/*">
+                                    </div>
+                                    <div class="title">
+                                        <h5>Sadman Travels</h5>
+                                        <p>October 31 2023</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile_info">
+                                <div class="profile_edit">
+                                    <h4>Personal Information</h4>
+                                    <a href="#" data-toggle="modal" data-target="#edit_modal" title="Edit">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                </div>
+                                <ul>
+                                    <li><strong>Name</strong>:{{ user.profile.full_name }}</li>
+                                    <li><strong>Username</strong>: {{ user.username }}</li>
+                                    <li><strong>Email</strong>:{{ user.profile.email }}</li>
+                                    <li><strong>Mobile</strong>:{{ user.profile.mobile_number }}</li>
+                                    <li><strong>Address</strong>:{{ user.profile.address }}</li>
+                                </ul>
+                            </div>
+
+                            <!-- edit modal -->
+                            <div class="modal fade" id="edit_modal">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Personal Information</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- form content -->
+                                            <form method="post" enctype="multipart/form-data"
+                                                  action="{% url 'registration_app:update_user' user.profile.id %}">
+                                                {% csrf_token %}
+                                                {{ form|crispy }}
+                                                <div class="form-group text-right">
+                                                    <button type="submit" class="btn submit_btn">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-md-6">
+                            <div class="password_form">
+                                <h4>Change Password</h4>
+                                <form action="https://sadmantravels.com/admin/user/change-password" method="POST">
+                                    <input type="hidden" name="_token" value="yaeyRbpB3I6ZcyB1bjqNBvbUVOmX6LXNAdCYFgVc">
+                                    <input type="hidden" name="id" value="5">
+
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="password" name="current_password"
+                                                       placeholder="Old password" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="password" name="password" placeholder="New password"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="password" name="password_confirmation"
+                                                       placeholder="Confirm password" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn submit_btn">Change Password</button>
+                                                <button type="reset" class="btn reset_btn">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel_footer"></div>
+        </div>
+    </div>
+
+
+{% endblock %}
