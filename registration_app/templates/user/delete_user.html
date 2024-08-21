@@ -19,9 +19,9 @@
             {% csrf_token %}
             <br><br>
             <a href="#">
-                <h3>Delete {{ user.profile.full_name}} {{ user.profile.email }} {{ all.date }} {{ all.pub_date }}<h4
+                <h3>Delete {{ user.profile.full_name}} {{ user.profile.email }} ?<h4
                         style="color: #e55621">{{ all.subject }}</h4> <a
-                        href="{{ all.file.url }}"> {{ all.file.url }} ?</a><br>
+                        href="{{ all.file.url }}"> {{ all.file.url }} </a><br>
                 </h3>
             </a>
             <input type="submit" value="Delete" class="btn btn-danger" onMouseOver="this.style.color='#0F0'"

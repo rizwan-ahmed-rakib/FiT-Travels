@@ -11,13 +11,6 @@ class ProfileForm(forms.ModelForm):
         fields = ['full_name', 'mobile_number', 'email', 'address', 'privileges', 'picture']
 
 
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password']
-#         widgets = {
-#             'password': forms.PasswordInput(),
-#         }
 class UserForm(forms.ModelForm):
     password_confirmation = forms.CharField(widget=forms.PasswordInput())
 
@@ -33,3 +26,11 @@ class UserForm(forms.ModelForm):
         if password != password_confirmation:
             raise forms.ValidationError("Passwords do not match.")
 
+
+# class UserFormedit(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password', 'email', 'first_name', 'last_name','user.']
+#         widgets = {
+#             'password': forms.PasswordInput(),
+#         }

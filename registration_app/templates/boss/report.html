@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Include flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Include Font Awesome for calendar icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Sales Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 11px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .print-button {
+        {#display: block;#} width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            float: right;
+        }
+
+        .print-button:hover {
+            background-color: #0056b3;
+        }
+
+
+        /* Style the input wrapper */
+        .input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style the input field */
+        input[type="text"] {
+            padding: 8px;
+            font-size: 14px;
+            padding-right: 30px; /* Adjust to leave space for the icon */
+            color: black;
+            width: 100px;
+            height: 10px;
+        }
+
+        /* Style the calendar icon */
+        .calendar-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize flatpickr with custom format
+            flatpickr(".custom-date-picker", {
+                dateFormat: "d/m/Y", // Format: DD/MM/YYYY
+                onChange: function (selectedDates, dateStr, instance) {
+                    console.log("Selected Date: ", dateStr);
+                }
+            });
+
+            // Trigger datepicker when calendar icon is clicked
+            document.querySelectorAll('.calendar-icon').forEach(function (icon) {
+                icon.addEventListener('click', function () {
+                    icon.previousElementSibling._flatpickr.open(); // Open the flatpickr calendar
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <h2>Overall Report<b style="color: #0a6ebd"> Digital Auto</b>
+
+        <!-- Print Button -->
+        <button class="print-button" onclick="window.print()">Print</button>
+    </h2>
+
+
+    Date from <input type="text" class="custom-date-picker" placeholder="DD/MM/YYYY">
+    to <input type="text" class="custom-date-picker" placeholder="DD/MM/YYYY">
+    <input type="button" value="Go" style="color: white;background-color: #859ff3;width: 50px;height: 30px;cursor: pointer;transition: box-shadow 0.2s ease-in-out, margin-top 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;width: 150px;">
+
+
+</div>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Customer name</th>
+        <th>Body</th>
+        <th>Battery</th>
+        <th>Carbon Motor</th>
+        <th>Carbon Controler</th>
+        <th>Megnate Motor</th>
+        <th>Megnate Controler</th>
+        <th>Charger</th>
+        <th>Tyre</th>
+        <th>Acid Pani</th>
+        <th>Sales price</th>
+        <th>Due</th>
+        <th>Payment Purchase</th>
+        <th>Collection</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>Cash purchase - Cash purchase</td><!--Customer name --->
+        <td>0</td>  <!--Body --->
+        <td>10</td>  <!--Battery --->
+        <td>10</td> <!-- Carbon Motor--->
+        <td>230</td>    <!-- Carbon Controler--->
+        <td>1</td>   <!-- Megnate Motor--->
+        <td>1</td>   <!--Megnate Controler --->
+        <td>1</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td>2,34,400.00</td>   <!-- Sales price--->
+        <td>00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Recieve - HERU VAI</td><!--Customer name --->
+        <td>0</td>  <!--Body --->
+        <td>10</td>  <!--Battery --->
+        <td>10</td> <!-- Carbon Motor--->
+        <td>230</td>    <!-- Carbon Controler--->
+        <td>1</td>   <!-- Megnate Motor--->
+        <td></td>   <!--Megnate Controler --->
+        <td></td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td></td>   <!--Acid Pani --->
+        <td></td>   <!-- Sales price--->
+        <td></td>   <!-- Due--->
+        <td></td>   <!--Payment Purchase --->
+        <td> 8,13,000.0</td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Noyewn AUTO</td><!--Customer name --->
+        <td>3</td>  <!--Body --->
+        <td></td>  <!--Battery --->
+        <td></td> <!-- Carbon Motor--->
+        <td></td>    <!-- Carbon Controler--->
+        <td>3</td>   <!-- Megnate Motor--->
+        <td>3</td>   <!--Megnate Controler --->
+        <td>3</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td> 14,400.00</td>   <!-- Sales price--->
+        <td>14,400.00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Cash sales - Cash sales</td><!--Customer name --->
+        <td>3</td>  <!--Body --->
+        <td></td>  <!--Battery --->
+        <td></td> <!-- Carbon Motor--->
+        <td></td>    <!-- Carbon Controler--->
+        <td>3</td>   <!-- Megnate Motor--->
+        <td>3</td>   <!--Megnate Controler --->
+        <td>3</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td> 14,400.00</td>   <!-- Sales price--->
+        <td>14,400.00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Recieve - NOYEN AUTO</td><!--Customer name --->
+        <td>3</td>  <!--Body --->
+        <td></td>  <!--Battery --->
+        <td></td> <!-- Carbon Motor--->
+        <td></td>    <!-- Carbon Controler--->
+        <td>3</td>   <!-- Megnate Motor--->
+        <td>3</td>   <!--Megnate Controler --->
+        <td>3</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td> 14,400.00</td>   <!-- Sales price--->
+        <td>14,400.00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Credit sales - HAUJING DENA</td><!--Customer name --->
+        <td>3</td>  <!--Body --->
+        <td></td>  <!--Battery --->
+        <td></td> <!-- Carbon Motor--->
+        <td></td>    <!-- Carbon Controler--->
+        <td>3</td>   <!-- Megnate Motor--->
+        <td>3</td>   <!--Megnate Controler --->
+        <td>3</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td> 14,400.00</td>   <!-- Sales price--->
+        <td>14,400.00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <tr>
+        <td>Payment - Office Expense</td><!--Customer name --->
+        <td>3</td>  <!--Body --->
+        <td></td>  <!--Battery --->
+        <td></td> <!-- Carbon Motor--->
+        <td></td>    <!-- Carbon Controler--->
+        <td>3</td>   <!-- Megnate Motor--->
+        <td>3</td>   <!--Megnate Controler --->
+        <td>3</td>   <!--Charger--->
+        <td></td>   <!-- Tyre--->
+        <td>140</td>   <!--Acid Pani --->
+        <td> 14,400.00</td>   <!-- Sales price--->
+        <td>14,400.00</td>   <!-- Due--->
+        <td>.00</td>   <!--Payment Purchase --->
+        <td></td>   <!--Collection --->
+
+    </tr>
+    <!------------------- use it for total Field--------------------------->
+    <tr style="color: red">
+        <td>Total</td><!--Customer name --->
+        <td>3</td>  <!-- Total Body --->
+        <td>20</td>  <!--TotalBattery --->
+        <td>20</td> <!--Total Carbon Motor--->
+        <td>460</td>    <!-- Total Carbon Controler--->
+        <td>5</td>   <!--Total Megnate Motor--->
+        <td>4</td>   <!--Total Megnate Controler --->
+        <td>4</td>   <!--Total Charger--->
+        <td></td>   <!--Total Tyre--->
+        <td>280</td>   <!--Total Acid Pani --->
+        <td> 14,400.00</td>   <!--Total Sales price--->
+        <td>14,400.00</td>   <!--Total Due--->
+        <td>.00</td>   <!--Total Payment Purchase --->
+        <td>155</td>   <!--Total Collection --->
+
+    </tr>
+    <!------------------- use it for total Field--------------------------->
+    </tbody>
+</table>
+<hr>
+
+
+<table style="width: 50%;float: right">
+    <tr>
+        <td><b>Cash from sales</b></td>
+        <td>10<!--Total Sales price--></td>
+        <td>5<!--Total due--></td>
+        <td>5<!--result--></td>
+    </tr>
+    <tr>
+        <td><b>Receive</b></td>
+        <td><!--please don't remove this tag--></td>
+        <td><!--please don't remove this tag--></td>
+        <td>555 <!--Total collection--></td>
+    </tr>
+
+    <tr>
+        <td><b>Opening Balance</b></td>
+        <td><!--please don't remove this tag--></td>
+        <td><!--please don't remove this tag--></td>
+        <td>22<!--opening balance--></td>
+    </tr>
+    <tr>
+        <td><b>Total Receive></b></td>
+        <td><!--please don't remove this tag--></td>
+        <td><!--please don't remove this tag--></td>
+        <td>77<!--total receive--></td>
+    </tr>
+    <tr>
+        <td><b>Total Payment</b></td>
+        <td><!--please don't remove this tag--></td>
+        <td><!--please don't remove this tag--></td>
+        <td>45<!--total payment/purchase--></td>
+    </tr>
+    <tr>
+        <td><b>Closing Balance</b></td>
+        <td><!--please don't remove this tag--></td>
+        <td><!--please don't remove this tag--></td>
+        <td>55<!--result--></td>
+    </tr>
+</table>
+
+
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th style="color: black">Sl#</th>
+        <th style="color: black">Item Name</th>
+        <th style="color: black">Previous Stock</th>
+        <th style="color: black">Purchase (+)</th>
+        <th style="color: black">Total</th>
+        <th style="color: black">Sales (-)</th>
+        <th style="color:black">Current Stock</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td style="color:blue">1</td>       <!--Sl# --->
+        <td style="color:blue">Auto body Doyodo China</td>  <!--Item Name --->
+        <td> 91.00</td>  <!--Previous Stock --->
+        <td>.00</td>  <!-- Purchase (+)--->
+        <td style="color:red">91</td>     <!-- Total--->
+        <td>6</td>      <!-- Sales (-)--->
+        <td style="color:blue">85</td>       <!--Current Stock --->
+
+
+    </tr>
+    <tr>
+        <td style="color:blue">2</td><!--Sl# --->
+        <td style="color:blue">Puraton Battery</td>  <!--Item Name --->
+        <td>34</td>  <!--Previous Stock --->
+        <td>1.00</td> <!-- Purchase (+)--->
+        <td style="color:red">35</td>    <!-- Total--->
+        <td>1</td>   <!-- Sales (-)--->
+        <td style="color:blue">34</td>   <!--Current Stock --->
+
+
+    </tr>
+    <tr>
+        <td style="color:blue">3</td><!--Sl# --->
+        <td style="color:blue">Mesuk</td>  <!--Item Name --->
+        <td>.00</td>  <!--Previous Stock --->
+        <td>.00</td> <!-- Purchase (+)--->
+        <td style="color:red">.00</td>    <!-- Total--->
+        <td>.00</td>   <!-- Sales (-)--->
+        <td style="color:blue">.00</td>   <!--Current Stock --->
+
+
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

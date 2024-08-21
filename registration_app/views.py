@@ -1,11 +1,12 @@
 # views.py
-
-from django.shortcuts import render, redirect
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
 from .forms import ProfileForm, UserForm
 from registration_app.models import Profile
 
@@ -118,6 +119,8 @@ class EditUserView(UpdateView):
     context_object_name = 'user'
 
 
+
+
 class DeleteUserView(DeleteView):
     template_name = 'user/delete_user.html'
     model = User
@@ -125,9 +128,55 @@ class DeleteUserView(DeleteView):
     success_url = reverse_lazy('registration_app:all_user')
 
 
+# class EditUserProfileView(UpdateView):
+#     template_name = 'user/update.html'
+#     model = User
+#     # fields = '__all__'
+#     form_class = UserForm
+#     success_url = reverse_lazy('registration_app:edit_user')
+#
+#     # context_object_name = 'user'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_object(**kwargs)
+#         pk = self.kwargs.get('pk')
+#         context['user'] = Profile.objects.get(pk=pk)
+#
+#         return context
+
+
+class Boss(TemplateView):
+    template_name = 'boss/report.html'
+
+
+class CustomPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'user/update.html'  # Change to your template path
+    success_message = "Your password was successfully updated!"
+    success_url = reverse_lazy(
+        'registration_app:edit_user')  # Change 'profile' to the name of the view you want to redirect to after password change
+
+    def get_object(self, queryset=None):
+        # Get the user whose password we are changing based on the URL parameter
+        return get_object_or_404(User, pk=self.kwargs['pk'])
+
+    def get_form_kwargs(self):
+        # Pass the user object to the form
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.get_object()
+        return kwargs
+
+
 class EditUserProfileView(UpdateView):
-    template_name = 'user/edit_user.html'
     model = Profile
-    form_class = ProfileForm
+    template_name = 'user/update.html'
+    form_class = ProfileForm  # Assume you have a form for user updates
     success_url = reverse_lazy('registration_app:all_user')
-    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # If you are trying to set some attribute for the user, do it like this:
+        user = self.get_object()
+        context['user'] = user
+        # Example: if you want to update a user attribute, use dot notation
+        # user.email = "newemail@example.com"  # This is how you set an attribute
+        return context
