@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
 {% endblock %}
 {% block body_block %}
+  <h2>User Profile</h2>
 
-    <div class="body_nav">
+      <div class="body_nav">
         <ul>
             <li><a class="add_user" href="{% url 'registration_app:create_user' %}" class="active">Add User</a></li>
             <li><a class="all_user" href="{% url 'registration_app:all_user' %}">All User</a></li>
@@ -51,17 +52,12 @@
                             <div class="profile_info">
                                 <div class="profile_edit">
                                     <h4>Personal Information</h4>
-{#                                    <a href="{% url 'registration_app:update_user' pk=user.profile.pk %}">edit</a>#}
-                                     <a href="{% url 'registration_app:update_user' pk=user.profile.pk %}"   title="Edit">
+                                    <a href="{% url 'registration_app:update_user' pk=user.profile.pk %}">edit
+                                        profile</a>
+                                    <a href="#" data-toggle="modal" data-target="#edit_modal" title="Edit">
                                         <i class="far fa-edit"></i>
 
                                     </a>
-{#                                    <a href="#" data-toggle="modal" data-target="#edit_modal" title="Edit">#}
-{#                                        <i class="far fa-edit"></i>#}
-{##}
-{#                                    </a>#}
-
-
                                     {#                                    <a><input type="button" class="btn btn-success" value="update"#}
                                     {#                                              href="{% url 'registration_app:update_user' pk=user.profile.pk %}">#}
                                     {#                                       #}
@@ -106,19 +102,19 @@
                             <div class="password_form">
                                 <h4>Change Password</h4>
                                 <a href="{% url 'registration_app:change_password' user.pk %}">change password</a>
-                                <form method="POST">
+{#                                <form method="POST">#}
                                     {#                                    <input type="hidden" name="_token" value="yaeyRbpB3I6ZcyB1bjqNBvbUVOmX6LXNAdCYFgVc">#}
                                     {#                                    <input type="hidden" name="id" value="5">#}
-
-                                    {{ form|crispy }}
-                                    {% csrf_token %}
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn submit_btn">Change Password</button>
-                                            <button type="reset" class="btn reset_btn">Reset</button>
-                                        </div>
-                                    </div>
-
+{##}
+{#                                    {{ form|crispy }}#}
+{#                                    {% csrf_token %}#}
+{#                                    <div class="col-12">#}
+{#                                        <div class="form-group">#}
+{#                                            <button type="submit" class="btn submit_btn">Change Password</button>#}
+{#                                            <button type="reset" class="btn reset_btn">Reset</button>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
                                     {#                                    <div class="form-row">#}
                                     {#                                        <div class="col-12">#}
                                     {#                                            <div class="form-group">#}
@@ -145,7 +141,7 @@
                                     {#                                            </div>#}
                                     {#                                        </div>#}
                                     {#                                    </div>#}
-                                </form>
+{#                                </form>#}
                             </div>
                         </div>
                     </div>
@@ -156,4 +152,20 @@
     </div>
 
 
+
+
+
+
+{# ########################################################################   #}
+  <div>
+{#      <img src="{{ profile.picture.url }}" alt="{{ profile.full_name }}'s Profile Picture">#}
+  </div>
+  <ul>
+      <li><strong>Full Name:</strong> {{ profile.full_name }}</li>
+      <li><strong>Email:</strong> {{ profile.email }}</li>
+      <li><strong>UserName:</strong> {{ profile.user.username }}</li>
+      <li><strong>Mobile Number:</strong> {{ profile.mobile_number }}</li>
+      <li><strong>Address:</strong> {{ profile.address }}</li>
+      <li><strong>Privileges:</strong> {{ profile.get_privileges_display }}</li>
+  </ul>
 {% endblock %}

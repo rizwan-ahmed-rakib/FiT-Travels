@@ -38,7 +38,7 @@
                             {% for message in haze_m %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ message.title }}</td>
+                                    <td>{{ message.title|safe }}</td>
                                     <td>{{ message.body|safe }}</td>
                                     <td class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:edit_hazz_message' pk=message.pk %}" class="edit"
