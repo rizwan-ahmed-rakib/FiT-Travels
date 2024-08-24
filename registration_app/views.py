@@ -1,12 +1,16 @@
 # views.py
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, AuthenticationForm
+from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 from .forms import ProfileForm, UserForm
 from registration_app.models import Profile
 
@@ -119,8 +123,6 @@ class EditUserView(UpdateView):
     context_object_name = 'user'
 
 
-
-
 class DeleteUserView(DeleteView):
     template_name = 'user/delete_user.html'
     model = User
@@ -180,3 +182,34 @@ class EditUserProfileView(UpdateView):
         # Example: if you want to update a user attribute, use dot notation
         # user.email = "newemail@example.com"  # This is how you set an attribute
         return context
+@method_decorator(login_required, name='dispatch')
+class ProfileView(DetailView):
+    model = Profile
+    form_class = PasswordChangeForm
+    template_name = 'user/profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self):
+        # Return the profile of the currently logged-in user
+        return self.request.user.profile
+
+
+def login_user(request):
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('dashBoard_app:dashboard'))
+    return render(request, 'login/loginOutlayer.html', context={'form': form})
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    messages.warning(request, "You are logged out")
+    return HttpResponseRedirect(reverse('home'))
