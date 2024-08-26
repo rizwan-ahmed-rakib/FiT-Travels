@@ -555,9 +555,13 @@
 <!-- datepicker js -->
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"></script>
 <!-- perfect scrollbar js -->
-<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>
+{#<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>#}
+
 <!-- include js -->
-<script src="https://sadmantravels.com/backend/js/app.js"></script>
+{#<script src="https://sadmantravels.com/backend/js/app.js"></script>#}
+{#<script src="{% static 'js/main.js' %}"></script>#}
+<script src="{% static 'js/app/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
 
 <script>
     

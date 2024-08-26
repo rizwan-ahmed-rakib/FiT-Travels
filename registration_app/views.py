@@ -182,6 +182,8 @@ class EditUserProfileView(UpdateView):
         # Example: if you want to update a user attribute, use dot notation
         # user.email = "newemail@example.com"  # This is how you set an attribute
         return context
+
+
 @method_decorator(login_required, name='dispatch')
 class ProfileView(DetailView):
     model = Profile
@@ -213,3 +215,6 @@ def logout_user(request):
     logout(request)
     messages.warning(request, "You are logged out")
     return HttpResponseRedirect(reverse('home'))
+
+
+

@@ -1,39 +1,87 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block body_block %}
- <!-- body container start -->
+    <!-- body container start -->
     <div class="body_container">
 
         <!-- body content start -->
         <div class="body_content">
             <div class="panel_container">
                 <div class="panel_heading">
-                    <h4>Frontend Message</h4>
+                    <h4>Frontend Message </h4>
                     <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
+                </div>
+                <div class="body_nav">
+                    <ul>
+                        <li><a class="addPage" href="{% url 'dashBoard_app:mail' %}">All Message</a></li>
+
+                    </ul>
                 </div>
                 <div class="panel_body">
 
-                    <form action="#" method="post">
-                        <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">                        <div class="row">
+                    {#                    <form action="#" method="post">#}
+                    {#                        <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">                        <div class="row">#}
+                    {#                            <div class="col-md-3">#}
+                    {#                                <div class="form-group">#}
+                    {#                                    <select name="type" class="form-control">#}
+                    {#                                        <option value="" selected> Message Type</option>#}
+                    {#                                        <option value="contact">Contact</option>#}
+                    {#                                        <option value="instant_contact">Instant Contact</option>#}
+                    {#                                    </select>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {##}
+                    {#                            <div class="col-md-3">#}
+                    {#                                <div class="form-group">#}
+                    {#                                    <input type="text" name="dateFrom" class="form-control datepicker" placeholder="Date form">#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {##}
+                    {#                            <div class="col-md-3">#}
+                    {#                                <div class="form-group">#}
+                    {#                                    <input type="text" name="dateTo" class="form-control datepicker" placeholder="Date to">#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {##}
+                    {#                            <div class="col-md-3">#}
+                    {#                                <div class="form-group">#}
+                    {#                                    <button type="submit" class="btn submit_btn" name="search">Search</button>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </form>#}
+                    <form action="{% url 'dashBoard_app:search_messages' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="_token" value="Qe3ky1WYBRO5foi8ehzorcHC3FkhJbDrKiFp81Zp">
+                        <div class="row">
+                            {#                            <div class="col-md-3">#}
+                            {#                                <div class="form-group">#}
+                            {#                                    <select name="type" class="form-control">#}
+                            {#                                        <option value="" selected> Message Type</option>#}
+                            {#                                        <option value="contact">Contact</option>#}
+                            {#                                        <option value="instant_contact">Instant Contact</option>#}
+                            {#                                    </select>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <select name="type" class="form-control">
-                                        <option value="" selected> Message Type</option>
-                                        <option value="contact">Contact</option>
-                                        <option value="instant_contact">Instant Contact</option>
-                                    </select>
+                                    <input type="text" name="dateFrom" class="form-control datepicker"
+                                           placeholder="Date from" >
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="dateFrom" class="form-control datepicker" placeholder="Date form">
+                                    <input type="text" name="dateTo" class="form-control datepicker"
+                                           placeholder="Date to"  >
                                 </div>
                             </div>
 
+                            <!-- New SL Number search field -->
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="dateTo" class="form-control datepicker" placeholder="Date to">
+                                    <input type="number" name="sl_number" class="form-control" placeholder="SL Number">
                                 </div>
                             </div>
 
@@ -60,26 +108,28 @@
                             </thead>
                             <tbody>
                             {% for email_inbox in email_inbox %}
-                            	  <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ email_inbox.date }}</td>
-                                <td>{{ email_inbox.email }}</td>
-                                <td>{{ email_inbox.name }}....</td>
-                                <td>{{ email_inbox.message }}....</td>
-                                <td class="operation_btn text-right print_hide">
-                                    <a href="{% url 'dashBoard_app:details_frontend_message' pk=email_inbox.pk %}"  class="view"
-                                       title="View">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a href="{% url 'dashBoard_app:delete_frontend_message' pk=email_inbox.pk %}"
-                                       onclick="return confirm('Do you want to delete this data?')" class="delete"
-                                       title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ email_inbox.date }}</td>
+                                    <td>{{ email_inbox.email }}</td>
+                                    <td>{{ email_inbox.name }}....</td>
+                                    <td>{{ email_inbox.message }}....</td>
+                                    <td class="operation_btn text-right print_hide">
+                                        <a href="{% url 'dashBoard_app:details_frontend_message' pk=email_inbox.pk %}"
+                                           class="view"
+                                           title="View">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'dashBoard_app:delete_frontend_message' pk=email_inbox.pk %}"
+                                           onclick="return confirm('Do you want to delete this data?')" class="delete"
+                                           title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                            </tbody>                                                                                      </tbody>
+                            </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>

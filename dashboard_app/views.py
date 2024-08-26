@@ -1,9 +1,11 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView, ListView
 
-from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm #AboutUsForm
+from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm  # AboutUsForm
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
                               AboutUs, Form, HazzMustbeDone, Email_Inbox)
@@ -823,7 +825,77 @@ class FrontendMessage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['email_inbox'] = Email_Inbox.objects.all()
+
         return context
+
+# class FrontendMessage(TemplateView):
+#     template_name = 'news/frontend_message.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         # Retrieve the search parameters from the POST request
+#         sl_number = self.request.POST.get('sl_number')
+#         message_type = self.request.POST.get('type')
+#         date_from = self.request.POST.get('dateFrom')
+#         date_to = self.request.POST.get('dateTo')
+#
+#         # Get all email inbox messages
+#         email_inbox = Email_Inbox.objects.all()
+#
+#         # Filter based on SL number if provided
+#         if sl_number:
+#             # SL number is the position in the queryset, so filter by index
+#             try:
+#                 sl_number = int(sl_number)
+#                 email_inbox = email_inbox[sl_number - 1:sl_number]  # Convert SL number to 0-based index
+#             except (ValueError, IndexError):
+#                 email_inbox = Email_Inbox.objects.none()  # Return an empty queryset if invalid SL number
+#
+#         # Filter by message type if provided
+#         if message_type:
+#             email_inbox = email_inbox.filter(type=message_type)
+#
+#         # Filter by date range if provided
+#         if date_from and date_to:
+#             email_inbox = email_inbox.filter(date__range=[date_from, date_to])
+#
+#         context['email_inbox'] = email_inbox
+#         return context
+
+
+class FrontendMessageSearchView(TemplateView):
+    template_name = 'news/frontend_message.html'  # Adjust the template name if necessary
+
+    def post(self, request, *args, **kwargs):
+        # Retrieve form data from POST request
+        date_from = request.POST.get('dateFrom')
+        date_to = request.POST.get('dateTo')
+        message_type = request.POST.get('type')
+
+        # Initialize the queryset to all messages
+        email_inbox = Email_Inbox.objects.all()
+
+        # Filter by message type if provided
+        if message_type:
+            email_inbox = email_inbox.filter(message_type=message_type)
+
+        # Filter by date range if both dates are provided
+        if date_from and date_to:
+            try:
+                # Convert dates from string to datetime objects
+                date_from = datetime.strptime(date_from, '%Y-%m-%d')
+                date_to = datetime.strptime(date_to, '%Y-%m-%d')
+                # Ensure the date range is inclusive of both start and end dates
+                email_inbox = email_inbox.filter(date__range=[date_from, date_to])
+            except ValueError:
+                # Handle invalid date format, you can add an error message here if needed
+                email_inbox = Email_Inbox.objects.none()
+
+        # Add the filtered queryset to the context and render the template
+        context = {
+            'email_inbox': email_inbox
+        }
+        return render(request, self.template_name, context)
 
 
 class FrontendMessage_detail(DetailView):
