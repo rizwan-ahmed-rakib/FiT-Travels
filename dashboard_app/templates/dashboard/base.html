@@ -102,8 +102,8 @@
                 </a>
                 <ul>
                     <li class="addIncome"><a href="#">New Income</a></li>
-                    <li class="allIncome"><a href="https://sadmantravels.com/admin/income">All Income</a></li>
-                    <li class="fieldIncome"><a href="https://sadmantravels.com/admin/income/field">Field Of Income</a>
+                    <li class="allIncome"><a href="#">All Income</a></li>
+                    <li class="fieldIncome"><a href="#">Field Of Income</a>
                     </li>
                 </ul>
             </li>
@@ -119,13 +119,13 @@
                     </span>
                 </a>
                 <ul>
-                    <li class="addCost"><a href="https://sadmantravels.com/admin/cost/create">New Cost</a></li>
-                    <li class="allCost"><a href="https://sadmantravels.com/admin/cost">All Cost</a></li>
-                    <li class="fieldCost"><a href="https://sadmantravels.com/admin/cost/field">Field Of Cost</a></li>
+                    <li class="addCost"><a href="#">New Cost</a></li>
+                    <li class="allCost"><a href="#">All Cost</a></li>
+                    <li class="fieldCost"><a href="#">Field Of Cost</a></li>
                 </ul>
             </li>
             <li id="balance-sheet">
-                <a href="https://sadmantravels.com/admin/balane-sheet">
+                <a href="#">
                     <i class="fas fa-comments-dollar"></i>
                     <span class="menu_title">Balance SheetReport</span>
                 </a>
@@ -133,7 +133,7 @@
 
             <!-- slider -->
             <li id="importantLink">
-                <a href="https://sadmantravels.com/admin/important-link">
+                <a href="">
                     <i class="fas fa-file-alt"></i>
                     <span class="menu_title">Important Link</span>
                 </a>
@@ -368,9 +368,10 @@
                 </li>
 
                 <!-- profile -->
+
                 <li class="user_dropdown">
                     <a href="#" class="menu-button">
-                        <img src="https://sadmantravels.com/backend/images/user/02.png" alt="">
+                        <img src="{{ user.profile.picture.url }}" alt="" >
 {#                        <img src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %}" alt="from back">#}
                     </a>
 

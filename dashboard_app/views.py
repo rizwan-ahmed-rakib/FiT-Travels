@@ -13,9 +13,16 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
 from first_app.views import Speach
+from registration_app.models import Profile
 
 
 # Create your views here.
+
+def inbox_view(request):
+    unseen_messages = Email_Inbox.objects.filter(seen=False).order_by('-date')
+    message_count = unseen_messages.count()
+    return render(request, 'notification.html', {'unseen_messages': unseen_messages, 'message_count': message_count})
+
 
 class LoginOutlayer(TemplateView):
     template_name = 'login/loginOutlayer.html'
@@ -23,6 +30,10 @@ class LoginOutlayer(TemplateView):
 
 class DashBoard(TemplateView):
     template_name = 'dashboard/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
 
 
 ###################################################################Image Gallery#####################################
@@ -33,6 +44,7 @@ class ImageGallery(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['image_gallery'] = Image_Gallery.objects.all()
+        context['profile'] = Profile.objects.all()
         return context
 
 
@@ -827,6 +839,7 @@ class FrontendMessage(TemplateView):
         context['email_inbox'] = Email_Inbox.objects.all()
 
         return context
+
 
 # class FrontendMessage(TemplateView):
 #     template_name = 'news/frontend_message.html'

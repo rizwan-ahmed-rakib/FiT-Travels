@@ -153,6 +153,7 @@ class Email_Inbox(models.Model):
     email = models.EmailField(blank=True)
     message = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    seen = models.BooleanField(default=False)  # New field to track if the message has been seen
 
     def __str__(self):
         return self.email
