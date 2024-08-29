@@ -40,7 +40,7 @@
                                              style="width: 120px; height: 80px;" alt=""></td>
                                     <td>{{ all_speach.name }}</td>
                                     <td>{{ all_speach.designation }}</td>
-                                    <td>{{ all_speach.speach }}....</td>
+                                    <td>{{ all_speach.speach|truncatechars:50  }}....</td>
                                     <td class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:edit_speach' pk=all_speach.pk %}" class="edit"
                                            title="Edit">

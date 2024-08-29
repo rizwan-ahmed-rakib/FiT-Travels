@@ -98,23 +98,26 @@
                         <table class="table table-bordered list-table">
                             <thead>
                             <tr>
+{#                                <th >SL</th>#}
+{#                                <th style="width:20% ">Date</th>#}
+{#                                <th style="width: 20%">Message Type</th>#}
                                 <th style="width: 40px;">SL</th>
-                                <th style="width: 110px;">Date</th>
+                                <th style="width: 210px;">Date</th>
                                 <th style="width: 120px;">Message Type</th>
-                                <th>Full Name</th>
-                                <th>Description</th>
+                                <th >Full Name</th>
+                                <th >Description</th>
                                 <th style="width: 120px;" class="text-right print_hide">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for email_inbox in email_inbox %}
                                 <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>{{ email_inbox.date }}</td>
-                                    <td>{{ email_inbox.email }}</td>
-                                    <td>{{ email_inbox.name }}....</td>
-                                    <td>{{ email_inbox.message }}....</td>
-                                    <td class="operation_btn text-right print_hide">
+                                    <td style="height: 10px">{{ forloop.counter }}</td>
+                                    <td style="height: 10px;width: 50px">{{ email_inbox.date }}</td>
+                                    <td style="height: 10px">{{ email_inbox.email }}</td>
+                                    <td style="height: 10px">{{ email_inbox.name }}....</td>
+                                    <td style="height: 10px">{{ email_inbox.message|truncatechars:50 }}....</td>
+                                    <td style="height: 10px" class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:details_frontend_message' pk=email_inbox.pk %}"
                                            class="view"
                                            title="View">

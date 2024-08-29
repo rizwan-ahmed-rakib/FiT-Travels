@@ -3,7 +3,7 @@ from dashboard_app import views
 
 app_name = 'dashBoard_app'
 urlpatterns = [
-    path('notification/',views.inbox_view,name='inbox'),
+    path('notification/', views.inbox_view, name='inbox'),
     path('dashboard/', views.DashBoard.as_view(), name='dashboard'),
     path('image-gallery/', views.ImageGallery.as_view(), name='image_gallery'),
     path('videos/', views.videoGallery.as_view(), name='videos'),

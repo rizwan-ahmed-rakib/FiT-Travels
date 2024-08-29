@@ -45,7 +45,7 @@
                                     <td>{{ management.joining_date }}</td>
                                     <td>{{ management.name }}</td>
                                     <td>{{ management.title }}</td>
-                                    <td>{{ management.want_to_say|safe }}</td>
+                                    <td>{{ management.want_to_say|safe|truncatechars:50  }}</td>
                                     <td><img src="{{ management.picture.url }}"></td>
 
 

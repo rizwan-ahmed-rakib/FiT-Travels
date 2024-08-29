@@ -349,21 +349,21 @@
                     <ul class="sub_menu">
                         <li class="head">
                             <a href="#">
-                                <h6>You have 2 Message</h6>
+                                <h6>You have {{ message_count }} Unseen Message</h6>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <span>Awesome aminmate.css</span>
-                                <small>10 minit ago</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span>Awesome aminmate.css</span>
-                                <small>10 minit ago</small>
-                            </a>
-                        </li>
+                        {% for message in unseen_messages %}
+                            <li>
+                                <a href="{% url 'dashBoard_app:details_frontend_message' pk=message.pk %}">
+                                    <span>{{ message.message|truncatechars:60 }}</span>
+                                    <small>{{ message.date|timesince }} ago</small>
+
+                                </a>
+                            </li>
+                        {% endfor %}
+                        <a href="#"><P style="color:red;">see all</P></a>
+
+
                     </ul>
                 </li>
 
@@ -371,29 +371,28 @@
 
                 <li class="user_dropdown">
                     <a href="#" class="menu-button">
-                        <img src="{{ user.profile.picture.url }}" alt="" >
-{#                        <img src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %}" alt="from back">#}
+                        <img src="{{ user.profile.picture.url }}" alt="">
+                        {#                        <img src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %}" alt="from back">#}
                     </a>
 
-                        <ul class="sub_menu">
-                            <li class="head">
-                                <a href="">
-                                    <h6>FreelanceIT 2022</h6>
-                                    <small>Super</small>
-                                </a>
-                            </li>
-                            <li><a href="{% url 'registration_app:view_profile' %}">Profile</a></li>
-                            <li>
-                                <a href="{% url 'registration_app:admin_log_out' %}">Logout</a>
-                                {#                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>#}
+                    <ul class="sub_menu">
+                        <li class="head">
+                            <a href="">
+                                <h6>FreelanceIT 2022</h6>
+                                <small>Super</small>
+                            </a>
+                        </li>
+                        <li><a href="{% url 'registration_app:view_profile' %}">Profile</a></li>
+                        <li>
+                            <a href="{% url 'registration_app:admin_log_out' %}">Logout</a>
+                            {#                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>#}
 
-                                {#                            <form id="logout-form" action="https://sadmantravels.com/admin/logout" method="POST"#}
-                                {#                                  class="d-none">#}
-                                {#                                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">#}
-                                {#                            </form>#}
-                            </li>
-                        </ul>
-
+                            {#                            <form id="logout-form" action="https://sadmantravels.com/admin/logout" method="POST"#}
+                            {#                                  class="d-none">#}
+                            {#                                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">#}
+                            {#                            </form>#}
+                        </li>
+                    </ul>
 
 
                 </li>

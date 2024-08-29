@@ -33,6 +33,9 @@ class DashBoard(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['unseen_messages'] = Email_Inbox.objects.filter(seen=False).order_by('-date')
+        context['message_count'] = Email_Inbox.objects.filter(seen=False).order_by('-date').count()
+        return context
 
 
 
@@ -624,7 +627,7 @@ class HazzMessage_detail(DetailView):
 
 class AddHazzMessage(CreateView):
     template_name = 'service/add_service.html'
-    model = TopManagement
+    model = Hazz_Message
     fields = '__all__'
     success_url = reverse_lazy('dashBoard_app:all_hazz_message')
 

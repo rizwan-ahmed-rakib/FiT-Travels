@@ -28,6 +28,15 @@
             {{ all.message }}<br>
             <span>{{ all.body|safe }}</span>
         </form>
+<BR>
+    <form method="POST">
+
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p style="cursor:help;color: #1e9bd0">unmark and save it if you want to see it as unseen message!</p>
+        <button class="btn-success">Save as Unseen</button>
+
+    </form>
 
     </div>
 {% endblock %}

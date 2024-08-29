@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ message.title }}</td>
-                                    <td>{{ message.body|safe }}</td>
+                                    <td>{{ message.body|safe|truncatechars:500 }}</td>
                                     <td class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:edit_hazz_mustbe_done' pk=message.pk %}" class="edit"
                                            title="Edit">
