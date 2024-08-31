@@ -243,7 +243,7 @@ class FormDownload(TemplateView):
 class ContactUs(CreateView):
     template_name = 'about/contact.html'
     model = Email_Inbox
-    fields = '__all__'
+    fields = ['name', 'email', 'message']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -149,9 +149,9 @@ class Form(models.Model):
 
 
 class Email_Inbox(models.Model):
-    name = models.CharField(max_length=264, blank=True, )
-    email = models.EmailField(blank=True)
-    message = models.TextField(blank=True)
+    name = models.CharField(max_length=264 )
+    email = models.EmailField()
+    message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     seen = models.BooleanField(default=False)  # New field to track if the message has been seen
 

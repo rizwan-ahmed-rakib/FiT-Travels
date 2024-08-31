@@ -66,22 +66,20 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="dateFrom" class="form-control datepicker"
-                                           placeholder="Date from" >
+                                    <input type="text" name="dateFrom" class="form-control datepicker" placeholder="Date from">
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="dateTo" class="form-control datepicker"
-                                           placeholder="Date to"  >
+                                    <input type="text" name="dateTo" class="form-control datepicker" placeholder="Date to">
                                 </div>
                             </div>
 
                             <!-- New SL Number search field -->
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="number" name="sl_number" class="form-control" placeholder="SL Number">
+                                    <input type="email" name="email" class="form-control" placeholder="email">
                                 </div>
                             </div>
 
@@ -98,25 +96,36 @@
                         <table class="table table-bordered list-table">
                             <thead>
                             <tr>
-{#                                <th >SL</th>#}
-{#                                <th style="width:20% ">Date</th>#}
-{#                                <th style="width: 20%">Message Type</th>#}
+                                {#                                <th >SL</th>#}
+                                {#                                <th style="width:20% ">Date</th>#}
+                                {#                                <th style="width: 20%">Message Type</th>#}
                                 <th style="width: 40px;">SL</th>
                                 <th style="width: 210px;">Date</th>
                                 <th style="width: 120px;">Message Type</th>
-                                <th >Full Name</th>
-                                <th >Description</th>
+                                <th>Full Name</th>
+                                <th>Description</th>
                                 <th style="width: 120px;" class="text-right print_hide">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for email_inbox in email_inbox %}
+
                                 <tr>
-                                    <td style="height: 10px">{{ forloop.counter }}</td>
-                                    <td style="height: 10px;width: 50px">{{ email_inbox.date }}</td>
-                                    <td style="height: 10px">{{ email_inbox.email }}</td>
-                                    <td style="height: 10px">{{ email_inbox.name }}....</td>
-                                    <td style="height: 10px">{{ email_inbox.message|truncatechars:50 }}....</td>
+                                    {% if email_inbox.seen == True %}
+                                        <td style="height: 10px">{{ forloop.counter }}</td>
+                                        <td style="height: 10px;width: 100px">{{ email_inbox.date }}</td>
+                                        <td style="height: 10px">{{ email_inbox.email }}</td>
+                                        <td style="height: 10px">{{ email_inbox.name }}</td>
+                                        <td style="height: 10px">{{ email_inbox.message|truncatechars:20 }}....</td>
+
+                                    {% elif email_inbox.seen == False %}
+                                        <td style="height: 10px;color: #8e24aa">{{ forloop.counter }}</td>
+                                        <td style="height: 10px;width: 100px;color: #8e24aa">{{ email_inbox.date }}</td>
+                                        <td style="height: 10px;color: #8e24aa">{{ email_inbox.email }}</td>
+                                        <td style="height: 10px;color: #8e24aa">{{ email_inbox.name }}</td>
+                                        <td style="height: 10px;color: #8e24aa">{{ email_inbox.message|truncatechars:20 }}....</td>
+
+                                    {% endif %}
                                     <td style="height: 10px" class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:details_frontend_message' pk=email_inbox.pk %}"
                                            class="view"

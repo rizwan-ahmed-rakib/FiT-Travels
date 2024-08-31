@@ -344,27 +344,33 @@
                 <!-- message -->
                 <li class="user_dropdown">
                     <a href="#" class="menu-button">
-                        <i class="icon ion-ios-mail io-21"></i>
+                        <i class="icon ion-ios-mail io-21"><small style="font-size: 11px;color: white">{{ message_count }}</small></i>
+{#                        <span class="notification-badge" >{{ message_count }}</span>#}
                     </a>
-                    <ul class="sub_menu">
-                        <li class="head">
-                            <a href="#">
-                                <h6>You have {{ message_count }} Unseen Message</h6>
-                            </a>
-                        </li>
-                        {% for message in unseen_messages %}
-                            <li>
-                                <a href="{% url 'dashBoard_app:details_frontend_message' pk=message.pk %}">
-                                    <span>{{ message.message|truncatechars:60 }}</span>
-                                    <small>{{ message.date|timesince }} ago</small>
 
+                    <ul class="sub_menu">
+                        {% if message_count > 0 %}
+                            <li class="head">
+                                <a href="#">
+                                    <h6>You have {{ message_count }} Unseen Message</h6>
                                 </a>
                             </li>
+                        {% endif %}
+                        {% for message in unseen_messages %}
+                            {% if forloop.counter <= 4 %}
+                                <li>
+                                    <a href="{% url 'dashBoard_app:details_frontend_message' pk=message.pk %}">
+                                        <span>{{ message.message|truncatechars:60 }}</span>
+                                        <small>{{ message.date|timesince }} ago</small>
+
+                                    </a>
+                                </li>
+                            {% endif %}
                         {% endfor %}
-                        <a href="#"><P style="color:red;">see all</P></a>
-
-
+                        <a href="{% url 'dashBoard_app:mail' %}"><P style="color:red;text-align: center"> see
+                            all</P></a>
                     </ul>
+                    {#                    <a href="{% url 'dashBoard_app:dashboard' %}"><P style="color:red;"> see all</P></a>#}
                 </li>
 
                 <!-- profile -->

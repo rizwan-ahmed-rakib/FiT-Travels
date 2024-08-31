@@ -38,7 +38,6 @@ class DashBoard(TemplateView):
         return context
 
 
-
 ###################################################################Image Gallery#####################################
 class ImageGallery(TemplateView):
     # template_name = 'dashboard/imagegallery.html'
@@ -839,7 +838,7 @@ class FrontendMessage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['email_inbox'] = Email_Inbox.objects.all()
+        context['email_inbox'] = Email_Inbox.objects.all().order_by('seen', '-date')
 
         return context
 
@@ -884,16 +883,17 @@ class FrontendMessageSearchView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # Retrieve form data from POST request
-        date_from = request.POST.get('dateFrom')
-        date_to = request.POST.get('dateTo')
-        message_type = request.POST.get('type')
+        date_from = request.POST.get('dateFrom') #<input type="text" name="dateFrom" class="form-control datepicker" placeholder="Date from">
+        date_to = request.POST.get('dateTo')  #<input type="text" name="dateTo" class="form-control datepicker" placeholder="Date to">
+        message_type = request.POST.get('email')  #email is the name of the name = email in html page
+        #<input type="email" name="email" class="form-control" placeholder="email">
 
         # Initialize the queryset to all messages
         email_inbox = Email_Inbox.objects.all()
 
         # Filter by message type if provided
         if message_type:
-            email_inbox = email_inbox.filter(message_type=message_type)
+            email_inbox = email_inbox.filter(email=message_type)
 
         # Filter by date range if both dates are provided
         if date_from and date_to:
@@ -914,13 +914,25 @@ class FrontendMessageSearchView(TemplateView):
         return render(request, self.template_name, context)
 
 
-class FrontendMessage_detail(DetailView):
+class FrontendMessage_detail(UpdateView):
     template_name = 'service/details.html'
     model = Email_Inbox
     context_object_name = 'all'
+    fields = ['seen']
+    success_url = reverse_lazy('dashBoard_app:dashboard')
+
+    def get(self, request, *args, **kwargs):
+        # Retrieve the object and update the `seen` field to True
+        self.object = self.get_object()  # Get the instance of the model
+        if not self.object.seen:  # If `seen` is False
+            self.object.seen = True
+            self.object.save()  # Save the change to the database
+
+        # Proceed with the normal get behavior (rendering the form)
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
         context['custom_url'] = reverse_lazy('dashBoard_app:mail')
         context['heading'] = "Frontend Message"
         return context

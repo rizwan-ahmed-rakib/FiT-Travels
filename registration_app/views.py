@@ -15,16 +15,16 @@ from .forms import ProfileForm, UserForm
 from registration_app.models import Profile
 
 
-def add_user(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "User has been added successfully!")
-            return redirect('registration_app:all_user')
-    else:
-        form = UserCreationForm()
-    return render(request, 'user/add_user.html', {'form': form})
+# def add_user(request):
+#     if request.method == "POST":
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "User has been added successfully!")
+#             return redirect('registration_app:all_user')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'user/add_user.html', {'form': form})
 
 
 # views.py
@@ -34,51 +34,94 @@ def all_user(request):
     return render(request, 'user/all_user.html', {'users': users})
 
 
-class CreateUserView(CreateView):
-    template_name = 'user/add_demo_user.html'
-    model = Profile
-    fields = '__all__'
-    success_url = reverse_lazy('registration_app:all_user')
+# class CreateUserView(CreateView):
+#     template_name = 'user/add_demo_user.html'
+#     model = Profile
+#     fields = '__all__'
+#     success_url = reverse_lazy('registration_app:all_user')
 
 
-def create_same_user(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)  # Hash the password
-            user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-
-            return redirect('registration_app:all_user')
-    else:
-        user_form = UserForm()
-        profile_form = ProfileForm()
-
-    return render(request, 'user/same_add_user.html', {
-        'user_form': user_form,
-        'profile_form': profile_form
-    })
+# def create_same_user(request):
+#     if request.method == 'POST':
+#         user_form = UserForm(request.POST)
+#         profile_form = ProfileForm(request.POST, request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save()
+#             user.set_password(user.password)  # Hash the password
+#             user.save()
+#
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             profile.save()
+#
+#             return redirect('registration_app:all_user')
+#     else:
+#         user_form = UserForm()
+#         profile_form = ProfileForm()
+#
+#     return render(request, 'user/same_add_user.html', {
+#         'user_form': user_form,
+#         'profile_form': profile_form
+#     })
 
 
 #
+# def add_forTest_user(request):
+#     if request.method == 'POST':
+#         user_form = UserForm(request.POST)
+#         profile_form = ProfileForm(request.POST, request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save()
+#             user.set_password(user.password)  # Hash the password
+#             user.save()
+#
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             profile.save()
+#
+#             return redirect('registration_app:all_user')
+#     else:
+#         user_form = UserForm()
+#         profile_form = ProfileForm()
+#
+#     return render(request, 'user/add_user.html', {
+#         'user_form': user_form,
+#         'profile_form': profile_form
+#     })
+################################################################################
 def add_forTest_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
+
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+            # Save the User object but don't commit to the database yet
+            user = user_form.save(commit=False)
             user.set_password(user.password)  # Hash the password
+
+            # Determine the privilege from the Profile form
+            privilege = profile_form.cleaned_data.get('privileges')
+
+            # Set user permissions based on the privilege selected
+            if privilege == Profile.ADMIN:
+                user.is_staff = True  # Admins are usually staff
+                user.is_superuser = False
+            elif privilege == Profile.SUPERUSER:
+                user.is_staff = True  # Superusers are also staff
+                user.is_superuser = True  # Superusers have all permissions
+            else:  # If 'user'
+                user.is_staff = False
+                user.is_superuser = False
+
+            # Save the User object to the database
             user.save()
 
+            # Save the Profile object
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
 
+            # Redirect after successful creation
             return redirect('registration_app:all_user')
     else:
         user_form = UserForm()
@@ -89,6 +132,8 @@ def add_forTest_user(request):
         'profile_form': profile_form
     })
 
+
+################################################################################
 
 def add_demo_user(request):
     if request.method == 'POST':
@@ -215,6 +260,3 @@ def logout_user(request):
     logout(request)
     messages.warning(request, "You are logged out")
     return HttpResponseRedirect(reverse('home'))
-
-
-
