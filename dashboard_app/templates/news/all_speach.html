@@ -17,7 +17,11 @@
             <div class="panel_container">
                 <div class="panel_heading">
                     <h4>All Speech</h4>
+<<<<<<< HEAD
                     <a id="print" class="print_btn"><i class="icon ion-md-print"></i> Print</a>
+=======
+                    <a id="print" class="print_btn"  onclick="window.print()"><i class="icon ion-md-print"></i> Print</a>
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
                 </div>
                 <div class="panel_body">
                     <div class="table-responsive">
@@ -40,7 +44,11 @@
                                              style="width: 120px; height: 80px;" alt=""></td>
                                     <td>{{ all_speach.name }}</td>
                                     <td>{{ all_speach.designation }}</td>
+<<<<<<< HEAD
                                     <td>{{ all_speach.speach }}....</td>
+=======
+                                    <td>{{ all_speach.speach|truncatechars:50  }}....</td>
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
                                     <td class="operation_btn text-right print_hide">
                                         <a href="{% url 'dashBoard_app:edit_speach' pk=all_speach.pk %}" class="edit"
                                            title="Edit">

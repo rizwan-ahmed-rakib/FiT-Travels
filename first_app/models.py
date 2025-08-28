@@ -149,10 +149,18 @@ class Form(models.Model):
 
 
 class Email_Inbox(models.Model):
+<<<<<<< HEAD
     name = models.CharField(max_length=264, blank=True, )
     email = models.EmailField(blank=True)
     message = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
+=======
+    name = models.CharField(max_length=264 )
+    email = models.EmailField()
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    seen = models.BooleanField(default=False)  # New field to track if the message has been seen
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
     def __str__(self):
         return self.email

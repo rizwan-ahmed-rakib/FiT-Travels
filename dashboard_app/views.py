@@ -1,9 +1,18 @@
+<<<<<<< HEAD
+=======
+from datetime import datetime
+
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, UpdateView, CreateView, DeleteView, DetailView, ListView
 
+<<<<<<< HEAD
 from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm #AboutUsForm
+=======
+from dashboard_app.forms import ImageGalleryForm, VideoGalleryForm, NoticeForm  # AboutUsForm
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 from first_app.models import (Image_Gallery, Video_Gallery, Notice, Settings, SideHomeSlides, HomeSlides,
                               PresidentSpeach, Latest_news, TopManagement, Hazz_Message, Hazz_Tips, Agency_Should,
                               AboutUs, Form, HazzMustbeDone, Email_Inbox)
@@ -11,10 +20,23 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
 from first_app.views import Speach
+<<<<<<< HEAD
+=======
+from registration_app.models import Profile
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
 
 # Create your views here.
 
+<<<<<<< HEAD
+=======
+def inbox_view(request):
+    unseen_messages = Email_Inbox.objects.filter(seen=False).order_by('-date')
+    message_count = unseen_messages.count()
+    return render(request, 'notification.html', {'unseen_messages': unseen_messages, 'message_count': message_count})
+
+
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 class LoginOutlayer(TemplateView):
     template_name = 'login/loginOutlayer.html'
 
@@ -22,6 +44,15 @@ class LoginOutlayer(TemplateView):
 class DashBoard(TemplateView):
     template_name = 'dashboard/index.html'
 
+<<<<<<< HEAD
+=======
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['unseen_messages'] = Email_Inbox.objects.filter(seen=False).order_by('-date')
+        context['message_count'] = Email_Inbox.objects.filter(seen=False).order_by('-date').count()
+        return context
+
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
 ###################################################################Image Gallery#####################################
 class ImageGallery(TemplateView):
@@ -31,6 +62,10 @@ class ImageGallery(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['image_gallery'] = Image_Gallery.objects.all()
+<<<<<<< HEAD
+=======
+        context['profile'] = Profile.objects.all()
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
         return context
 
 
@@ -610,7 +645,11 @@ class HazzMessage_detail(DetailView):
 
 class AddHazzMessage(CreateView):
     template_name = 'service/add_service.html'
+<<<<<<< HEAD
     model = TopManagement
+=======
+    model = Hazz_Message
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
     fields = '__all__'
     success_url = reverse_lazy('dashBoard_app:all_hazz_message')
 
@@ -822,6 +861,7 @@ class FrontendMessage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+<<<<<<< HEAD
         context['email_inbox'] = Email_Inbox.objects.all()
         return context
 
@@ -833,6 +873,103 @@ class FrontendMessage_detail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+=======
+        context['email_inbox'] = Email_Inbox.objects.all().order_by('seen', '-date')
+
+        return context
+
+
+# class FrontendMessage(TemplateView):
+#     template_name = 'news/frontend_message.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         # Retrieve the search parameters from the POST request
+#         sl_number = self.request.POST.get('sl_number')
+#         message_type = self.request.POST.get('type')
+#         date_from = self.request.POST.get('dateFrom')
+#         date_to = self.request.POST.get('dateTo')
+#
+#         # Get all email inbox messages
+#         email_inbox = Email_Inbox.objects.all()
+#
+#         # Filter based on SL number if provided
+#         if sl_number:
+#             # SL number is the position in the queryset, so filter by index
+#             try:
+#                 sl_number = int(sl_number)
+#                 email_inbox = email_inbox[sl_number - 1:sl_number]  # Convert SL number to 0-based index
+#             except (ValueError, IndexError):
+#                 email_inbox = Email_Inbox.objects.none()  # Return an empty queryset if invalid SL number
+#
+#         # Filter by message type if provided
+#         if message_type:
+#             email_inbox = email_inbox.filter(type=message_type)
+#
+#         # Filter by date range if provided
+#         if date_from and date_to:
+#             email_inbox = email_inbox.filter(date__range=[date_from, date_to])
+#
+#         context['email_inbox'] = email_inbox
+#         return context
+
+
+class FrontendMessageSearchView(TemplateView):
+    template_name = 'news/frontend_message.html'  # Adjust the template name if necessary
+
+    def post(self, request, *args, **kwargs):
+        # Retrieve form data from POST request
+        date_from = request.POST.get('dateFrom') #<input type="text" name="dateFrom" class="form-control datepicker" placeholder="Date from">
+        date_to = request.POST.get('dateTo')  #<input type="text" name="dateTo" class="form-control datepicker" placeholder="Date to">
+        message_type = request.POST.get('email')  #email is the name of the name = email in html page
+        #<input type="email" name="email" class="form-control" placeholder="email">
+
+        # Initialize the queryset to all messages
+        email_inbox = Email_Inbox.objects.all()
+
+        # Filter by message type if provided
+        if message_type:
+            email_inbox = email_inbox.filter(email=message_type)
+
+        # Filter by date range if both dates are provided
+        if date_from and date_to:
+            try:
+                # Convert dates from string to datetime objects
+                date_from = datetime.strptime(date_from, '%Y-%m-%d')
+                date_to = datetime.strptime(date_to, '%Y-%m-%d')
+                # Ensure the date range is inclusive of both start and end dates
+                email_inbox = email_inbox.filter(date__range=[date_from, date_to])
+            except ValueError:
+                # Handle invalid date format, you can add an error message here if needed
+                email_inbox = Email_Inbox.objects.none()
+
+        # Add the filtered queryset to the context and render the template
+        context = {
+            'email_inbox': email_inbox
+        }
+        return render(request, self.template_name, context)
+
+
+class FrontendMessage_detail(UpdateView):
+    template_name = 'service/details.html'
+    model = Email_Inbox
+    context_object_name = 'all'
+    fields = ['seen']
+    success_url = reverse_lazy('dashBoard_app:dashboard')
+
+    def get(self, request, *args, **kwargs):
+        # Retrieve the object and update the `seen` field to True
+        self.object = self.get_object()  # Get the instance of the model
+        if not self.object.seen:  # If `seen` is False
+            self.object.seen = True
+            self.object.save()  # Save the change to the database
+
+        # Proceed with the normal get behavior (rendering the form)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
         context['custom_url'] = reverse_lazy('dashBoard_app:mail')
         context['heading'] = "Frontend Message"
         return context

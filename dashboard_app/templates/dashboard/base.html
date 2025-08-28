@@ -102,8 +102,13 @@
                 </a>
                 <ul>
                     <li class="addIncome"><a href="#">New Income</a></li>
+<<<<<<< HEAD
                     <li class="allIncome"><a href="https://sadmantravels.com/admin/income">All Income</a></li>
                     <li class="fieldIncome"><a href="https://sadmantravels.com/admin/income/field">Field Of Income</a>
+=======
+                    <li class="allIncome"><a href="#">All Income</a></li>
+                    <li class="fieldIncome"><a href="#">Field Of Income</a>
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
                     </li>
                 </ul>
             </li>
@@ -119,6 +124,7 @@
                     </span>
                 </a>
                 <ul>
+<<<<<<< HEAD
                     <li class="addCost"><a href="https://sadmantravels.com/admin/cost/create">New Cost</a></li>
                     <li class="allCost"><a href="https://sadmantravels.com/admin/cost">All Cost</a></li>
                     <li class="fieldCost"><a href="https://sadmantravels.com/admin/cost/field">Field Of Cost</a></li>
@@ -126,6 +132,15 @@
             </li>
             <li id="balance-sheet">
                 <a href="https://sadmantravels.com/admin/balane-sheet">
+=======
+                    <li class="addCost"><a href="#">New Cost</a></li>
+                    <li class="allCost"><a href="#">All Cost</a></li>
+                    <li class="fieldCost"><a href="#">Field Of Cost</a></li>
+                </ul>
+            </li>
+            <li id="balance-sheet">
+                <a href="#">
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
                     <i class="fas fa-comments-dollar"></i>
                     <span class="menu_title">Balance SheetReport</span>
                 </a>
@@ -133,7 +148,11 @@
 
             <!-- slider -->
             <li id="importantLink">
+<<<<<<< HEAD
                 <a href="https://sadmantravels.com/admin/important-link">
+=======
+                <a href="">
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
                     <i class="fas fa-file-alt"></i>
                     <span class="menu_title">Important Link</span>
                 </a>
@@ -344,6 +363,7 @@
                 <!-- message -->
                 <li class="user_dropdown">
                     <a href="#" class="menu-button">
+<<<<<<< HEAD
                         <i class="icon ion-ios-mail io-21"></i>
                     </a>
                     <ul class="sub_menu">
@@ -393,6 +413,63 @@
                             </li>
                         </ul>
 
+=======
+                        <i class="icon ion-ios-mail io-21"><small style="font-size: 11px;color: white">{{ message_count }}</small></i>
+{#                        <span class="notification-badge" >{{ message_count }}</span>#}
+                    </a>
+
+                    <ul class="sub_menu">
+                        {% if message_count > 0 %}
+                            <li class="head">
+                                <a href="#">
+                                    <h6>You have {{ message_count }} Unseen Message</h6>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for message in unseen_messages %}
+                            {% if forloop.counter <= 4 %}
+                                <li>
+                                    <a href="{% url 'dashBoard_app:details_frontend_message' pk=message.pk %}">
+                                        <span>{{ message.message|truncatechars:60 }}</span>
+                                        <small>{{ message.date|timesince }} ago</small>
+
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <a href="{% url 'dashBoard_app:mail' %}"><P style="color:red;text-align: center"> see
+                            all</P></a>
+                    </ul>
+                    {#                    <a href="{% url 'dashBoard_app:dashboard' %}"><P style="color:red;"> see all</P></a>#}
+                </li>
+
+                <!-- profile -->
+
+                <li class="user_dropdown">
+                    <a href="#" class="menu-button">
+                        <img src="{{ user.profile.picture.url }}" alt="">
+                        {#                        <img src="{% static 'picture/pexels-moh-adbelghaffar-771742.jpg' %}" alt="from back">#}
+                    </a>
+
+                    <ul class="sub_menu">
+                        <li class="head">
+                            <a href="">
+                                <h6>FreelanceIT 2022</h6>
+                                <small>Super</small>
+                            </a>
+                        </li>
+                        <li><a href="{% url 'registration_app:view_profile' %}">Profile</a></li>
+                        <li>
+                            <a href="{% url 'registration_app:admin_log_out' %}">Logout</a>
+                            {#                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>#}
+
+                            {#                            <form id="logout-form" action="https://sadmantravels.com/admin/logout" method="POST"#}
+                            {#                                  class="d-none">#}
+                            {#                                <input type="hidden" name="_token" value="1bZLDVhOwprhluGWpW8zShKAsa7eHwTsGZAsSe3o">#}
+                            {#                            </form>#}
+                        </li>
+                    </ul>
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
 
                 </li>
@@ -569,7 +646,11 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"></script>
 <!-- perfect scrollbar js -->
 {#<script src="https://sadmantravels.com/backend/vendors/scrollbar/perfect-scrollbar.min.js"></script>#}
+<<<<<<< HEAD
 <script src="{% static 'js/app/perfect-scrollbar.min..js' %}"></script>
+=======
+<script src="{% static 'js/app/perfect-scrollbar.min.js' %}"></script>
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 <!-- include js -->
 {#<script src="https://sadmantravels.com/backend/js/app.js"></script>#}
 <script src="{% static 'js/app/app.js' %}"></script>

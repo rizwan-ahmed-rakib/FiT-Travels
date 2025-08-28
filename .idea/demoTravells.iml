@@ -14,6 +14,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -22,12 +23,23 @@
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
+=======
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.12 (demoTravells)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
+<<<<<<< HEAD
         <option value="$MODULE_DIR$/dashboard_app/templates" />
+=======
+        <option value="$MODULE_DIR$/../demoTravells\templates" />
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
       </list>
     </option>
   </component>

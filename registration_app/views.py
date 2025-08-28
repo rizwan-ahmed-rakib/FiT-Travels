@@ -3,11 +3,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+<<<<<<< HEAD
 from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm, AuthenticationForm
+=======
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, AuthenticationForm
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
@@ -15,6 +23,7 @@ from .forms import ProfileForm, UserForm
 from registration_app.models import Profile
 
 
+<<<<<<< HEAD
 def add_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -25,6 +34,18 @@ def add_user(request):
     else:
         form = UserCreationForm()
     return render(request, 'user/add_user.html', {'form': form})
+=======
+# def add_user(request):
+#     if request.method == "POST":
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "User has been added successfully!")
+#             return redirect('registration_app:all_user')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'user/add_user.html', {'form': form})
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
 
 # views.py
@@ -34,6 +55,7 @@ def all_user(request):
     return render(request, 'user/all_user.html', {'users': users})
 
 
+<<<<<<< HEAD
 class CreateUserView(CreateView):
     template_name = 'user/add_demo_user.html'
     model = Profile
@@ -66,19 +88,107 @@ def create_same_user(request):
 
 
 #
+=======
+# class CreateUserView(CreateView):
+#     template_name = 'user/add_demo_user.html'
+#     model = Profile
+#     fields = '__all__'
+#     success_url = reverse_lazy('registration_app:all_user')
+
+
+# def create_same_user(request):
+#     if request.method == 'POST':
+#         user_form = UserForm(request.POST)
+#         profile_form = ProfileForm(request.POST, request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save()
+#             user.set_password(user.password)  # Hash the password
+#             user.save()
+#
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             profile.save()
+#
+#             return redirect('registration_app:all_user')
+#     else:
+#         user_form = UserForm()
+#         profile_form = ProfileForm()
+#
+#     return render(request, 'user/same_add_user.html', {
+#         'user_form': user_form,
+#         'profile_form': profile_form
+#     })
+
+
+#
+# def add_forTest_user(request):
+#     if request.method == 'POST':
+#         user_form = UserForm(request.POST)
+#         profile_form = ProfileForm(request.POST, request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save()
+#             user.set_password(user.password)  # Hash the password
+#             user.save()
+#
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             profile.save()
+#
+#             return redirect('registration_app:all_user')
+#     else:
+#         user_form = UserForm()
+#         profile_form = ProfileForm()
+#
+#     return render(request, 'user/add_user.html', {
+#         'user_form': user_form,
+#         'profile_form': profile_form
+#     })
+################################################################################
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 def add_forTest_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
+<<<<<<< HEAD
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)  # Hash the password
             user.save()
 
+=======
+
+        if user_form.is_valid() and profile_form.is_valid():
+            # Save the User object but don't commit to the database yet
+            user = user_form.save(commit=False)
+            user.set_password(user.password)  # Hash the password
+
+            # Determine the privilege from the Profile form
+            privilege = profile_form.cleaned_data.get('privileges')
+
+            # Set user permissions based on the privilege selected
+            if privilege == Profile.ADMIN:
+                user.is_staff = True  # Admins are usually staff
+                user.is_superuser = False
+            elif privilege == Profile.SUPERUSER:
+                user.is_staff = True  # Superusers are also staff
+                user.is_superuser = True  # Superusers have all permissions
+            else:  # If 'user'
+                user.is_staff = False
+                user.is_superuser = False
+
+            # Save the User object to the database
+            user.save()
+
+            # Save the Profile object
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
 
+<<<<<<< HEAD
+=======
+            # Redirect after successful creation
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
             return redirect('registration_app:all_user')
     else:
         user_form = UserForm()
@@ -90,6 +200,11 @@ def add_forTest_user(request):
     })
 
 
+<<<<<<< HEAD
+=======
+################################################################################
+
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 def add_demo_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -118,6 +233,7 @@ def add_demo_user(request):
 class EditUserView(UpdateView):
     template_name = 'user/edit_user.html'
     model = User
+<<<<<<< HEAD
     form_class = PasswordChangeForm
     success_url = reverse_lazy('registration_app:all_user')
     context_object_name = 'user'
@@ -127,6 +243,12 @@ class EditUserView(UpdateView):
         form = PasswordChangeForm(user)  # Pass the user instance to the form
         return form
 
+=======
+    form_class = ProfileForm
+    success_url = reverse_lazy('registration_app:all_user')
+    context_object_name = 'user'
+
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
 class DeleteUserView(DeleteView):
     template_name = 'user/delete_user.html'
@@ -189,6 +311,7 @@ class EditUserProfileView(UpdateView):
         return context
 
 
+<<<<<<< HEAD
 # class UserProfileUnderDashboard(DetailView):
 #     model = User
 #     template_name = 'user/profile.html'
@@ -197,6 +320,8 @@ class EditUserProfileView(UpdateView):
 #         # Return the profile of the currently logged-in user
 #         return self.request.user.profile
 
+=======
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 @method_decorator(login_required, name='dispatch')
 class ProfileView(DetailView):
     model = Profile
@@ -227,4 +352,8 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.warning(request, "You are logged out")
+<<<<<<< HEAD
     return HttpResponseRedirect(reverse('home'))
+=======
+    return HttpResponseRedirect(reverse('home'))
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc

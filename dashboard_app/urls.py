@@ -3,6 +3,10 @@ from dashboard_app import views
 
 app_name = 'dashBoard_app'
 urlpatterns = [
+<<<<<<< HEAD
+=======
+    path('notification/', views.inbox_view, name='inbox'),
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
     path('dashboard/', views.DashBoard.as_view(), name='dashboard'),
     path('image-gallery/', views.ImageGallery.as_view(), name='image_gallery'),
     path('videos/', views.videoGallery.as_view(), name='videos'),
@@ -57,6 +61,10 @@ urlpatterns = [
     path('mail/', views.FrontendMessage.as_view(), name='mail'),
     path('details-frontend-message/<int:pk>/', views.FrontendMessage_detail.as_view(), name='details_frontend_message'),
     path('delete-frontend-message/<int:pk>/', views.DeleteFrontendMessage.as_view(), name='delete_frontend_message'),
+<<<<<<< HEAD
+=======
+    path('search-messages/', views.FrontendMessageSearchView.as_view(), name='search_messages'),
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
 
     path('settings/', views.Settings_for_setting.as_view(), name='settings'),
     path('edit-settings/<int:pk>/', views.UpdateSettings.as_view(), name='edit_settings'),
@@ -82,7 +90,12 @@ urlpatterns = [
     # crud home sliders----------------------------------------------------start
     path('homeslides/create/', views.CreateHomeSlide.as_view(), name='create_home_slide'),
     path('homeslides/update/', views.home_slide_update_view, name='update_home_slide'),
+<<<<<<< HEAD
     path('homeslide/detail/', views.home_slide_detail_view, name='home_slide_detail'),  # Get details of an image for editing
+=======
+    path('homeslide/detail/', views.home_slide_detail_view, name='home_slide_detail'),
+    # Get details of an image for editing
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
     path('homeslides/delete/', views.DeleteHomeSlide.as_view(), name='delete_home_slide'),
     # crud notice----------------------------------------------------end
     path('notice/create/', views.notice_create, name='notice_create'),  # Create a new notice

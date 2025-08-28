@@ -240,5 +240,8 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 769a403ff296ea4542b51dfd1273e6383c03dbbc
