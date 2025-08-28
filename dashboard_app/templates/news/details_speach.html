@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+     <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_speach' %}">Add Speach</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Details Speach</h4>
+
+
+            </div>
+        </div>
+
+            <img src="{{ all_speach.image.url }}">
+            <br><br>
+            <span style="color: red"> Name: {{ all_speach.name }}</span><br>
+            <span>Designation: {{ all_speach.designation }}</span><br>
+            <span>{{ all_speach.speach }}</span>
+
+
+    </div>
+{% endblock %}

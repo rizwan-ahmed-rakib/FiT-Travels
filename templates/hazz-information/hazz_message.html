@@ -1,0 +1,17 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %} Hazz Message | Freelance iT{% endblock %}
+{% block sectionName_block %} Hazz Message {% endblock %}
+{% block body_block %}
+    {% for hazz_message in hazz_message %}
+    	
+    
+    
+    <h2 class="text-2xl font-bold mb-5" style="text-align: center">{{ hazz_message.title | safe }}</h2><br>
+
+        <ul class="flex flex-col gap-3 ">
+            <li>{{ hazz_message.body |safe}}</li>
+        </ul>
+        <br><br>
+    {% endfor %}
+{% endblock %}

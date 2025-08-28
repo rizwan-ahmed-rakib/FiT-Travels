@@ -1,0 +1,33 @@
+{% extends 'travel/base.html' %}
+{% load embed_video_tags %}
+{% load static %}
+{% block title_block %} Video Gallery | Freelance iT{% endblock %}
+{% block sectionName_block %} Video Gallery  {% endblock %}
+{% block body_block %}
+    <!--1st---->
+    <div class="grid grid-cols-2 gap-6">
+
+        {% for vid in video_gallery %}
+
+            <div data-aos="zoom-out">
+                <a href="{{ vid.add_video_from_any_link }}" target="_blank" data-fslightbox="gallery"
+                   class="block relative group drop-shadow-2xl duration-300 hover:scale-[1.02] border-2 border-slate-200 shadow-lg overflow-hidden">
+                    {% video vid.add_video_from_any_link as v_gallery %}
+                        <div class="aspect-[16/9] w-full">
+                            <iframe
+                                    class="h-full w-full object-cover"
+                                    src="{{ v_gallery.url }}"
+                                    alt="Video Gallery"
+                            ></iframe>
+                        </div>
+                    {% endvideo %}
+                    <div class="absolute transition delay-150 left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]  text-red-600 text-3xl  after:absolute after:left-3 after:right-3 after:top-3 after:bottom-3 after:content-[''] after:bg-white z-[1] after:z-[-1]">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

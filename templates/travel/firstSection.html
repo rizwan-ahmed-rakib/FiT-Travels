@@ -1,0 +1,88 @@
+{% load static %}
+
+
+<div class="grid grid-cols-1 md:grid-cols-[auto_30%] mx-6 items-start  gap-6">
+    <!------------------ 1st Section Start  ------------------>
+    <div>
+        <div class="relative z-[1] mt-5 bg-slate-200">
+            <div class="p-5">
+                <div class="grid lg:grid-cols-[270px_auto] gap-5">
+                    {% for speach in president_speach %}
+                        <img class="aspect-square w-full rounded-lg object-cover"
+                             src="{{ speach.image.url }}"/>
+                        <div>
+                            <h3 class="font-bold text-[#FC0002] my-3 text-lg line-clamp-2">{{ speach.name }}
+                                <span
+                                        class="block text-sm text-gray-700">{{ speach.designation }} </span></h3>
+                            <p class="float-left line-clamp-6">
+                                {{ speach.speach }}
+
+                            </p>
+                            <a href="{% url 'speach' pk=speach.pk %}"
+                               class="relative inline-flex items-center gap-2 mt-5 font-bold py-1 px-3 duration-300 text-[#FC0002] border border-[#FC0002]/30 uppercase text-[12px] overflow-hidden rounded-md z-[1]  hover:text-white after:absolute after:content-[''] after:left-0 after:bottom-0 after:h-0 after:w-0 after:duration-300 after:z-[-1] after:bg-[#FC0002] hover:after:h-full hover:after:w-full ">Read
+                                More <i class="fa-regular fa-paper-plane"></i></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-amber-700 w-full aspect-square my-5">
+            {% for baner_img in settings %}
+                <img src="{{ baner_img.baner_image.url }}" class="h-full w-full" alt=""/>
+            {% endfor %}
+        </div>
+
+        <div>
+            <h3 class="bg-[#FC0002] bg-gradient-to-tr from-[#fc002a] to-purple-800 relative after:absolute after:content after:left-0 after:top-0 after:bottom-0 after:w-[48px] after:bg-[url(https://sadmantravels.com/public/frontend/images/title-after-bg.png)] after:bg-cover before:absolute before:content before:right-0 before:[transform:scaleX(-1)] before:top-0 before:bottom-0 before:w-[48px] before:bg-[url(https://sadmantravels.com/public/frontend/images/title-after-bg.png)] before:bg-cover mb-2 p-2 text-2xl font-bold text-center text-white">
+                Image Gallery
+            </h3>
+            <div class="gap-3 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start">
+                {% for img in image_gallery %}
+                    <a href="{{ img.image.url }}"
+                       data-fslightbox="gallery"
+                       class="border-4 shadow-md overflow-hidden border-slate-300 relative block group-hover:grayscale-[100%] duration-300 h-[150px] w-full">
+                        <img class="h-full w-full object-cover"
+                             src="{{ img.image.url }}" alt="N/A"/>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="my-5">
+            <h3 class="bg-[#FC0002] bg-gradient-to-tr from-[#fc002a] to-purple-800 relative after:absolute after:content after:left-0 after:top-0 after:bottom-0 after:w-[48px] after:bg-[url(https://sadmantravels.com/public/frontend/images/title-after-bg.png)] after:bg-cover before:absolute before:content before:right-0 before:[transform:scaleX(-1)] before:top-0 before:bottom-0 before:w-[48px] before:bg-[url({% static 'icon/title-after-bg.png' %})] before:bg-cover mb-2 p-2 text-2xl font-bold text-center text-white">
+                Latest News
+            </h3>
+            <div class="gap-3 grid md:grid-cols-2 lg:grid-cols-3 items-start">
+                {% for latest in latest_news %}
+                    <div class="border p-1 group">
+                        <div class="w-full aspect-video overflow-hidden">
+                            <img class="w-full h-full group-hover:scale-125 duration-300 object-cover"
+                                 src="{{ latest.picture.url }}"
+                                 alt="{{ latest.headline |safe }}"/>
+                        </div>
+                        <div class="h-[120px]">
+                            <a href="{% url 'news_details' pk=latest.pk %}"
+                               class="group-hover:text-[#fc0002] duration-300 block my-2 font-bold">{{ latest.headline|safe }}|....</a>
+
+                            <a href="{% url 'news_details' pk=latest.pk %}"
+                               class="p-[2px] px-2 mt-2 text-sm bg-[#FC0002] hover:bg-[#A80001] text-white inline-block">Read
+                                More</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-14">
+                <a href="{% url 'news_all' %}"
+                   class="bg-[#fc0002] hover:bg-[#A80001] text-white px-6 py-2 rounded-full border border-x-2 border-b-4 border-black ">All
+                    News</a>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------1st section End---------------------------->
+    <!------------------ 1st Section End and need to include secondsection.html here ------------------>
+
+    {% include 'travel/secondSection.html' %}
+
+</div>
+<!------------------ 1st Section End and need to include secondsection.html here ------------------>

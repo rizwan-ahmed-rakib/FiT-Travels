@@ -1,0 +1,59 @@
+{% load static %}
+<footer class="relative text-white mt-[50px] md:mt-[100px] lg:mt-[200px] pt-5 bg-black z-[1] after:absolute after:content-[''] after:left-0 after:-top-[50px] md:after:-top-[100px] lg:after:-top-[200px] after:h-[50px] md:after:h-[100px] lg:after:h-[200px] after:w-full after:bg-contain after:bg-repeat-x after:bg-[url({% static 'icon/footer.png' %})]  after:z-[-1]">
+    <div class="px-4">
+        <div class="py-5 lg:py-10">
+            <div class="flex gap-8 flex-wrap">
+                <div class="lg:flex-[4]">
+                    <h3 class="inline-block text-2xl  mb-5 text-white font-bold font-mono">About
+                        {% for about in settings %}
+                            {{ about.company_name }}
+                        {% endfor %}</h3>
+                    <div>{% for about in settings %}
+                        <img src="{{ about.top_link_icon_image.url }}" alt="Logo" class="h-16 mb-2">
+                        <p>
+                            {{ about.about_me }}
+                        </p>
+                    {% endfor %}
+                    </div>
+
+                </div>
+                <div class="lg:flex-[5]">
+                    <h3 class="inline-block text-2xl  mb-5 text-white font-bold font-mono">Quick Touch</h3>
+                    <div class="flex flex-col gap-2 text-lg">
+                        {% for address in settings %}
+
+                            <p class="flex items-start gap-3"><i class="inline-block mt-2 fa-solid fa-globe"></i>
+                                {{ address.address }}
+                            </p>
+                            <p class="flex items-start gap-3"><i
+                                    class="inline-block mt-2 fa-solid fa-mobile-screen-button"></i><a
+                                    href="#">{{ address.mobile_number }}</a></p>
+                            <p class="flex items-start gap-3"><i class="inline-block mt-2 fa-solid fa-at"></i> <a
+                                    href="###">{{ address.email }}</a></p>
+                            <p class="flex items-start gap-3"><i class="inline-block mt-2 fa-regular fa-clock"></i>
+                                <span>{{ address.office_time }} </span></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="lg:flex-[3]">
+                    <h3 class="inline-block text-2xl  mb-5 text-white font-bold font-mono">Awesome Gallery</h3>
+                    <div class="grid grid-cols-4 gap-2">
+                        {% for image in image_gallery %}
+                        <a href="{{ image.image.url }}"
+                           class="h-[50px] overflow-hidden group">
+                            <img src="{{ image.image.url }}"
+                                 class="h-full w-full object-cover group-hover:scale-110 duration-300" alt=""/>
+                        </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-t-[#ebebeb31] py-2">
+            <p>© 2024 {% for copyRight in settings %}{{ copyRight.company_name }} {% endfor %}- All Right Reserved.</p>
+            <p>Developed By <a href="https://freelanceitlab.com">Freelance iT</a></p>
+        </div>
+    </div>
+</footer>

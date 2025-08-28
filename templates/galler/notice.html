@@ -1,0 +1,23 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %} Notice| Freelance iT{% endblock %}
+{% block sectionName_block %} Notice  {% endblock %}
+{% block body_block %}
+    
+{% for notice in notices %}
+    <a href="{% url 'notice-details' pk=notice.pk %}" class="block p-2 border-b duration-300 hover:bg-slate-200">
+        <div class="flex items-center gap-3">
+            <i class="fa-regular fa-hand-point-right text-[12px] text-gray-600"></i>
+            <p class="line-clamp-1 font-medium">
+                {{ notice.subject }}
+            </p>
+        </div>
+        <p class="text-[#FC0002] pl-6 text-sm">
+                    <span class="font-bold">
+                        Publish: 
+                    </span> {{ notice.pub_date }}
+        </p>
+    </a>
+    {% endfor %}
+   
+{% endblock %}

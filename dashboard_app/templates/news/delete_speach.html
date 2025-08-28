@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+     <div class="body_nav">
+           <ul>
+                <li><a class="addPost" href="{% url 'dashBoard_app:add_speach' %}">Add Speach</a></li>
+                <li><a class="allPost" href="{% url 'dashBoard_app:all_speach' %}">All Speach</a></li>
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Delete Speach</h4>
+
+
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <img src="{{ all_news.picture.url }}">
+            <br><br>
+            <a href="#"><h3>Delete  Name: {{ all_speach.name }}   Designation: {{ all_speach.designation }}?</h3></a>
+            <input type="submit" value="Delete" class="btn btn-danger" onMouseOver="this.style.color='#0F0'"
+                   onMouseOut="this.style.color='#ffffff'">
+        </form>
+
+    </div>
+{% endblock %}

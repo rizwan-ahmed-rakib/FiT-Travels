@@ -1,0 +1,10 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %} Hazz Tips | Freelance iT{% endblock %}
+{% block sectionName_block %} Hazz Tips {% endblock %}
+{% block body_block %}
+    {% for tips in hazz_tips %}
+    <h2 class="text-2xl font-bold">{{ tips.title | safe}}</h2>
+        {{ tips.body | safe }}
+     {% endfor%}         
+{% endblock %}

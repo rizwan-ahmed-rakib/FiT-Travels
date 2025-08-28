@@ -1,0 +1,125 @@
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style_block %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .user_profile .header_info {
+            justify-content: center;
+        }
+
+        .user_profile .profile_img {
+            max-width: 185px;
+            width: 100%;
+            height: 185px;
+            margin-right: 0px;
+        }
+
+        .user_profile h4 {
+            border-bottom: 1px solid #303F9F85;
+            padding-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_block %}
+    <div class="body_nav">
+        <ul>
+            <li><a href="{% url 'registration_app:create_user' %}" class="add_user active">Add User</a></li>
+            <li><a href="{% url 'registration_app:all_user' %}" class="all_user">All User</a></li>
+        </ul>
+    </div>
+
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Create New User</h4>
+            </div>
+            <div class="panel_body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="user_profile">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="profile_info">
+                                    <div class="header_info">
+                                        <span class="profile_img">
+                                            <img class="file-upload-image"
+                                                 src="{% static 'settings/img.png' %}"
+                                                 alt="Profile Picture">
+                                            <span class="cover">
+                                                <i class="fas fa-images"></i>
+                                            </span>
+                                            {{ profile_form.picture }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8">
+                                <div class="password_form">
+                                    <h4>Your Information</h4>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right required col-md-3">Full Name</label>
+                                        <div class="col-md-9">
+                                            {{ profile_form.full_name }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right col-md-3">Mobile</label>
+                                        <div class="col-md-9">
+                                            {{ profile_form.mobile_number }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right col-md-3">Email</label>
+                                        <div class="col-md-9">
+                                            {{ profile_form.email }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right col-md-3">Address</label>
+                                        <div class="col-md-9">
+                                            {{ profile_form.address }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right required col-md-3">Username</label>
+                                        <div class="col-md-9">
+                                            {{ user_form.username }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right required col-md-3">Password</label>
+                                        <div class="col-md-9">
+                                            {{ user_form.password }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-md-right required col-md-3">Privilege</label>
+                                        <div class="col-md-9">
+                                            {{ profile_form.privileges }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12 text-right">
+                                            <button type="submit" class="btn submit_btn">Submit</button>
+                                            <button type="reset" class="btn reset_btn">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_block %}
+    <!-- Additional JS if needed -->
+{% endblock %}

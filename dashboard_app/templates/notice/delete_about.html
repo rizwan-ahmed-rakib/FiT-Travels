@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block body_block %}
+     <div class="body_nav">
+            <ul>
+                <li><a class="addPage" href="{% url 'dashBoard_app:add_about' %}">Add Page</a></li>
+                <li><a class="allPage" href="{% url 'dashBoard_app:all_about' %}">All Page</a></li>
+            </ul>
+        </div>
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Delete Page</h4>
+
+
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <img src="{{ all_about_delete.image.url }}">
+            <br><br>
+            <a href="#"><h3>Delete {{ all_about_delete.name }}?</h3></a>
+            <input type="submit" value="Delete" class="btn btn-danger" onMouseOver="this.style.color='#0F0'"
+                   onMouseOut="this.style.color='#ffffff'">
+        </form>
+
+    </div>
+{% endblock %}

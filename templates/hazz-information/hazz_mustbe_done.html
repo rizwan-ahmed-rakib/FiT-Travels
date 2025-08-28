@@ -1,0 +1,15 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block title_block %} Hazz must be done | Freelance iT{% endblock %}
+{% block sectionName_block %} Hazz Must be done {% endblock %}
+{% block body_block %}
+    {% for hazz_mb_done in hazz_mustbe_done %}
+        <div>
+        <h3 class="text-2xl font-bold mb-5">{{ hazz_mb_done.title | safe}}</h3><br>
+        <p>{{ hazz_mb_done.body | safe }}</p>
+        </div>
+        
+        <br><br>
+    
+    {% endfor %}
+{% endblock %}

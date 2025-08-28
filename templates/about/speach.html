@@ -1,0 +1,27 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block sectionName_block %} President Speach {% endblock %}
+{% block body_block %}
+    
+        <div class="group">
+        
+            <div>
+                <img src="{{ speach.image.url }}"
+                     class="w-[250px] aspect-square float-left mr-4 block" alt="President">
+                <h4 class="text-2xl font-bold mb-3">{{ speach.name }} <span
+                        class="block text-base  text-[#FC0002] font-bold ">{{ speach.designation }}</span></h4>
+                <p class="float-left">
+                   </p>
+                <p> {{ speach.speach }}</p><br><hr><br>
+                
+            
+
+            </div>
+        
+    </div>
+    	
+    
+
+   
+
+{% endblock %}

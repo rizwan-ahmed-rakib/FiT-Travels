@@ -1,0 +1,17 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+{% block sectionName_block %} About Freelance iT Software Solution {% endblock %}
+{% block body_block %}
+
+    {% for about in about_us %}
+        <img src="{{ about.image.url }}" class="w-full h-auto"
+             alt="">
+        <p class="mt-5">
+        {{ about.about_us | safe }}
+        </p>
+        <br>
+    {% endfor %}
+
+
+
+{% endblock %}

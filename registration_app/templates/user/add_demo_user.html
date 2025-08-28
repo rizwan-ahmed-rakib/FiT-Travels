@@ -1,0 +1,143 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block style_block %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .user_profile .header_info {
+            justify-content: center;
+        }
+
+        .user_profile .profile_img {
+            max-width: 185px;
+            width: 100%;
+            height: 185px;
+            margin-right: 0px;
+        }
+
+        .user_profile h4 {
+            border-bottom: 1px solid #303F9F85;
+            padding-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_block %}
+    <div class="body_nav">
+        <ul>
+            {#            <li><a class="add_user" href="{% url 'registration_app:create_user' %}" class="active">Add User</a></li>#}
+            <li><a class="all_user" href="{% url 'registration_app:all_user' %}">All User</a></li>
+        </ul>
+    </div>
+
+    <div class="body_content">
+        <div class="panel_container">
+            <div class="panel_heading">
+                <h4>Create New User</h4>
+            </div>
+            <div class="panel_body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="user_profile">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="profile_info">
+                                    <div class="header_info">
+                                        <span class="profile_img">
+                                            {% if profile_form.picture.value %}
+                                                <img class="file-upload-image"
+                                                     src="{{ profile_form.picture.value.url }}" alt="">
+                                            {% else %}
+                                                <img class="file-upload-image" src="{% static 'settings/img.png' %}"
+                                                     alt="">
+                                            {% endif %}
+                                            <span class="cover">
+                                                <i class="fas fa-images"></i>
+                                            </span>
+                                                <img id="profileImage" class="file-upload-image"
+                                                     src="{% static 'settings/img.png' %}" alt="">
+
+                                             <span class="cover">
+                                                <i class="fas fa-images"></i> Upload Image
+
+
+
+                                            </span>
+                                               {{ profile_form.picture }}
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8">
+                                <div class="password_form">
+                                    <h4>Your Information</h4>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right  col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ profile_form.full_name|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ profile_form.mobile_number|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ profile_form.email|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ profile_form.address|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right  col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ user_form.username|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right  col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ user_form.password|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right  col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ user_form.password_confirmation|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {#                                        <label class="col-form-label text-md-right  col-md-3"></label>#}
+                                        <div class="col-md-9">
+                                            {{ profile_form.privileges|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div style="padding-left: 15px">
+                                            <button type="submit" class="btn submit_btn">Submit</button>
+                                            <button type="reset" class="btn reset_btn">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_block %}
+
+{% endblock %}
